@@ -1,0 +1,32 @@
+import { IImage } from "./image.model";
+
+export interface IVideo {
+    id?: number;
+    title?: string;
+    description?: string;
+    keywords?: string;
+    visibility?: string;
+    duration?: number;
+    generateLibras?: boolean;
+    generateSubtitle?: boolean;
+    qtAccess?: number;
+    qtLikes?: number;
+    images?: IImage[];
+}
+
+export class Video implements IVideo {
+    constructor(
+        public id?: number,
+        public title?: string,
+        public description?: string,
+        public keywords?: string,
+        public visibility?: string,
+        public duration?: number,
+        public generateLibras?: boolean,
+        public generateSubtitle?: boolean,
+        public qtAccess?: number,
+        public qtLikes?: number,
+        public images?: IImage[]
+
+    ) { }
+}
