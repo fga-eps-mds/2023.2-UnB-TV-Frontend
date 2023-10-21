@@ -7,13 +7,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { VideoComponent } from './pages/video/video.component';
 import { HttpClientModule } from '@angular/common/http';
+import { VideoViewerComponent } from './pages/video/video-viewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    VideoComponent
+    VideoComponent,
+    VideoViewerComponent
   ],
   imports: [
     BrowserModule,
