@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  username: string = '';
+  password: string = '';
 
+  register() {
+    // Lógica de autenticação aqui
+  }
 }

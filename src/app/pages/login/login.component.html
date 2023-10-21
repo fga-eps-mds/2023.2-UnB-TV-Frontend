@@ -1,14 +1,19 @@
-<div class="p-4 flex items-center justify-center vh-90 vw-90">
-    <form (submit)="login()">
+<app-background>
+  <div class="flex justify-center items-center h-4/5">
+    <form (submit)="login()" class="text-center">
       <div class="mb-4">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="text" id="username" name="username" placeholder="E-mail" required>
       </div>
       <div class="mb-4">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="password" id="password" name="password" placeholder="Senha" required>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <div class="flex justify-start items-center text-gray-400 pl-4">
+        Esqueceu a senha?
+      </div>
+      <button class="w-20 h-8 bg-blue-brand rounded-lg justify-center my-8" type="submit">Entrar</button>
+      <div class="flex justify-start items-center text-blue-brand underline pl-4">
+        Cadastre-se
+      </div>
     </form>
   </div>
-  
+</app-background>
