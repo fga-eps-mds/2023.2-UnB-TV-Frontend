@@ -1,23 +1,26 @@
-<app-background>
+
     <div class="flex justify-center items-center h-4/5">
-      <form (submit)="register()" class="text-center">
+      <form [formGroup]="userForm" (submit)="register()" class="text-center">
         <div class="mb-4">
-          <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="text" id="username" name="username" placeholder="Nome" required>
+          <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="text" formControlName="username" name="username" placeholder="Nome" required>
         </div>
         <div class="mb-4">
-          <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="password" id="password" name="password" placeholder="E-mail" required>
+          <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="email" formControlName="email" name="email" placeholder="E-mail" required>
         </div>
         <div class="mb-4">
-            <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="password" id="password" name="password" placeholder="Vinculo" required>
+            <select class="w-64 h-8 border rounded-lg border-gray-300 pl-3" formControlName="vinculo" name="vinculo" placeholder="Vinculo" required>
+              <option value="ALUNO">Aluno</option>
+              <option value="PROFESSOR">Professor</option>
+              <option value="COMUNIDADE-ACADEMICA">Comunidade Acadêmica</option>
+              <option value="EXTERNO">Externo</option>
+            </select>
           </div>
           <div class="mb-4">
-            <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="password" id="password" name="password" placeholder="Senha (6 números)" required>
+            <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="password" formControlName="password" name="password" placeholder="Senha (6 números)" required>
           </div>
           <div class="mb-4">
-            <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="password" id="password" name="password" placeholder="Confirmar senha" required>
+            <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="confirmPassword" formControlName="confirmPassword" name="confirmPassword" placeholder="Confirmar senha" required>
           </div>
-        <button class="w-24 h-8 bg-blue-brand rounded-lg justify-center my-8" type="submit">Cadastrar</button>
+        <button class="w-24 h-8 bg-blue-brand rounded-lg justify-center my-8 text-white" type="submit" (click)="register()">Cadastrar</button>
       </form>
     </div>
-  </app-background>
-  

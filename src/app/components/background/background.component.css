@@ -6,4 +6,7 @@
   font-weight: 400;
   line-height: normal;
   padding: 2rem;
+  display: flex;
+  flex-direction: row;
 }
+
