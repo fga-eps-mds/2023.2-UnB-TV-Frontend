@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { BackgroundComponent } from './components/background/background.component';
+import { LoginSocialComponent } from './pages/login-social/login-social.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { BackgroundComponent } from './components/background/background.componen
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    BackgroundComponent
+    BackgroundComponent,
+    LoginSocialComponent
   ],
   imports: [
     BrowserModule,
