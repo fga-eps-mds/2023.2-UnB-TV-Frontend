@@ -8,6 +8,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { VideoComponent } from './pages/video/video.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VideoViewerComponent } from './pages/video/video-viewer.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { VideoViewerComponent } from './pages/video/video-viewer.component';
     LoginComponent,
     RegisterComponent,
     VideoComponent,
-    VideoViewerComponent
+    VideoViewerComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
