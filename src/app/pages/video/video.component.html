@@ -1,1 +1,13 @@
-<p>videos works!</p>
+<div class="flex justify-center content-start flex-wrap gap-2">
+  <div *ngFor="let video of videosEduplay" class="flex">
+    <div>
+      <div *ngFor="let image of video.images">
+        <img
+          src="{{ image.href }}"
+          alt="{{ video.title }}"
+          class="w-36 h-[85px] rounded-[7px]"
+        />
+      </div>
+    </div>
+  </div>
+</div>
