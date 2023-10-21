@@ -1,8 +1,9 @@
 <div class="max-w-full max-h-full flex justify-center">
-  <iframe
+  <video
     class="min-w-fit h-2/3"
-    [src]="videoUrl"
+    [src]="videoMP4.url | safe"
     title="trusted video url"
     allowfullscreen
-  ></iframe>
+    controls
+  ></video>
 </div>
