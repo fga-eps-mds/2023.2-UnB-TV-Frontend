@@ -26,8 +26,4 @@ export class VideoComponent implements OnInit {
       () => { }
     );
   }
-
-  onTumbnailClick(id: number): void {
-
-  }
 }
