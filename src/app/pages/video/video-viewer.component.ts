@@ -21,6 +21,7 @@ import { VideoService } from './video.service';
 export class VideoViewerComponent implements OnInit {
   videoVersion: IVideoVersion = new VideoVersion();
   videoMP4: IVideoDetails = new VideoDetails();
+  videoTitle: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -41,5 +42,10 @@ export class VideoViewerComponent implements OnInit {
           this.videoMP4 = !!videoMP4Found ? videoMP4Found : this.videoMP4;
         });
     });
+
+    this.route.queryParams.subscribe((params) => {
+      this.videoTitle = params['title'];
+    });
+
   }
 }

@@ -1,9 +1,16 @@
-<div class="max-w-full max-h-full flex justify-center">
-  <video
-    class="min-w-fit h-2/3"
-    [src]="videoMP4.url | safe"
-    title="trusted video url"
-    allowfullscreen
-    controls
-  ></video>
+<div class="max-w-full justify-center max-h-full flex">
+  <div class="max-w-full max-h-full flex justify-center flex-col gap-3">
+    <video
+      class="w-full h-2/3 max-w-6xl"
+      [src]="videoMP4.url | safe"
+      title="trusted video url"
+      allowfullscreen
+      controls
+    ></video>
+    <div class="max-w-full justify-start max-h-full flex">
+      <h4 class="font-custom">
+        {{ videoTitle }}
+      </h4>
+    </div>
+  </div>
 </div>

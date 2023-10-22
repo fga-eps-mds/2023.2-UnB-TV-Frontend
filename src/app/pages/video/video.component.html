@@ -3,7 +3,8 @@
     <div>
       <div
         *ngFor="let image of video.images"
-        [routerLink]="'/video/' + video.id"
+        [routerLink]="['/video', video.id]"
+        [queryParams]="{ title: video.title }"
       >
         <img
           src="{{ image.href }}"
