@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +12,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { BackgroundComponent } from './components/background/background.component';
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { UserTokenInterceptor } from './services/user-token-interceptor.service';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
 
 
 @NgModule({
@@ -19,7 +25,10 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     RegisterComponent,
     BackgroundComponent,
     ActiveAccountComponent,
-    HomePageComponent
+    HomePageComponent,
+    ProfileComponent,
+    ResetPasswordComponent,
+    CheckCodeRestPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +36,13 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UserTokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
