@@ -7,13 +7,14 @@ import { ActiveAccountComponent } from './pages/active-account/active-account.co
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'activeAccount', component: ActiveAccountComponent},
-  { path: 'profile', component: ProfileComponent},
-  { path: 'checkCodeResetPassword', component: CheckCodeRestPasswordComponent},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],},
+  { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent},
   { path: 'changePassword', component: ResetPasswordComponent},
   { path: '', component: HomePageComponent}
 ];

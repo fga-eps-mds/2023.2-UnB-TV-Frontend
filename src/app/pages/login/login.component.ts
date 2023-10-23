@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MustMatch } from 'src/app/helper/must-match.validator';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private userService: UserService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -26,16 +27,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
-    console.log(this.userForm.value);
-    console.log(this.userForm.valid);
-
     if (this.userForm.valid) {
-      this.userService.loginUser(this.userForm.value).subscribe({
+      this.authService
+.loginUser(this.userForm.value).subscribe({
         next: (data) => {
           console.log(data);
           localStorage.setItem('token', data.access_token);
-          this.navigator('/home');
+          this.navigator('/profile');
         },
         error: (error) => {
           console.error(error);

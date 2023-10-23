@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MustMatch } from 'src/app/helper/must-match.validator';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private userService: UserService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.userForm.valid) {
-      this.userService.registerUser(this.userForm.value).subscribe({
+      this.authService.registerUser(this.userForm.value).subscribe({
         next: (data) => {
           console.log(data);
           alert('Usuário cadastrado com sucesso!');

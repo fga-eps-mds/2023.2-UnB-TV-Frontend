@@ -26,7 +26,6 @@ export class ProfileComponent {
       next: (data) => {
         console.log(data);
         this.user = data;
-        this.navigator('/home');
       },
       error: (error) => {
         console.error(error);

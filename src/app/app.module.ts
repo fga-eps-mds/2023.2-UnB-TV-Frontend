@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -16,7 +14,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { UserTokenInterceptor } from './services/user-token-interceptor.service';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
-
+import { AuthGuard } from './services/auth.guard';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,15 +33,17 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
+    AuthGuard,
+    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UserTokenInterceptor,
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
