@@ -1,0 +1,20 @@
+
+<div class="flex justify-center items-center h-4/5">
+  <form [formGroup]="userForm" (submit)="updateUser()" class="text-center">
+    <div class="mb-4">
+      <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="text" formControlName="name" name="name" placeholder="Nome" required>
+    </div>
+    <div class="mb-4">
+      <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="email" formControlName="email" name="email" placeholder="E-mail" required>
+    </div>
+    <div class="mb-4">
+        <select class="w-64 h-8 border rounded-lg border-gray-300 pl-3" formControlName="connection" name="connection" placeholder="Vinculo" required>
+          <option value="ALUNO">Aluno</option>
+          <option value="PROFESSOR">Professor</option>
+          <option value="COMUNIDADE-ACADEMICA">Comunidade Acadêmica</option>
+          <option value="EXTERNO">Externo</option>
+        </select>
+      </div>
+    <button class="w-24 h-8 bg-blue-brand rounded-lg justify-center my-8 text-white" type="submit">Cadastrar</button>
+  </form>
+</div>
