@@ -2,13 +2,13 @@
     <div class="flex justify-center items-center h-4/5">
       <form [formGroup]="userForm" (submit)="register()" class="text-center">
         <div class="mb-4">
-          <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="text" formControlName="username" name="username" placeholder="Nome" required>
+          <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="text" formControlName="name" name="name" placeholder="Nome" required>
         </div>
         <div class="mb-4">
           <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="email" formControlName="email" name="email" placeholder="E-mail" required>
         </div>
         <div class="mb-4">
-            <select class="w-64 h-8 border rounded-lg border-gray-300 pl-3" formControlName="vinculo" name="vinculo" placeholder="Vinculo" required>
+            <select class="w-64 h-8 border rounded-lg border-gray-300 pl-3" formControlName="connection" name="connection" placeholder="Vinculo" required>
               <option value="ALUNO">Aluno</option>
               <option value="PROFESSOR">Professor</option>
               <option value="COMUNIDADE-ACADEMICA">Comunidade Acadêmica</option>
@@ -19,8 +19,8 @@
             <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="password" formControlName="password" name="password" placeholder="Senha (6 números)" required>
           </div>
           <div class="mb-4">
-            <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="confirmPassword" formControlName="confirmPassword" name="confirmPassword" placeholder="Confirmar senha" required>
+            <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="password" formControlName="confirmPassword" name="confirmPassword" placeholder="Confirmar senha" required>
           </div>
-        <button class="w-24 h-8 bg-blue-brand rounded-lg justify-center my-8 text-white" type="submit" (click)="register()">Cadastrar</button>
+        <button class="w-24 h-8 bg-blue-brand rounded-lg justify-center my-8 text-white" type="submit">Cadastrar</button>
       </form>
     </div>

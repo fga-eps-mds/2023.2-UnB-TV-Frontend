@@ -1,34 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MustMatch } from 'src/app/helper/must-match.validator';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements  OnInit{
-
+export class RegisterComponent implements OnInit {
   userForm!: FormGroup;
 
   constructor(
     private router: Router,
-    private fb: FormBuilder) {
-
-  }
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.userForm = this.fb.group({
-      username: [''],
-      email: [''],
-      vinculo: [''],
-      password: [''],
-      confirmPassword: ['']
-    });
+    this.userForm = this.fb.group(
+      {
+        name: ['', [Validators.required]],
+        email: ['', [Validators.email, Validators.required]],
+        connection: ['', [Validators.required]],
+        password: ['', [Validators.required]],
+        confirmPassword: ['', [Validators.required]],
+      },
+      {
+        validator: MustMatch('password', 'confirmPassword'),
+      }
+    );
   }
 
   register() {
-    console.log(this.userForm.value);
+    if (this.userForm.valid) {
+      this.authService.registerUser(this.userForm.value).subscribe({
+        next: (data) => {
+          console.log(data);
+          alert('Usuário cadastrado com sucesso!');
+          this.navigator('/activeAccount');
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
+    } else {
+      alert('Preencha todos os campos corretamente!');
+    }
   }
 
   navigator(rota: string): void {

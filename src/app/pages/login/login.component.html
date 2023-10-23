@@ -1,13 +1,13 @@
 
   <div class="flex justify-center items-center h-4/5">
-    <form (submit)="login()" class="text-center">
+    <form [formGroup]="userForm" (submit)="login()" class="text-center">
       <div class="mb-4">
-        <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4 md:w-96 md:h-10" type="text" id="username" name="username" placeholder="E-mail" required>
+        <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4 md:w-96 md:h-10" type="email" formControlName="email" name="email" placeholder="E-mail" required>
       </div>
       <div class="mb-4">
-        <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4 md:w-96 md:h-10" type="password" id="password" name="password" placeholder="Senha" required>
+        <input class="w-64 h-8 border rounded-lg border-gray-300 pl-4 md:w-96 md:h-10" type="password" formControlName="password" name="password" placeholder="Senha" required>
       </div>
-      <div class="flex justify-start items-center text-gray-400 pl-4">
+      <div class="flex justify-start items-center text-gray-400 pl-4" (click)="navigator('/sendCodeResetPassword')">
         Esqueceu a senha?
       </div>
       <button class="w-20 h-8 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32" type="submit">Entrar</button>

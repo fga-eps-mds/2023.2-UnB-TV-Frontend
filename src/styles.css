@@ -1,3 +1,9 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+/* Em styles.css ou no seu arquivo CSS global */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+  font-family: "unb-pro";
+  src: url("/src/assets/fonts") format("woff");
+}
