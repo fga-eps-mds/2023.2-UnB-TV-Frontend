@@ -1,0 +1,13 @@
+version: "3.1"
+services:
+  unb-tv-web:
+    container_name: unb-tv-web
+    restart: always
+    image: frontend:latest
+    build: .
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/unb-tv-web
+      - /unb-tv-web/node_modules
+    command: ng serve --host 0 --port 4200
