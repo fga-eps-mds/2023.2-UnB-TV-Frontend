@@ -40,7 +40,7 @@ export class EditUserComponent implements OnInit {
         next: (data) => {
           console.log(data);
           alert('Usuário cadastrado com sucesso!');
-          this.navigator('/activeAccount');
+          this.navigator('/profile');
         },
         error: (error) => {
           console.error(error);
