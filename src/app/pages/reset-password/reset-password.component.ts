@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MustMatch } from 'src/app/helper/must-match.validator';
 import { AuthService } from '../../services/auth.service';
-
+import { MustMatch } from 'src/app/helper/must-match.validator';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
   userForm!: FormGroup;
 
   constructor(
@@ -19,21 +19,26 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userForm = this.fb.group({
-        email: ['', [Validators.required]],
+    this.userForm = this.fb.group(
+      {
+        email: ['', [Validators.email, Validators.required]],
+        code: ['', [Validators.required]],
         password: ['', [Validators.required]],
+        confirmPassword: ['', [Validators.required]],
       },
+      {
+        validator: MustMatch('password', 'confirmPassword'),
+      }
     );
   }
 
-  login() {
+  changePassword() {
     if (this.userForm.valid) {
-      this.authService
-.loginUser(this.userForm.value).subscribe({
+      this.authService.updatePassword(this.userForm.value).subscribe({
         next: (data) => {
           console.log(data);
-          localStorage.setItem('token', data.access_token);
-          this.navigator('/profile');
+          alert('Senha alterada com sucesso!');
+          this.navigator('/login');
         },
         error: (error) => {
           console.error(error);
