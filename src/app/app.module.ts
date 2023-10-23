@@ -11,6 +11,8 @@ import { VideoComponent } from './pages/video/video.component';
 import { VideoViewerComponent } from './pages/video/video-viewer.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { BackgroundComponent } from './components/background/background.component';
+import { LoginSocialComponent } from './pages/login-social/login-social.component';
+
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -26,6 +28,8 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    BackgroundComponent,
+    LoginSocialComponent,
     VideoComponent,
     VideoViewerComponent,
     SafePipe,
