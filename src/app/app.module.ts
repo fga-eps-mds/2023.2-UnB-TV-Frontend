@@ -7,6 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { VideoComponent } from './pages/video/video.component';
+import { VideoViewerComponent } from './pages/video/video-viewer.component';
+import { SafePipe } from './pipes/safe.pipe';
 import { BackgroundComponent } from './components/background/background.component';
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -23,6 +26,9 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    VideoComponent,
+    VideoViewerComponent,
+    SafePipe,
     BackgroundComponent,
     ActiveAccountComponent,
     HomePageComponent,
@@ -34,6 +40,7 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
@@ -48,4 +55,4 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
