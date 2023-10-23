@@ -20,7 +20,7 @@ export class UserService {
   }
 
   updateUser(id: any, body: any): Observable<any> {
-    return this.http.put(`${this.apiURL}/users/${id}`, body);
+    return this.http.patch(`${this.apiURL}/users/${id}`, body);
   }
 
   deleteUser(id: any): Observable<any> {

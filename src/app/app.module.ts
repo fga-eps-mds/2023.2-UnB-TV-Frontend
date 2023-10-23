@@ -16,6 +16,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthService } from './services/auth.service';
     ProfileComponent,
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

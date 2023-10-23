@@ -8,15 +8,17 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AuthGuard } from './services/auth.guard';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'activeAccount', component: ActiveAccountComponent},
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],},
   { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent},
   { path: 'changePassword', component: ResetPasswordComponent},
-  { path: '', component: HomePageComponent}
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard],},
+  { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard],},
+  { path: '', component: HomePageComponent, canActivate: [AuthGuard],}
 ];
 
 @NgModule({
