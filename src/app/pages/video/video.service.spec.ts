@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { VideoService } from './video.service';
 import { EDUPLAY_API_URL, UNB_ID } from 'src/app/app.constant';
-import { EDUPLAY_CLIENT_KEY } from 'src/app/secret/eduplay.credentials';
+import { environment } from './../../environment/environment';
 
 describe('VideoService', () => {
   let service: VideoService;
@@ -258,7 +258,7 @@ describe('VideoService', () => {
 
       const req = httpMock.expectOne(`${EDUPLAY_API_URL}video?institution=${UNB_ID}`);
       expect(req.request.method).toBe('GET');
-      expect(req.request.headers.get('clientkey')).toBe(EDUPLAY_CLIENT_KEY);
+      expect(req.request.headers.get('clientkey')).toBe(environment.EDUPLAY_CLIENT_KEY);
 
 
       req.flush(mockData);
@@ -292,7 +292,7 @@ describe('VideoService', () => {
 
       const req = httpMock.expectOne(`${EDUPLAY_API_URL}video/versions/${mockId}`);
       expect(req.request.method).toBe('GET');
-      expect(req.request.headers.get('clientkey')).toBe(EDUPLAY_CLIENT_KEY);
+      expect(req.request.headers.get('clientkey')).toBe(environment.EDUPLAY_CLIENT_KEY);
 
       req.flush(mockData);
     });
