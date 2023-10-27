@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EDUPLAY_API_URL, UNB_ID } from 'src/app/app.constant';
 import { IVideo } from 'src/shared/model/video.model';
-import { EDUPLAY_CLIENT_KEY } from 'src/app/secret/eduplay.credentials';
+import { EDUPLAY_CLIENT_KEY } from 'src/app/environment/environment';
 import { IEduplayVideosByInstitution } from 'src/shared/model/eduplay-by-institution.model';
 import { IVideoVersion } from 'src/shared/model/video-version.model';
 
