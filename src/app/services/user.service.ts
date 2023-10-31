@@ -26,4 +26,8 @@ export class UserService {
   deleteUser(id: any): Observable<any> {
     return this.http.delete(`${this.apiURL}/users/${id}`);
   }
+
+  updateUserRole(id: any, body: any): Observable<any> {
+    return this.http.patch(`${this.apiURL}/users/role/${id}`, body);
+}
 }

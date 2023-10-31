@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { UpdateRoleComponent } from './pages/update-role/update-role.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
+    UpdateRoleComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
     HttpClientModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [
     AuthGuard,

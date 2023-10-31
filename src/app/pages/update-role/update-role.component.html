@@ -1,0 +1,31 @@
+<div>
+    <table class="table-auto"> 
+        <thead>
+            <tr>
+                <th>
+                    Nome
+                </th>
+                <th>
+                    Cargo
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+
+                <td>
+                    {{
+                        user.name
+                    }}
+
+                </td>
+                <td>
+                    <select [(ngModel)]="user.role" (change)="updateUserRole(user.id, user.email, $any($event.target).value)"   name="" id="">
+                        <option value="USER">Usuário</option>
+                        <option value="ADMIN">Admin</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
