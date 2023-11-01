@@ -4,6 +4,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import jwt_decode from 'jwt-decode';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -33,6 +34,7 @@ export class ProfileComponent {
     this.userService.getUser(this.userId).subscribe({
       next: (data) => {
         console.log(data);
+        localStorage.setItem('role', data.role);
         this.user = data;
       },
       error: (error) => {

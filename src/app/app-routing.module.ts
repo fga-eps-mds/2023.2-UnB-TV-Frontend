@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
   { path: '', component: HomePageComponent, canActivate: [AuthGuard], },
-  { path: 'update-role', component: UpdateRoleComponent, canActivate: [AuthGuard], }
+  { path: 'update-role', component: UpdateRoleComponent, canActivate: [AuthGuard], data:{roles:["ADMIN"]} }
 ];
 
 @NgModule({
