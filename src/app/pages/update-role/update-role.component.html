@@ -1,9 +1,12 @@
 <div>
-    <table class="table-auto"> 
+    <table class="table-auto" style="border-collapse: collapse !important;" > 
         <thead>
             <tr>
                 <th>
                     Nome
+                </th>
+                <th>
+                    Email
                 </th>
                 <th>
                     Cargo
@@ -20,10 +23,20 @@
 
                 </td>
                 <td>
-                    <select [(ngModel)]="user.role" (change)="updateUserRole(user.id, user.email, $any($event.target).value)"   name="" id="">
+                    {{
+                        user.email
+                    }}
+                </td>
+                <td>
+                    <select [(ngModel)]="user.role" (change)="updateUserRole(user.id, user.email, $any($event.target).value)"  *ngIf="user.id!==userId">
                         <option value="USER">Usuário</option>
                         <option value="ADMIN">Admin</option>
                     </select>
+                    <span *ngIf="user.id==userId">
+                        {{
+                            user.role
+                        }}
+                    </span>
                 </td>
             </tr>
         </tbody>

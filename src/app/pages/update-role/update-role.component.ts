@@ -1,5 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { Component } from '@angular/core';
+import jwt_decode from 'jwt-decode';
 
 
 @Component({
@@ -9,11 +10,13 @@ import { Component } from '@angular/core';
 })
 export class UpdateRoleComponent {
   users: any= []
+  userId: number= 0
   constructor(
     private userService: UserService
   ){}
 
   ngOnInit() : void {
+    this.getUserid()
    this.userService.getAllUsers().subscribe({
     next:(data)=>{ 
       this.users= data
@@ -38,5 +41,10 @@ updateUserRole(id:number, email:string, value:any) {
     console.error('Erro', erro)
     }
 })
+}
+getUserid() {
+  const decodedToken: any = jwt_decode(localStorage.getItem("token") as string);
+  this.userId = decodedToken.id;
+
 }
 }
