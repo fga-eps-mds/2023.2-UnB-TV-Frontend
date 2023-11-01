@@ -1,44 +1,33 @@
-<div>
-    <table class="table-auto" style="border-collapse: collapse !important;" > 
-        <thead>
-            <tr>
-                <th>
-                    Nome
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Cargo
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-
-                <td>
-                    {{
-                        user.name
-                    }}
-
-                </td>
-                <td>
-                    {{
-                        user.email
-                    }}
-                </td>
-                <td>
-                    <select [(ngModel)]="user.role" (change)="updateUserRole(user.id, user.email, $any($event.target).value)"  *ngIf="user.id!==userId">
-                        <option value="USER">Usuário</option>
-                        <option value="ADMIN">Admin</option>
-                    </select>
-                    <span *ngIf="user.id==userId">
-                        {{
-                            user.role
-                        }}
-                    </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="mx-5">
+  <table class="table-auto" style="border-collapse: collapse !important;" > 
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Vínculo</th>
+        <th>Cargo</th>
+        <th>Ativo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.connection }}</td>
+        <td>
+          <select 
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none"
+            [(ngModel)]="user.role" 
+            (change)="updateUserRole(user.id, user.email, $any($event.target).value)" *ngIf="user.id !== userId; else readOnly">
+            <option value="USER">Usuário</option>
+            <option value="ADMIN">Administrador</option>
+          </select>
+          <ng-template #readOnly>
+            Administrador
+          </ng-template>
+        </td>
+        <td>{{ user.is_active ? "Sim" : "Não" }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
