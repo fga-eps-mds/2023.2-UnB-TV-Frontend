@@ -22,6 +22,7 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { VideoCommentComponent } from './pages/video-viewer/video-comment/video-comment.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
+    VideoCommentComponent,
   ],
   imports: [
     BrowserModule,

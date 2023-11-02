@@ -1,0 +1,11 @@
+<div>
+    
+    <form [formGroup]="commentForm" (submit)="addComment()" class="text-center">  
+    
+        <textarea name="comment" placeholder="Adicione um comentário" type="text" formControlName="comment" required> </textarea>
+        <button class="w-20 h-8 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32" type="submit">Adicionar comentário</button>
+
+
+    </form> 
+      
+</div>
