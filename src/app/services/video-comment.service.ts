@@ -16,8 +16,8 @@ export class VideoCommentService {
     return this.http.get(`${this.apiURLVideo}/comments/${video_id}`);
   }
 
-  postComment(): Observable<any> {
-    return this.http.get(`${this.apiURLVideo}/comments`);
+  postComment(body: any): Observable<any> {
+    return this.http.post(`${this.apiURLVideo}/comments`, body);
   }
 
   updateComment(id: any, body: any): Observable<any> {
