@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { VideoComponent } from './video.component';
-import { VideoService } from './video.service';
+import { VideoService } from '../../services/video.service';
 
 describe('VideoComponent', () => {
   let component: VideoComponent;
