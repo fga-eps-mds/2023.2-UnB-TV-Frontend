@@ -1,5 +1,10 @@
 <div class="mx-5">
-  <table class="table-auto" style="border-collapse: collapse !important;" > 
+  <input 
+    [(ngModel)]="filterInputValue" 
+    (change)="filterUser()"
+    placeholder="Filtrar pelo nome do usuário" 
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5 outline-none" />
+  <table class="table-auto mt-3" style="border-collapse: collapse !important;" > 
     <thead>
       <tr>
         <th>Nome</th>
@@ -30,4 +35,11 @@
       </tr>
     </tbody>
   </table>
+  <mat-paginator 
+    [length]="total" 
+    [pageSize]="pageSize" 
+    [pageSizeOptions]="[5, 10, 25]" 
+    aria-label="User Pagination"
+    (page)="onPaginateChange($event)"
+  ></mat-paginator>
 </div>

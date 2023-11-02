@@ -23,6 +23,8 @@ import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { UpdateRoleComponent } from './pages/update-role/update-role.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { UpdateRoleComponent } from './pages/update-role/update-role.component';
     HttpClientModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   providers: [
     AuthGuard,
