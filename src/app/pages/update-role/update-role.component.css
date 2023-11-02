@@ -32,8 +32,8 @@ tr:hover {
   background-color: #e0e0e0;
 }
 
-select {
-  border: 1px solid black;
-  border-radius: 6px;
-  padding: 2px 4px;
+.filter-container {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 6px;
 }

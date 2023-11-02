@@ -1,9 +1,29 @@
 <div class="mx-5">
-  <input 
-    [(ngModel)]="filterInputValue" 
-    (change)="filterUser()"
-    placeholder="Filtrar pelo nome do usuário" 
-    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5 outline-none" />
+  <div class="filter-container">
+    <div>
+      <label>Nome ou Email:</label>
+      <input 
+        [(ngModel)]="filterInputValue" 
+        (change)="filterUser()"
+        placeholder="Filtrar pelo nome do usuário" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5 outline-none" 
+      />
+    </div>
+    <div>
+      <label>Vínculo:</label>
+      <select
+        (change)="filterUser()"
+        [(ngModel)]="filterConnectionValue"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5 outline-none"
+      >
+        <option disabled hidden value="">Selecione um vínculo</option>
+        <option value="ALUNO">Aluno</option>
+        <option value="PROFESSOR">Professor</option>
+        <option value="COMUNIDADE">Comunidade</option>
+        <option value="EXTERNO">Externo</option>
+      </select>
+    </div>
+  </div>
   <table class="table-auto mt-3" style="border-collapse: collapse !important;" > 
     <thead>
       <tr>
@@ -21,9 +41,10 @@
         <td>{{ user.connection }}</td>
         <td>
           <select 
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none"
+            class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none"
             [(ngModel)]="user.role" 
-            (change)="updateUserRole(user.id)" *ngIf="user.id !== userId; else readOnly">
+            (change)="updateUserRole(user.id)" *ngIf="user.id !== userId; else readOnly"
+          >
             <option value="USER">Usuário</option>
             <option value="ADMIN">Administrador</option>
           </select>

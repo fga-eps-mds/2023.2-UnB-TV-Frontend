@@ -11,9 +11,11 @@ import jwt_decode from 'jwt-decode';
 export class UpdateRoleComponent {
   users: any = [];
   userId: number = 0;
+
   filterInputValue: string = "";
-  total: number = 0;
+  filterConnectionValue: string = ""
   
+  total: number = 0;
   pageSize: number = 10;
   pageIndex: number = 0;
 
@@ -54,7 +56,12 @@ export class UpdateRoleComponent {
   };
 
   getAllUsers() {
-    this.userService.getAllUsers({ nameEmail: this.filterInputValue, limit: this.pageSize, offset: (this.pageIndex * this.pageSize) }).subscribe({
+    this.userService.getAllUsers({ 
+      nameEmail: this.filterInputValue,
+      connection: this.filterConnectionValue, 
+      limit: this.pageSize, 
+      offset: (this.pageIndex * this.pageSize) 
+    }).subscribe({
       next: (data: Response) => {
         this.users = data.body;
         if (data.headers.has("x-total-count")) {
