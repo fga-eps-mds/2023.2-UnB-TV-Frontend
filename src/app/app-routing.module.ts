@@ -12,6 +12,7 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AuthGuard } from './services/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'activeAccount', component: ActiveAccountComponent },
   { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
   { path: 'changePassword', component: ResetPasswordComponent },
+  { path: 'suggestAgenda', component: SuggestAgendaComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
   { path: '', component: HomePageComponent, canActivate: [AuthGuard], }
