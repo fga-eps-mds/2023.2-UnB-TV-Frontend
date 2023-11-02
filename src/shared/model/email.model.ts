@@ -1,12 +1,22 @@
 
-export interface IEmailData {
-    email?: string;
-    message?: string;
+export interface IEmail {
+    tema?: string;
+    descricao?: string;
+    quando?: string;
+    local?: string;
+    responsavel?: string;
+    telefone_responsavel?: string;
+    email_contato?: string;
 }
 
-export class EmailData implements IEmailData {
+export class Email implements IEmail {
     constructor(
-        public email?: string,
-        public message?: string
+        public tema?: string,
+        public descricao?: string,
+        public quando?: string,
+        public local?: string,
+        public responsavel?: string,
+        public telefone_responsavel?: string,
+        public email_contato?: string
     ) { }
 }
