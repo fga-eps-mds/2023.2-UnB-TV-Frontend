@@ -23,7 +23,7 @@
           <select 
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none"
             [(ngModel)]="user.role" 
-            (change)="updateUserRole(user.id, user.email, $any($event.target).value)" *ngIf="user.id !== userId; else readOnly">
+            (change)="updateUserRole(user.id)" *ngIf="user.id !== userId; else readOnly">
             <option value="USER">Usuário</option>
             <option value="ADMIN">Administrador</option>
           </select>

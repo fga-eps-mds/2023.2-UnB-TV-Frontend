@@ -24,10 +24,8 @@ export class UpdateRoleComponent {
     this.getAllUsers();
   };
 
-  updateUserRole(id: number, email: string, value: any) {
-    const body = { email: email, role: value };
-    console.log(body);
-    this.userService.updateUserRole(id, body).subscribe({
+  updateUserRole(id: number) {
+    this.userService.updateUserRole(id).subscribe({
       next: (data) => {
         console.log(data);
       },
