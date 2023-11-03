@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SuggestAgendaComponent } from './suggest-agenda.component';
+import { EmailService } from 'src/app/services/email.service';
+import { FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('SuggestAgendaComponent', () => {
   let component: SuggestAgendaComponent;
@@ -8,7 +11,10 @@ describe('SuggestAgendaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SuggestAgendaComponent ]
+      declarations: [ SuggestAgendaComponent ],
+      imports: [HttpClientTestingModule,
+        ReactiveFormsModule],
+      providers: [{ provide: EmailService, FormBuilder}]
     })
     .compileComponents();
 
