@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-//import jwt_decode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-profile',
@@ -25,8 +25,8 @@ export class ProfileComponent {
   }
 
   setUserIdFromToken(token: string) {
-    //const decodedToken: any = jwt_decode(token);
-    //this.userId = decodedToken.id;
+    const decodedToken: any = jwt_decode(token);
+    this.userId = decodedToken.id;
   }
 
   getUser() {
