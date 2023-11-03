@@ -1,5 +1,5 @@
 
-export interface IEmail {
+export interface IEmailData {
     tema?: string;
     descricao?: string;
     quando?: string;
@@ -7,9 +7,10 @@ export interface IEmail {
     responsavel?: string;
     telefone_responsavel?: string;
     email_contato?: string;
+    recipients?: string[];
 }
 
-export class Email implements IEmail {
+export class EmailData implements IEmailData {
     constructor(
         public tema?: string,
         public descricao?: string,
@@ -17,6 +18,7 @@ export class Email implements IEmail {
         public local?: string,
         public responsavel?: string,
         public telefone_responsavel?: string,
-        public email_contato?: string
+        public email_contato?: string,
+        public recipients?: string[],
     ) { }
 }

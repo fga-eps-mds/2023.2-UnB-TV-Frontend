@@ -26,14 +26,12 @@
     width: 330px;
     border-radius: 9px;
     height: 30px;
-    
+    padding: 9px 0 10px 28px;
 }
 
 form ::placeholder {
     font-size: 13px;
-    font-family: "unb-pro", sans-serif;
-    padding: 9px 0 10px 28px;
-    
+    font-family: "unb-pro", sans-serif;    
 }
 
 .descricao {
@@ -42,11 +40,11 @@ form ::placeholder {
     width: 330px;
     border-radius: 9px;
     height: 100px;
+    padding: 9px 0 10px 28px;
 }
 
 .descricao::placeholder {
     top: -35px;
-
 }
 
 button {
@@ -61,3 +59,8 @@ span {
     font-family: "unb-pro", sans-serif;
     font-size: 13px;
 }
+
+.input:focus {
+    outline: none !important;
+    border: 0.25px solid #00A550;
+  }
