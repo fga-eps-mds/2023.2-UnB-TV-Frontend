@@ -1,71 +1,51 @@
-module.exports = (config) => {
-  const coverage = config.singleRun ? ["coverage"] : [];
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/1.0/config/configuration-file.html
 
+module.exports = function (config) {
   config.set({
-    frameworks: ["jasmine"],
+    customLaunchers: {
+      ChromeHeadless: {
+        base: 'Chrome',
+        flags: [
+          '--no-sandbox',
+          '--disable-gpu',
+          '--headless',
+          '--remote-debugging-port=9222'
+        ]
+      }
+    },
+    basePath: '',
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
-      "karma-jasmine",
-      "karma-webpack",
-      "karma-coverage",
-      "karma-remap-istanbul",
-      "karma-chrome-launcher",
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage'),
+      require('@angular-devkit/build-angular/plugins/karma')
     ],
-    files: [
-      "./src/tests.entry.ts",
-      {
-        pattern: "**/*.map",
-        served: true,
-        included: false,
-        watched: true,
+    client: {
+      jasmine: {
+        // you can add configuration options for Jasmine here
+        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
+        // for example, you can disable the random execution with `random: false`
+        // or set a specific seed with `seed: 4321`
       },
-    ],
-    preprocessors: {
-      "./src/tests.entry.ts": ["webpack", "sourcemap"],
-      "./src/**/!(*.test|tests.*).(ts|js)": ["sourcemap"],
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-
-    webpack: {
-      plugins,
-      entry: "./src/tests.entry.ts",
-      devtool: "inline-source-map",
-      resolve: {
-        extensions: [".webpack.js", ".web.js", ".ts", ".js"],
-      },
-      module: {
-        rules: combinedLoaders().concat(
-          config.singleRun ? [loaders.istanbulInstrumenter] : []
-        ),
-      },
-      stats: { colors: true, reasons: true },
+    jasmineHtmlReporter: {
+      suppressAll: true // removes the duplicated traces
     },
-    webpackServer: {
-      noInfo: true,
-    },
-
-    reporters: ["spec"]
-      .concat(coverage)
-      .concat(coverage.length > 0 ? ["karma-remap-istanbul"] : []),
-
-    remapIstanbulReporter: {
-      src: "coverage/chrome/coverage-final.json",
-      reports: {
-        html: "coverage",
-      },
-    },
-
     coverageReporter: {
-      reporters: [{ type: "json" }, { type: "lcov"}, { type: "cobertura"}],
-      dir: "./coverage/",
-      subdir: (browser) => {
-        return browser.toLowerCase().split(/[ /-]/)[0];
-      },
+      dir: require('path').join(__dirname, './coverage/unb-tv-frontend'),
+      subdir: '.',
+      reporters: [
+        { type: 'html' },
+        { type: 'lcov' },
+        { type: 'cobertura' },
+      ]
     },
-
-    port: 9876,
-    browsers: ["Chrome"],
-    colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    captureTimeout: 6000,
+    reporters: ['progress', 'kjhtml'],
+    browsers: ['Chrome'],
+    restartOnFileChange: true
   });
 };
