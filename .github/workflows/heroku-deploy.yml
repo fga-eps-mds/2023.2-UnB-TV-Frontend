@@ -19,7 +19,3 @@ jobs:
           heroku_app_name: "unb-tv-2023-2"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
-          docker_build_args: |
-            GATEWAY_URL
-        env:
-          GATEWAY_URL: ${{ secrets.GATEWAY_URL }}
