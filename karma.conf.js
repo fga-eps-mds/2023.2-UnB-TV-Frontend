@@ -39,7 +39,7 @@ module.exports = (config) => {
       stats: { colors: true, reasons: true },
     },
     webpackServer: {
-      noInfo: true, // prevent console spamming when running in Karma!
+      noInfo: true,
     },
 
     reporters: ["spec"]
@@ -54,15 +54,15 @@ module.exports = (config) => {
     },
 
     coverageReporter: {
-      reporters: [{ type: "json" }],
+      reporters: [{ type: "json" }, { type: "lcov"}, { type: "cobertura"}],
       dir: "./coverage/",
       subdir: (browser) => {
-        return browser.toLowerCase().split(/[ /-]/)[0]; // returns 'chrome'
+        return browser.toLowerCase().split(/[ /-]/)[0];
       },
     },
 
     port: 9876,
-    browsers: ["Chrome"], // Alternatively: 'PhantomJS'
+    browsers: ["Chrome"],
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
