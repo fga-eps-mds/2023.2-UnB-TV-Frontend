@@ -6,6 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ng-toolkit 
+
     steps:
       - name: Checkout ✅
         uses: actions/checkout@v3
@@ -23,4 +27,4 @@ jobs:
         run: npm run build
 
       - name: Test 📋
-        run: npm run test
+        run: npm run test:prod
