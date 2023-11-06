@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ActiveAccountComponent } from './active-account.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AuthService } from 'src/app/services/auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('ActiveAccountComponent', () => {
   let component: ActiveAccountComponent;
@@ -8,9 +10,11 @@ describe('ActiveAccountComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ActiveAccountComponent ]
+      imports: [HttpClientTestingModule, ReactiveFormsModule],
+      providers: [AuthService],
+      declarations: [ActiveAccountComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ActiveAccountComponent);
     component = fixture.componentInstance;

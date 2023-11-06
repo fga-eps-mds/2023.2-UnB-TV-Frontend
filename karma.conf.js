@@ -42,6 +42,7 @@ module.exports = function (config) {
         { type: 'html' },
         { type: 'lcov' },
         { type: 'cobertura' },
+        { type: 'text-summary' }
       ]
     },
     reporters: ['progress', 'kjhtml'],
