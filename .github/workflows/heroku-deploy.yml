@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     name: heroku deploy
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: akhileshns/heroku-deploy@v3.12.12 
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "alectrion-2023-1"
+          heroku_app_name: "unb-tv-2023-2"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           usedocker: true
           docker_build_args: |
