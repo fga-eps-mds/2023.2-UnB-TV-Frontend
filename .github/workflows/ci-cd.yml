@@ -22,7 +22,7 @@ jobs:
       run: npm run build
 
     - name: Test
-      run: ng test
+      run: npm run test
 
   deploy:
     needs: build
