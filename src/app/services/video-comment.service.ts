@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environment/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IComment } from '../../shared/model/comment.model';
+
+type CommentResponseType = HttpResponse<IComment[]>;
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +12,18 @@ import { Observable } from 'rxjs';
 export class VideoCommentService {
 
   private apiURLVideo = environment.apiURLVideo;
+  private apiURLUsers = environment.apiURL;
 
   constructor(private http: HttpClient) { }
 
-  getComments(video_id: any): Observable<any> {
-    return this.http.get(`${this.apiURLVideo}/comments/${video_id}`);
+  getUser(id: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    let headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+    return this.http.get(`${this.apiURLUsers}/users/${id}`, { headers: headers, observe: 'response' });
+  }
+
+  getComments(video_id: any): Observable<CommentResponseType> {
+    return this.http.get<IComment[]>(`${this.apiURLVideo}/comments/${video_id}`, { observe: 'response' });
   }
 
   postComment(body: any): Observable<any> {
