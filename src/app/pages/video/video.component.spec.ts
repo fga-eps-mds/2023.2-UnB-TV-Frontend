@@ -269,9 +269,9 @@ describe('VideoComponent', () => {
     expect(mySpy).toHaveBeenCalled();
   });
 
-  (it('should call findAll and return an error', () => {
+  it('should call findAll and return an error', () => {
     const mySpy = spyOn(videoService, 'findAll').and.returnValue(throwError(() => new Error('Erro')));
     component.findAll();
     expect(mySpy).toHaveBeenCalled();
-  }));
+  });
 });
