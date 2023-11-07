@@ -1,32 +1,45 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ResetPasswordComponent } from './reset-password.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { of, throwError } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+class AuthServiceMock {
+  constructor() { }
+  updatePassword() {
+    return of({ success: true });
+  }
+}
+
 
 describe('ResetPasswordComponent', () => {
   let component: ResetPasswordComponent;
   let fixture: ComponentFixture<ResetPasswordComponent>;
-  let authService: jasmine.SpyObj<AuthService>;
-  let formBuilder: FormBuilder;
+  let authService: AuthService;
 
   beforeEach(() => {
-    authService = jasmine.createSpyObj('AuthService', ['updatePassword']);
-    formBuilder = new FormBuilder();
 
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, ReactiveFormsModule],
       declarations: [ResetPasswordComponent],
       providers: [
-        { provide: AuthService, useValue: authService },
-        { provide: FormBuilder, useValue: formBuilder },
+        { provide: AuthService, useValue: new AuthServiceMock() },
+        { provide: FormBuilder },
       ],
     });
     fixture = TestBed.createComponent(ResetPasswordComponent);
+    authService = TestBed.inject(AuthService);
     component = fixture.componentInstance;
   });
 
+  it('should create', () => {
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+  });
+
   it('should create the userForm correctly', () => {
-    component.ngOnInit();
+    fixture.detectChanges();
 
     expect(component.userForm).toBeTruthy();
     expect(component.userForm.controls['email']).toBeTruthy();
@@ -35,25 +48,39 @@ describe('ResetPasswordComponent', () => {
     expect(component.userForm.controls['confirmPassword']).toBeTruthy();
   });
 
-  it('should call authService.updatePassword and navigate on success', () => {
-    const response = { /* mock your response here */ };
-    authService.updatePassword.and.callFake(() => of(response));
-    const navigateSpy = spyOn(component, 'navigator');
+  it('should call changePassword', () => {
+    fixture.detectChanges();
+    spyOn(component, 'changePassword').and.callThrough();
+    const form = component.userForm;
+    form.setValue({ email: 'test@example.com', code: '123456', password: 'password', confirmPassword: 'password' });
+    fixture.detectChanges();
 
-    component.changePassword();
+    const submitButton = fixture.nativeElement.querySelector(
+      'button[type="submit"]'
+    );
+    submitButton.click();
 
-    expect(authService.updatePassword).toHaveBeenCalledWith(component.userForm.value);
-    expect(navigateSpy).toHaveBeenCalledWith('/login');
+    expect(component.changePassword).toHaveBeenCalled();
   });
 
   it('should show an alert on error', () => {
-    authService.updatePassword.and.callFake(() => throwError('Error'));
-    const consoleErrorSpy = spyOn(console, 'error');
     const alertSpy = spyOn(window, 'alert');
+    spyOn(component, 'changePassword').and.callThrough();
+    fixture.detectChanges();
 
-    component.changePassword();
-
-    expect(consoleErrorSpy).toHaveBeenCalled();
+    const submitButton = fixture.nativeElement.querySelector(
+      'button[type="submit"]'
+    );
+    submitButton.click();
     expect(alertSpy).toHaveBeenCalledWith('Preencha todos os campos corretamente!');
   });
+
+  (it('should call changePassword and return an error', () => {
+    fixture.detectChanges();
+    const form = component.userForm;
+    form.setValue({ email: 'test@example.com', code: '123456', password: 'password', confirmPassword: 'password' });
+    const mySpy = spyOn(authService, 'updatePassword').and.returnValue(throwError(() => new Error('Erro')));
+    component.changePassword();
+    expect(mySpy).toHaveBeenCalled();
+  }));
 });

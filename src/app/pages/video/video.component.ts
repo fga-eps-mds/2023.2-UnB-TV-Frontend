@@ -22,7 +22,7 @@ export class VideoComponent implements OnInit {
   findAll(): void {
     this.videoService.findAll().subscribe({
       next: (data) => {
-        console.log(data);
+        // console.log(data);
         this.videosEduplay = data.body?.videoList || [];
       },
       error: (error) => {
