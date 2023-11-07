@@ -51,6 +51,7 @@ describe('ResetPasswordComponent', () => {
   it('should call changePassword', () => {
     fixture.detectChanges();
     spyOn(component, 'changePassword').and.callThrough();
+    spyOn(window, 'alert');
     const form = component.userForm;
     form.setValue({ email: 'test@example.com', code: '123456', password: 'password', confirmPassword: 'password' });
     fixture.detectChanges();
@@ -75,12 +76,12 @@ describe('ResetPasswordComponent', () => {
     expect(alertSpy).toHaveBeenCalledWith('Preencha todos os campos corretamente!');
   });
 
-  (it('should call changePassword and return an error', () => {
+  it('should call changePassword and return an error', () => {
     fixture.detectChanges();
     const form = component.userForm;
     form.setValue({ email: 'test@example.com', code: '123456', password: 'password', confirmPassword: 'password' });
     const mySpy = spyOn(authService, 'updatePassword').and.returnValue(throwError(() => new Error('Erro')));
     component.changePassword();
     expect(mySpy).toHaveBeenCalled();
-  }));
+  });
 });
