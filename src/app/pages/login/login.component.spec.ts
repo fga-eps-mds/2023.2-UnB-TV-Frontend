@@ -50,13 +50,14 @@ describe('LoginComponent', () => {
 
     expect(component.navigator).toHaveBeenCalledWith('/sendCodeResetPassword');
 
-    it('should call navigator method when "Cadastre-se" is clicked', () => {
-      spyOn(component, 'navigator');
-      const registerLink =
-        fixture.nativeElement.querySelector('.text-blue-brand');
-      registerLink.click();
+  });
 
-      expect(component.navigator).toHaveBeenCalledWith('/register');
-    });
+  it('should call navigator method when "Cadastre-se" is clicked', () => {
+    spyOn(component, 'navigator');
+    const registerLink =
+      fixture.nativeElement.querySelector('.text-blue-brand');
+    registerLink.click();
+
+    expect(component.navigator).toHaveBeenCalledWith('/register');
   });
 });
