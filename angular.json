@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/un-b-tv-frontend",
+            "outputPath": "dist/unb-tv-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -89,7 +89,8 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
           }
         }
       }

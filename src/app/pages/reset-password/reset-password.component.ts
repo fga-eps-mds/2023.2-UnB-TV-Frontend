@@ -16,7 +16,7 @@ export class ResetPasswordComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userForm = this.fb.group(
@@ -36,7 +36,6 @@ export class ResetPasswordComponent implements OnInit {
     if (this.userForm.valid) {
       this.authService.updatePassword(this.userForm.value).subscribe({
         next: (data) => {
-          console.log(data);
           alert('Senha alterada com sucesso!');
           this.navigator('/login');
         },

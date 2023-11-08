@@ -1,0 +1,21 @@
+name: heroku-deploy
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - develop
+
+jobs:
+  deploy-heroku:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    name: heroku deploy
+    steps:
+      - uses: actions/checkout@v3
+      - uses: akhileshns/heroku-deploy@v3.12.12 
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "unb-tv-2023-2"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
