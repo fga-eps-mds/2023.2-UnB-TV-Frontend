@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ParticipateComponent } from './participate.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ParticipateComponent', () => {
   let component: ParticipateComponent;
@@ -8,7 +9,8 @@ describe('ParticipateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ParticipateComponent ]
+      declarations: [ ParticipateComponent ],
+      imports: [ RouterTestingModule ]
     })
     .compileComponents();
 
