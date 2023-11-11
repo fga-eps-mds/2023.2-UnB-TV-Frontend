@@ -15,6 +15,7 @@ export class SuggestAgendaComponent implements OnInit {
   isDescricaoFilled = false;
   isResponsavelFilled = false;
   isTelefoneFilled = false;
+  isSendingEmail = false;
 
   constructor(
     private fb: FormBuilder,
@@ -46,11 +47,15 @@ export class SuggestAgendaComponent implements OnInit {
       emailData.email_contato = this.suggestAgendaForm.value.emailContato;
       const emailUnB = 'unbtv@unb.br';
       emailData.recipients = [emailUnB];
+      this.isSendingEmail = true;
       this.emailService.sendEmail(emailData).subscribe((res: HttpResponse<string>) => {
         alert('Sugestão enviada com sucesso');
       },
         (error: HttpErrorResponse) => {
           alert('error: ' + error.message);
+        },
+        () => {
+          this.isSendingEmail = false;
         });
     } else {
       alert('Preencha os campos obrigatórios!');
