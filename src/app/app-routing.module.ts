@@ -13,6 +13,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { AuthGuard } from './services/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
+import { ParticipateComponent } from './pages/participate/participate.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
   { path: 'changePassword', component: ResetPasswordComponent },
   { path: 'suggestAgenda', component: SuggestAgendaComponent },
+  { path: 'participate', component: ParticipateComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
   { path: '', component: HomePageComponent, canActivate: [AuthGuard], }

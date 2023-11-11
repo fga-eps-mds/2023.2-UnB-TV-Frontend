@@ -23,6 +23,7 @@ import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
+import { ParticipateComponent } from './pages/participate/participate.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.co
     CheckCodeRestPasswordComponent,
     EditUserComponent,
     SuggestAgendaComponent,
+    ParticipateComponent,
   ],
   imports: [
     BrowserModule,
