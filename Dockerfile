@@ -2,6 +2,12 @@ FROM node:16 as angular
 
 WORKDIR /unb-tv-web
 
+RUN apt-get update
+RUN apt-get -y install chromium
+
+# set CHROME_BIN environment variable, so that karma knows which crome should be started
+ENV CHROME_BIN=/usr/bin/chromium
+
 ENV PATH /unb-tv-web/node_modules/.bin:$PATH
 ENV NODE_ENV=dev
 
