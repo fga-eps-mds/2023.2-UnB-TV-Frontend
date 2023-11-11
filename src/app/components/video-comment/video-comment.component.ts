@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VideoCommentService } from '../../../services/video-comment.service';
+import { VideoCommentService } from '../../services/video-comment.service';
 import { ActivatedRoute } from '@angular/router';
 import jwt_decode from 'jwt-decode';
-import { AuthService } from '../../../services/auth.service';
-import { Comment } from '../../../../shared/model/comment.model';
+import { AuthService } from '../../services/auth.service';
+import { Comment } from '../../../shared/model/comment.model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

@@ -13,7 +13,7 @@ export class UserTokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const token = localStorage.getItem('token');
     console.log(request.url);
-    if (request.url.includes("localhost")) {
+    if (!request.url.includes("eduplay")) {
       if (token) {
         request = request.clone({
           setHeaders: {

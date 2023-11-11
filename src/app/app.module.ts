@@ -22,14 +22,13 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
-import { VideoCommentComponent } from './pages/video-viewer/video-comment/video-comment.component';
+import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    BackgroundComponent,
     LoginSocialComponent,
     VideoComponent,
     VideoViewerComponent,
@@ -48,7 +47,6 @@ import { VideoCommentComponent } from './pages/video-viewer/video-comment/video-
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    HttpClientModule,
   ],
   providers: [
     AuthGuard,

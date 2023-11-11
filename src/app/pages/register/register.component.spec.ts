@@ -57,8 +57,9 @@ describe('RegisterComponent', () => {
   });
 
   it('should call register method when the form is submitted', () => {
-    fixture.detectChanges();
     spyOn(component, 'register').and.callThrough();
+    const alertSpy = spyOn(window, 'alert');
+    fixture.detectChanges();
     const form = component.userForm;
     form.setValue(mockData);
 
@@ -68,6 +69,7 @@ describe('RegisterComponent', () => {
     submitButton.click();
 
     expect(component.register).toHaveBeenCalled();
+    expect(alertSpy).toHaveBeenCalledWith('Usuário cadastrado com sucesso!');
   });
 
   it('should call alert when form is not valid', () => {

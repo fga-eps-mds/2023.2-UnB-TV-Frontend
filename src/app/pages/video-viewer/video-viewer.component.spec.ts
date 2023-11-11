@@ -4,6 +4,8 @@ import { RouterTestingModule } from "@angular/router/testing";
 import { VideoViewerComponent } from './video-viewer.component';
 import { VideoService } from '../../services/video.service';
 import { SafePipe } from 'src/app/pipes/safe.pipe';
+import { VideoCommentComponent } from 'src/app/components/video-comment/video-comment.component';
+import { FormBuilder } from '@angular/forms';
 
 describe('VideoViewerComponent', () => {
   let component: VideoViewerComponent;
@@ -11,9 +13,9 @@ describe('VideoViewerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [VideoViewerComponent, SafePipe],
+      declarations: [VideoViewerComponent, SafePipe, VideoCommentComponent],
       imports: [HttpClientTestingModule, RouterTestingModule],
-      providers: [{ provide: VideoService }]
+      providers: [{ provide: VideoService }, FormBuilder]
 
     })
       .compileComponents();
