@@ -9,14 +9,17 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
   templateUrl: './suggest-agenda.component.html',
   styleUrls: ['./suggest-agenda.component.css']
 })
-export class SuggestAgendaComponent implements OnInit{
+export class SuggestAgendaComponent implements OnInit {
 
   suggestAgendaForm!: FormGroup;
+  isDescricaoFilled = false;
+  isResponsavelFilled = false;
+  isTelefoneFilled = false;
 
   constructor(
     private fb: FormBuilder,
     private emailService: EmailService
-  ){}
+  ) { }
 
   ngOnInit(): void {
     this.suggestAgendaForm = this.fb.group({
@@ -28,10 +31,10 @@ export class SuggestAgendaComponent implements OnInit{
       telefoneResponsavel: ['', [Validators.required]],
       emailContato: [''],
     },
-  );
+    );
   }
 
-  sendSuggestAgenda(): void{
+  sendSuggestAgenda(): void {
     if (this.suggestAgendaForm.valid) {
       const emailData = new EmailData();
       emailData.tema = this.suggestAgendaForm.value.tema;
@@ -41,17 +44,23 @@ export class SuggestAgendaComponent implements OnInit{
       emailData.responsavel = this.suggestAgendaForm.value.responsavel;
       emailData.telefone_responsavel = this.suggestAgendaForm.value.telefoneResponsavel;
       emailData.email_contato = this.suggestAgendaForm.value.emailContato;
-      const emailUnB = 'geraldovictor@outlook.com';
+      const emailUnB = 'unbtv@unb.br';
       emailData.recipients = [emailUnB];
       this.emailService.sendEmail(emailData).subscribe((res: HttpResponse<string>) => {
         alert('Sugestão enviada com sucesso');
-      }, 
-      (error: HttpErrorResponse) => {
-        alert('error: ' + error.message);
-      }); 
+      },
+        (error: HttpErrorResponse) => {
+          alert('error: ' + error.message);
+        });
     } else {
-      alert('Preencha todos os campos corretamente!');
+      alert('Preencha os campos obrigatórios!');
     }
+  }
+
+  onRequiredFieldsChange(): void {
+    this.isDescricaoFilled = !!this.suggestAgendaForm.value.descricao;
+    this.isResponsavelFilled = !!this.suggestAgendaForm.value.responsavel;
+    this.isTelefoneFilled = !!this.suggestAgendaForm.value.telefoneResponsavel;
   }
 
 }
