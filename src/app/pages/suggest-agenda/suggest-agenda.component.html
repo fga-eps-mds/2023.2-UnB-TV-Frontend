@@ -9,8 +9,8 @@
             <input type="text" class="input first" name="responsavel" formControlName="responsavel" placeholder="Responsável" required [ngClass]="{'required-field': !isResponsavelFilled}" (change)="onRequiredFieldsChange()">
             <input type="text" class="input first" name="telefone-responsavel" formControlName="telefoneResponsavel" placeholder="Telefone do Responsável" required [ngClass]="{'required-field': !isTelefoneFilled}" (change)="onRequiredFieldsChange()">
             <input type="text" class="input first" name="email-contato" formControlName="emailContato" placeholder="E-mail para contato" >
-            <div class="">
-                <button type="p-auto submit">
+            <div>
+                <button type="submit">
                     <span *ngIf="isSendingEmail">Enviando...</span>
                     <span *ngIf="!isSendingEmail">Enviar</span>
                 </button>
