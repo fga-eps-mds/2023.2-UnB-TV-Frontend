@@ -1,16 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { SuggestAgendaComponent } from './suggest-agenda.component';
-import { EmailService } from 'src/app/services/email.service';
-import { FormBuilder } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
+import { EmailService } from 'src/app/services/email.service';
+import { SuggestAgendaComponent } from './suggest-agenda.component';
 
 
 const mockData = "email has been sent"
 class EmailServiceMock {
   constructor() { }
-  findAll() {
+  sendEmail() {
     return of(mockData);
   }
 }
@@ -20,15 +20,17 @@ describe('SuggestAgendaComponent', () => {
   let component: SuggestAgendaComponent;
   let fixture: ComponentFixture<SuggestAgendaComponent>;
   let emailService: EmailService;
+  let emailServiceMock: jasmine.SpyObj<EmailService>;
 
   beforeEach(async () => {
+    emailServiceMock = jasmine.createSpyObj('EmailService', ['sendEmail']);
     await TestBed.configureTestingModule({
-      declarations: [ SuggestAgendaComponent ],
+      declarations: [SuggestAgendaComponent],
       imports: [HttpClientTestingModule,
         ReactiveFormsModule],
-      providers: [{ provide: EmailService, useValue: new EmailServiceMock, FormBuilder}]
+      providers: [FormBuilder, { provide: EmailService, useValue: new EmailServiceMock() }]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SuggestAgendaComponent);
     component = fixture.componentInstance;
@@ -48,7 +50,7 @@ describe('SuggestAgendaComponent', () => {
     fixture.detectChanges();
     spyOn(component, 'sendSuggestAgenda').and.callThrough();
     const form = component.suggestAgendaForm;
-    form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '',  local: '', emailContato: ''});
+    form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '', local: '', emailContato: '' });
 
     const submitButton = fixture.nativeElement.querySelector(
       'button[type="submit"]'
@@ -56,6 +58,36 @@ describe('SuggestAgendaComponent', () => {
     submitButton.click();
 
     expect(component.sendSuggestAgenda).toHaveBeenCalled();
+  });
+
+  it('should call onRequiredFieldsChange when responsavel input value changes', () => {
+    fixture.detectChanges();
+    spyOn(component, 'onRequiredFieldsChange');
+
+    const input = fixture.debugElement.query(By.css('input[name="responsavel"]')).nativeElement;
+    input.value = 'novo valor';
+    input.dispatchEvent(new Event('change'));
+
+    expect(component.onRequiredFieldsChange).toHaveBeenCalled();
+  });
+
+  it('should call sendEmail', () => {
+    fixture.detectChanges();
+    const mySpy = spyOn(emailService, 'sendEmail').and.callThrough();
+    // spyOn(component, 'sendSuggestAgenda').and.callThrough();
+    const form = component.suggestAgendaForm;
+    form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '', local: '', emailContato: '' })
+    component.sendSuggestAgenda();
+    expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call sendEmail and return an error', () => {
+    fixture.detectChanges();
+    const mySpy = spyOn(emailService, 'sendEmail').and.returnValue(throwError(() => new Error('Erro')));
+    const form = component.suggestAgendaForm;
+    form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '', local: '', emailContato: '' })
+    component.sendSuggestAgenda();
+    expect(mySpy).toHaveBeenCalled();
   });
 
 });
