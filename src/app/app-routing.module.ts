@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginSocialComponent } from './pages/login-social/login-social.component';
 import { VideoComponent } from './pages/video/video.component';
-import { VideoViewerComponent } from './pages/video/video-viewer.component';
+import { VideoViewerComponent } from './pages/video-viewer/video-viewer.component';
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';

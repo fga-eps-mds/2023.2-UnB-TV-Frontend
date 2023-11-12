@@ -9,7 +9,7 @@ import {
   IVideoDetails,
   VideoDetails,
 } from 'src/shared/model/video-details.model';
-import { VideoService } from './video.service';
+import { VideoService } from '../../services/video.service';
 
 
 @Component({
