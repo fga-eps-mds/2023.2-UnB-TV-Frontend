@@ -9,7 +9,6 @@ import { SuggestAgendaComponent } from './suggest-agenda.component';
 
 const mockData = "email has been sent"
 class EmailServiceMock {
-  constructor() { }
   sendEmail() {
     return of(mockData);
   }
@@ -20,10 +19,8 @@ describe('SuggestAgendaComponent', () => {
   let component: SuggestAgendaComponent;
   let fixture: ComponentFixture<SuggestAgendaComponent>;
   let emailService: EmailService;
-  let emailServiceMock: jasmine.SpyObj<EmailService>;
 
   beforeEach(async () => {
-    emailServiceMock = jasmine.createSpyObj('EmailService', ['sendEmail']);
     await TestBed.configureTestingModule({
       declarations: [SuggestAgendaComponent],
       imports: [HttpClientTestingModule,
@@ -74,7 +71,6 @@ describe('SuggestAgendaComponent', () => {
   it('should call sendEmail', () => {
     fixture.detectChanges();
     const mySpy = spyOn(emailService, 'sendEmail').and.callThrough();
-    // spyOn(component, 'sendSuggestAgenda').and.callThrough();
     const form = component.suggestAgendaForm;
     form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '', local: '', emailContato: '' })
     component.sendSuggestAgenda();
