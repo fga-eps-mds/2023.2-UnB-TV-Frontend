@@ -1,36 +1,63 @@
 <div>
-  <div *ngIf="userId">
-    <form [formGroup]="commentForm" (submit)="addComment()" class="text-center">
-      <textarea
-        name="comment"
-        placeholder="Adicione um comentário"
-        type="text"
-        formControlName="comment"
-        required
-      >
-      </textarea>
-      <button
-        class="w-20 h-8 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32"
-        type="submit"
-      >
-        Adicionar comentário
-      </button>
-    </form>
-  </div>
   <div *ngIf="!userId">
     <p class="text-center">Faça login para comentar</p>
   </div>
-  <div *ngFor="let comment of comments" class="flex">
-    <div>
-      <div>
-        {{ comment.user_name }}
+
+  <div *ngIf="userId" class="flex flex-col gap-2">
+    <div *ngIf="showComments" class="flex flex-wrap flex-col gap-2">
+      <div
+        (click)="toggleComments()"
+        class="text-blue-brand w-2 min-w-fit cursor-pointer"
+      >
+        Recolher comentarios
       </div>
-      <div>
-        <p>{{ comment.content }}</p>
-      </div>
-      <div>
-        <p>{{ comment.created_at }}</p>
+      <div *ngFor="let comment of comments" class="flex flex-col gap-1">
+        <hr />
+        <div class="flex gap-2">
+          <div class="w-2/12 flex align-middle justify-center">
+            <img
+              class="rounded-full w-10 h-10 min-w-max min-h-max"
+              src="../../../assets/person.png"
+              alt="avatar"
+            />
+          </div>
+          <div class="w-10/12 min-w-min">
+            <div class="font-bold font-custom text-xl max-w-prose">
+              {{ comment.user_name }}:
+            </div>
+            <div class="font-custom text-xl max-w-prose">
+              <p>{{ comment.content }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <div
+      *ngIf="!showComments"
+      (click)="toggleComments()"
+      class="text-blue-brand w-2 min-w-fit cursor-pointer"
+    >
+      {{ comments.length }} Comentários
+    </div>
+    <hr />
+    <form [formGroup]="commentForm" (submit)="addComment()" class="">
+      <div class="flex flex-col">
+        <textarea
+          name="comment"
+          placeholder="Adicione um comentário"
+          type="text"
+          formControlName="comment"
+          required
+          class="resize-none h-20 w-full"
+        >
+        </textarea>
+        <button
+          class="w-20 h-8 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32"
+          type="submit"
+        >
+          Adicionar
+        </button>
+      </div>
+    </form>
   </div>
 </div>

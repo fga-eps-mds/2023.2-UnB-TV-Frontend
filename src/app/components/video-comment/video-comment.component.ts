@@ -19,6 +19,7 @@ export class VideoCommentComponent implements OnInit {
   userId: any;
   comments: Comment[] = [];
   userName: string = '';
+  showComments: boolean = false;
 
 
   constructor(
@@ -31,7 +32,7 @@ export class VideoCommentComponent implements OnInit {
 
   ngOnInit(): void {
     this.commentForm = this.fb.group({
-      comment: ['', [Validators.required, Validators.maxLength(300)]],
+      comment: ['', [Validators.required, Validators.maxLength(1000)]],
     },
     );
     this.route.params.subscribe((params) => {
@@ -42,20 +43,12 @@ export class VideoCommentComponent implements OnInit {
     } else {
       this.userId = 0;
     }
+
+    this.getUserName(this.userId);
+
     this.vcs.getComments(this.video_id).subscribe({
       next: (data) => {
         this.comments = data.body as Comment[];
-        this.comments.forEach((comment) => {
-          this.vcs.getUser(comment.user_id as number).subscribe({
-            next: (data) => {
-              console.log(data);
-              comment.user_name = data.body.name;
-            },
-            error: (error) => {
-              console.log(error)
-            }
-          });
-        });
         console.log(this.comments);
       },
       error: (error) => {
@@ -74,7 +67,7 @@ export class VideoCommentComponent implements OnInit {
   getUserName(userId: number) {
     this.userService.getUser(userId).subscribe({
       next: (data) => {
-        return data.name;
+        this.userName = data.name;
       },
       error: (error) => {
         console.log(error)
@@ -88,6 +81,7 @@ export class VideoCommentComponent implements OnInit {
       this.vcs.postComment({
         user_id: this.userId,
         video_id: this.video_id,
+        user_name: this.userName,
         content: this.comment
       }).subscribe({
         next: (data) => {
@@ -97,9 +91,25 @@ export class VideoCommentComponent implements OnInit {
           console.log(error)
         }
       });
-    } else {
+      console.log(this.userName);
+      this.comments.push({
+        user_id: this.userId,
+        video_id: this.video_id,
+        content: this.comment,
+        user_name: this.userName
+      });
+      this.commentForm.reset();
+    } else if (this.commentForm.get('comment')?.hasError('required')) {
       alert("Comentário não pode ser vazio");
     }
+    else if (this.commentForm.get('comment')?.hasError('maxlength')) {
+      alert("Comentário não pode ter mais de 1000 caracteres");
+    }
   }
+
+  toggleComments() {
+    this.showComments = !this.showComments;
+  }
+
 }
 
