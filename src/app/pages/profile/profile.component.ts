@@ -17,7 +17,7 @@ export class ProfileComponent {
     private router: Router,
     private fb: FormBuilder,
     private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.setUserIdFromToken(localStorage.getItem('token') as string);
@@ -32,7 +32,6 @@ export class ProfileComponent {
   getUser() {
     this.userService.getUser(this.userId).subscribe({
       next: (data) => {
-        console.log(data);
         this.user = data;
       },
       error: (error) => {
@@ -41,19 +40,14 @@ export class ProfileComponent {
     });
   }
 
-  navigator(rota: string): void {
-    this.router.navigate([rota]);
-  }
-
   navigatorEdit(): void {
-    console.log('Dados do usuário:', this.user);
 
     const navigationExtras: NavigationExtras = {
       state: {
         user: this.user
       }
     };
-    this.router.navigate([`/editUser/${this.userId}`], navigationExtras);
+    this.router.navigate([`/editUser`], navigationExtras);
   }
 
 }

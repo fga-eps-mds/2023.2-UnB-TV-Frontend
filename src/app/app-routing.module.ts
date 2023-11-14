@@ -5,15 +5,20 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginSocialComponent } from './pages/login-social/login-social.component';
 import { VideoComponent } from './pages/video/video.component';
-import { VideoViewerComponent } from './pages/video/video-viewer.component';
+import { VideoViewerComponent } from './pages/video-viewer/video-viewer.component';
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AuthGuard } from './services/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+<<<<<<< HEAD
 import { ProgramacaoComponent } from './pages/programacao/programacao.component';
 import { AgoraComponent } from './pages/agora/agora.component';
+=======
+import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
+import { ParticipateComponent } from './pages/participate/participate.component';
+>>>>>>> c6e17862938e0f0a21bd8a1c130a93c1eb4e0b27
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,6 +29,8 @@ const routes: Routes = [
   { path: 'activeAccount', component: ActiveAccountComponent },
   { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
   { path: 'changePassword', component: ResetPasswordComponent },
+  { path: 'suggestAgenda', component: SuggestAgendaComponent },
+  { path: 'participate', component: ParticipateComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
   { path: '', component: HomePageComponent, canActivate: [AuthGuard], },

@@ -8,36 +8,36 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiURL = environment.apiURL;
+  public usersAPIURL = environment.usersAPIURL;
 
   constructor(private http: HttpClient) { }
 
   registerUser(user: any): Observable<any> {
-    return this.http.post(`${this.apiURL}/auth/register`, user);
+    return this.http.post(`${this.usersAPIURL}/auth/register`, user);
   }
 
   loginUser(user: any): Observable<any> {
-    return this.http.post(`${this.apiURL}/auth/login`, user);
+    return this.http.post(`${this.usersAPIURL}/auth/login`, user);
   }
 
   activeAccount(emailCode: any): Observable<any> {
-    return this.http.patch(`${this.apiURL}/auth/activate-account`, emailCode);
+    return this.http.patch(`${this.usersAPIURL}/auth/activate-account`, emailCode);
   }
 
   resendCode(email: any): Observable<any> {
-    return this.http.post(`${this.apiURL}/auth/resend-code`, email);
+    return this.http.post(`${this.usersAPIURL}/auth/resend-code`, email);
   }
 
   sendEmailPassword(email: any): Observable<any> {
-    return this.http.post(`${this.apiURL}/auth/reset-password/request`, email);
+    return this.http.post(`${this.usersAPIURL}/auth/reset-password/request`, email);
   }
 
   verifyCodePassword(info: any): Observable<any> {
-    return this.http.post(`${this.apiURL}/auth/reset-password/verify`, info);
+    return this.http.post(`${this.usersAPIURL}/auth/reset-password/verify`, info);
   }
 
   updatePassword(user: any): Observable<any> {
-    return this.http.patch(`${this.apiURL}/auth/reset-password/change`, user);
+    return this.http.patch(`${this.usersAPIURL}/auth/reset-password/change`, user);
   }
 
   isAuthenticated(): boolean {
