@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MustMatch } from 'src/app/helper/must-match.validator';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -15,7 +16,8 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +46,7 @@ export class ResetPasswordComponent implements OnInit {
         },
       });
     } else {
-      alert('Preencha todos os campos corretamente!');
+      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
     }
   }
 

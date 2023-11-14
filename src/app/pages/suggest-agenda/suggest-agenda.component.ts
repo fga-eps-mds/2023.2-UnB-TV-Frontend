@@ -58,7 +58,7 @@ export class SuggestAgendaComponent implements OnInit {
           this.isSendingEmail = false;
         });
     } else {
-      alert('Preencha os campos obrigatórios!');
+      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!"); os campos obrigatórios!');
     }
   }
 

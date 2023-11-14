@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class EditUserComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
+    private alertService: AlertService,
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class EditUserComponent implements OnInit {
       this.userService.updateUser(this.userId, this.userForm.value).subscribe({
         next: (data) => {
           console.log(data);
-          alert('Usuário cadastrado com sucesso!');
+          this.alertService.showMessage("success", "Sucesso", "Usuário cadastrado com sucesso!");
           this.navigator('/profile');
         },
         error: (error) => {
@@ -47,7 +49,7 @@ export class EditUserComponent implements OnInit {
         },
       });
     } else {
-      alert('Preencha todos os campos corretamente!');
+      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
     }
   }
 

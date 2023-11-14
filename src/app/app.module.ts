@@ -25,6 +25,7 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ParticipateComponent } from './pages/participate/participate.component'
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     AuthGuard,
@@ -60,6 +62,7 @@ import { ParticipateComponent } from './pages/participate/participate.component'
       useClass: UserTokenInterceptor,
       multi: true,
     },
+    MessageService
   ],
   bootstrap: [AppComponent],
 })
