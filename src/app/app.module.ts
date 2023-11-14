@@ -77,7 +77,7 @@ import { MessageService } from 'primeng/api';
     },
     { provide: OAuthStorage, useValue: localStorage },
     MessageService,
-    ConfirmationService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent],
 })
