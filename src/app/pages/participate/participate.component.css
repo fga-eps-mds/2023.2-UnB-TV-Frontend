@@ -1,0 +1,25 @@
+.font-unb {
+    font-size: 13px;
+    font-family: "unb-pro", sans-serif;    
+}
+
+.containner h1 {
+    color: #0087C8;
+    font-size: 13px;
+    font-family: "unb-pro", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 12.35px;
+    margin-left: 29px;
+    margin-top: 45px;
+    margin-bottom: 40px;
+    text-align: start;
+}
+
+.containner {
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: -300px;
+}

@@ -11,4 +11,4 @@ services:
     volumes:
       - .:/unb-tv-web
       - /unb-tv-web/node_modules
-    command: ng serve --host 0 --port 4200
+    command: ng serve --host 0 --port 4200 --poll 2000

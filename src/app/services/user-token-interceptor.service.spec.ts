@@ -33,7 +33,7 @@ describe('TokenInterceptorService', () => {
     userService.getAllUsers().subscribe((res) => {
       expect(res).toBeTruthy();
     });
-    const req = httpMock.expectOne(`${userService.apiURL}/users`);
+    const req = httpMock.expectOne(`${userService.usersAPIURL}/users`);
     expect(req.request.headers.has('Authorization')).toEqual(true);
   });
 });
