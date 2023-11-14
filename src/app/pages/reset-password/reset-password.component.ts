@@ -38,7 +38,7 @@ export class ResetPasswordComponent implements OnInit {
     if (this.userForm.valid) {
       this.authService.updatePassword(this.userForm.value).subscribe({
         next: (data) => {
-          alert('Senha alterada com sucesso!');
+          this.alertService.showMessage("success", "Sucesso", "Senha alterada com sucesso!");
           this.navigator('/login');
         },
         error: (error) => {

@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
       this.authService.registerUser(this.userForm.value).subscribe({
         next: (data) => {
           console.log(data);
-          alert('Usuário cadastrado com sucesso!');
+          this.alertService.showMessage("success", "Sucesso", "Usuário cadastrado com sucesso!");
           this.navigator('/activeAccount');
         },
         error: (error) => {

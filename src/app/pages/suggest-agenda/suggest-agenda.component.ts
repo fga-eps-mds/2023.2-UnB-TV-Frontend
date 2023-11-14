@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from 'src/app/services/email.service';
 import { EmailData } from 'src/shared/model/email.model';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-suggest-agenda',
@@ -19,7 +20,8 @@ export class SuggestAgendaComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -49,16 +51,16 @@ export class SuggestAgendaComponent implements OnInit {
       emailData.recipients = [emailUnB];
       this.isSendingEmail = true;
       this.emailService.sendEmail(emailData).subscribe((res: HttpResponse<string>) => {
-        alert('Sugestão enviada com sucesso');
+        this.alertService.showMessage("success", "Sucesso", "Sugestão enviada com sucesso");
       },
         (error: HttpErrorResponse) => {
-          alert('error: ' + error.message);
+          this.alertService.showMessage("error", "Erro", 'error: ' + error.message);
         },
         () => {
           this.isSendingEmail = false;
         });
     } else {
-      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!"); os campos obrigatórios!');
+      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
     }
   }
 
