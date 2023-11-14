@@ -5,7 +5,7 @@ import { VideoViewerComponent } from './video-viewer.component';
 import { VideoService } from '../../services/video.service';
 import { SafePipe } from 'src/app/pipes/safe.pipe';
 import { VideoCommentComponent } from 'src/app/components/video-comment/video-comment.component';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 describe('VideoViewerComponent', () => {
   let component: VideoViewerComponent;
@@ -14,7 +14,7 @@ describe('VideoViewerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [VideoViewerComponent, SafePipe, VideoCommentComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule],
       providers: [{ provide: VideoService }, FormBuilder]
 
     })

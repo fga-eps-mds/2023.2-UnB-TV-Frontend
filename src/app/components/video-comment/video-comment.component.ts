@@ -46,6 +46,12 @@ export class VideoCommentComponent implements OnInit {
 
     this.getUserName(this.userId);
 
+    this.getComments();
+
+
+  }
+
+  getComments() {
     this.vcs.getComments(this.video_id).subscribe({
       next: (data) => {
         this.comments = data.body as Comment[];
@@ -55,7 +61,6 @@ export class VideoCommentComponent implements OnInit {
         console.log(error)
       }
     });
-
   }
 
   setUserIdFromToken(token: string) {
@@ -91,7 +96,6 @@ export class VideoCommentComponent implements OnInit {
           console.log(error)
         }
       });
-      console.log(this.userName);
       this.comments.push({
         user_id: this.userId,
         video_id: this.video_id,
