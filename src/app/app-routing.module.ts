@@ -12,6 +12,8 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AuthGuard } from './services/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { ProgramacaoComponent } from './pages/programacao/programacao.component';
+import { AgoraComponent } from './pages/agora/agora.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,7 +26,9 @@ const routes: Routes = [
   { path: 'changePassword', component: ResetPasswordComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
-  { path: '', component: HomePageComponent, canActivate: [AuthGuard], }
+  { path: '', component: HomePageComponent, canActivate: [AuthGuard], },
+  { path: 'programacao', component: ProgramacaoComponent},
+  { path: 'agora', component: AgoraComponent}
 ];
 
 @NgModule({
