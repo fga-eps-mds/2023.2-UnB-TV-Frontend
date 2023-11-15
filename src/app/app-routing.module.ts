@@ -14,6 +14,9 @@ import { AuthGuard } from './services/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
+import { GridDaysComponent } from './pages/grid-days/grid-days.component'; 
+import { GridComponent } from './pages/grid/grid.component'; 
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -28,7 +31,9 @@ const routes: Routes = [
   { path: 'participate', component: ParticipateComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
-  { path: '', component: HomePageComponent, canActivate: [AuthGuard], }
+  { path: '', component: HomePageComponent, canActivate: [AuthGuard], },
+  { path: 'grid-days', component: GridDaysComponent },
+  { path: 'grid-days/:day', component: GridComponent },
 ];
 
 @NgModule({

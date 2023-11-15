@@ -24,6 +24,8 @@ import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
+import { GridComponent } from './pages/grid/grid.component';
+import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { ParticipateComponent } from './pages/participate/participate.component'
     EditUserComponent,
     SuggestAgendaComponent,
     ParticipateComponent,
+    GridComponent,
+    GridDaysComponent,
   ],
   imports: [
     BrowserModule,
