@@ -22,6 +22,7 @@ export class VideoViewerComponent implements OnInit {
   videoVersion: IVideoVersion = new VideoVersion();
   videoMP4: IVideoDetails = new VideoDetails();
   videoTitle: string = '';
+  videoDescription: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -40,6 +41,14 @@ export class VideoViewerComponent implements OnInit {
           );
 
           this.videoMP4 = !!videoMP4Found ? videoMP4Found : this.videoMP4;
+
+          if (params['idVideo']) {
+            this.videoService.findDescriptionByVideoId(params['idVideo']).subscribe(
+              (descriptionRes: HttpResponse<{description: string}>) => {
+                this.videoDescription = descriptionRes.body?.description || 'Descrição não disponível';
+              }
+            );
+          }
         });
     });
 
