@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 
 interface IGetAllUsers {
   name?: string;
@@ -38,6 +39,13 @@ export class UserService {
     const queryString = searchParams.toString();
 
     return this.http.get(`${this.apiURL}/users${queryString && '?' + queryString}`, {observe: 'response'});
+  }
+
+  getRoles() {
+    const access_token = localStorage.getItem("token");
+    const payload: any = jwt_decode(access_token as string);
+    const userRole: string = payload.role;
+    return userRole;
   }
 
   updateUser(id: any, body: any): Observable<any> {

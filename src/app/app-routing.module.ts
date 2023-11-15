@@ -13,6 +13,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { AuthGuard } from './services/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { UpdateRoleComponent } from './pages/update-role/update-role.component';
+import { AdminGuard } from './services/admin.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: 'changePassword', component: ResetPasswordComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
-  { path: 'update-role', component: UpdateRoleComponent, canActivate: [AuthGuard], data:{roles:["ADMIN"]} },
+  { path: 'update-role', component: UpdateRoleComponent, canActivate: [AdminGuard], },
   { path: '', component: HomePageComponent, canActivate: [AuthGuard], },
 ];
 

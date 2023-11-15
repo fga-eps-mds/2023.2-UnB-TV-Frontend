@@ -33,8 +33,6 @@ export class ProfileComponent {
   getUser() {
     this.userService.getUser(this.userId).subscribe({
       next: (data) => {
-        console.log(data);
-        localStorage.setItem('role', data.role);
         this.user = data;
       },
       error: (error) => {
