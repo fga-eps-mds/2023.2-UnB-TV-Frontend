@@ -12,13 +12,11 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AuthGuard } from './services/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
-<<<<<<< HEAD
-import { ProgramacaoComponent } from './pages/programacao/programacao.component';
-import { AgoraComponent } from './pages/agora/agora.component';
-=======
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
->>>>>>> c6e17862938e0f0a21bd8a1c130a93c1eb4e0b27
+import { ProgramacaoComponent } from './pages/programacao/programacao.component';
+import { AgoraComponent } from './pages/agora/agora.component';
+import { TransmissoesComponent } from './pages/transmissoes/transmissoes.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -35,7 +33,8 @@ const routes: Routes = [
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
   { path: '', component: HomePageComponent, canActivate: [AuthGuard], },
   { path: 'programacao', component: ProgramacaoComponent},
-  { path: 'agora', component: AgoraComponent}
+  { path: 'agora', component: AgoraComponent},
+  { path: 'transmissoes', component: TransmissoesComponent}
 ];
 
 @NgModule({
