@@ -41,13 +41,6 @@ export class ProfileComponent {
   }
 
   navigatorEdit(): void {
-
-    const navigationExtras: NavigationExtras = {
-      state: {
-        user: this.user
-      }
-    };
-    this.router.navigate([`/editUser`], navigationExtras);
+    this.router.navigate([`/editUser/${this.user.id}`]);
   }
-
 }

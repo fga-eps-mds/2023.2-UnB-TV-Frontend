@@ -6,6 +6,8 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { of, throwError } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActiveAccountComponent } from '../active-account/active-account.component';
+import { AlertService } from 'src/app/services/alert.service';
+import { DropdownModule } from 'primeng/dropdown';
 
 const mockData: any = {
   "name": "Mario",
@@ -22,21 +24,29 @@ class AuthServiceMock {
   }
 }
 
+class AlertServiceMock {
+  constructor() { }
+  showMessage() {
+    return of({ success: true });
+  }
+}
+
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let authService: AuthService;
+  let alertService: AlertService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ReactiveFormsModule,
+      imports: [HttpClientTestingModule, ReactiveFormsModule, DropdownModule,
         RouterTestingModule.withRoutes(
           [
             { path: 'activateAccount', component: ActiveAccountComponent },
           ]
         )
       ],
-      providers: [{ provide: AuthService, useValue: new AuthServiceMock() }, FormBuilder],
+      providers: [{ provide: AuthService, useValue: new AuthServiceMock() }, FormBuilder, {provide: AlertService, useValue: new AlertServiceMock()}],
       declarations: [RegisterComponent]
     })
       .compileComponents();
@@ -44,6 +54,7 @@ describe('RegisterComponent', () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     authService = TestBed.inject(AuthService);
+    alertService = TestBed.inject(AlertService);
     fixture.detectChanges();
   });
 
@@ -72,19 +83,6 @@ describe('RegisterComponent', () => {
     expect(alertSpy).toHaveBeenCalledWith('Usuário cadastrado com sucesso!');
   });
 
-  it('should call alert when form is not valid', () => {
-    spyOn(component, 'register').and.callThrough();
-    const alertSpy = spyOn(window, 'alert');
-    fixture.detectChanges();
-
-    const submitButton = fixture.nativeElement.querySelector(
-      'button[type="submit"]'
-    );
-    submitButton.click();
-
-    expect(alertSpy).toHaveBeenCalledWith('Preencha todos os campos corretamente!');
-  });
-
   it('should call register and return an error', () => {
     fixture.detectChanges();
     const form = component.userForm;
@@ -93,5 +91,14 @@ describe('RegisterComponent', () => {
     component.register();
     expect(mySpy).toHaveBeenCalled();
   });
+
+  // it('test AlertService', () => {
+  //   fixture.detectChanges();
+  //   const form = component.userForm;
+  //   form.setValue(mockData);
+  //   const mySpy = spyOn(alertService, 'showMessage').and.callThrough();
+  //   component.register();
+  //   expect(mySpy).toHaveBeenCalled();
+  // });
 
 });

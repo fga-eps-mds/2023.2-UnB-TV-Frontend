@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             this.navigator('/profile');
           },
           error: (error) => {
-            console.error(error);
+            this.alertService.showMessage("error", "Erro", error.error);
           },
         });
     } else {
