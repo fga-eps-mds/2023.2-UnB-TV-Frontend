@@ -8,13 +8,30 @@
       controls
     ></video>
     <div class="max-w-full justify-start max-h-full flex">
-      <h4 class="font-custom font-custom font-bold" >
+      <h4 class="font-custom font-bold" >
         {{ videoTitle }}
       </h4>
     </div>
-    <div class="max-w-full justify-start max-h-full flex">
-      <div [innerHTML]="videoDescription">
+    <div class="max-w-full justify-start max-h-full flex text-[12px] font-custom">
+      <div>
+        <!-- Exibir descrição abreviada com botão 'Mostrar' -->
+        <span *ngIf="!mostrarCompleta && videoDescription.length > limiteCaracteres">
+          <span [innerHTML]="videoDescription | slice:0:limiteCaracteres"></span>...
+          <button class="font-bold" (click)="expandirDescricao()">Mostrar</button>
+        </span>
+    
+        <!-- Exibir descrição completa com botão 'Mostrar menos' -->
+        <span *ngIf="mostrarCompleta">
+          <span [innerHTML]="videoDescription"></span>
+          <button class="font-bold" (click)="expandirDescricao()">Mostrar menos</button>
+        </span>
+    
+        <!-- Exibir descrição completa se ela for menor ou igual ao limite -->
+        <span *ngIf="videoDescription.length <= limiteCaracteres">
+          <span [innerHTML]="videoDescription"></span>
+        </span>
       </div>
     </div>
-  </div>
+    
+    </div>
 </div>

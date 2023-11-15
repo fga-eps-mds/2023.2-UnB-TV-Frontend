@@ -23,6 +23,12 @@ export class VideoViewerComponent implements OnInit {
   videoMP4: IVideoDetails = new VideoDetails();
   videoTitle: string = '';
   videoDescription: string = '';
+  limiteCaracteres = 100;
+  mostrarCompleta = false;
+
+  expandirDescricao() {
+    this.mostrarCompleta = !this.mostrarCompleta;
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -45,7 +51,7 @@ export class VideoViewerComponent implements OnInit {
           if (params['idVideo']) {
             this.videoService.findDescriptionByVideoId(params['idVideo']).subscribe(
               (descriptionRes: HttpResponse<{description: string}>) => {
-                this.videoDescription = descriptionRes.body?.description || 'Descrição não disponível';
+                this.videoDescription = descriptionRes.body?.description || '';
               }
             );
           }
