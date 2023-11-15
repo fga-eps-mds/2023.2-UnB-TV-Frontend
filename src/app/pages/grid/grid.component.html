@@ -1,0 +1,25 @@
+
+<div class="grid">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Horário
+                </th>
+                <th>
+                    Programa
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of schedule">
+                <td>
+                    {{ item.time }}
+                </td>
+                <td>
+                    {{ item.activity }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
