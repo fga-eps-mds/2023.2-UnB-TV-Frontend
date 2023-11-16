@@ -74,7 +74,7 @@ export class ProfileComponent {
               'Sucesso',
               'Usuário deletado com sucesso!'
             );
-            this.router.navigate(['/login']);
+            this.authService.logout();
           },
           error: (error) => {
             this.alertService.showMessage('error', 'Erro', error.error.detail);
