@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MustMatch } from 'src/app/helper/must-match.validator';
 import { AuthService } from '../../services/auth.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -35,11 +37,11 @@ export class LoginComponent implements OnInit {
             this.navigator('/profile');
           },
           error: (error) => {
-            console.error(error);
+            this.alertService.showMessage("error", "Erro", error.error);
           },
         });
     } else {
-      alert('Preencha todos os campos corretamente!');
+      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
     }
   }
 
