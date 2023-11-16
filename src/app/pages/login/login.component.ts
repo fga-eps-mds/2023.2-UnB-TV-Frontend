@@ -34,10 +34,13 @@ export class LoginComponent implements OnInit {
         .loginUser(this.userForm.value).subscribe({
           next: (data) => {
             localStorage.setItem('token', data.access_token);
-            this.navigator('/profile');
+            this.navigator('/videos');
           },
           error: (error) => {
-            this.alertService.showMessage("error", "Erro", error.error);
+            this.alertService.showMessage("error", "Erro", error.error.detail);
+            if(error.error.detail === 'A sua conta ainda não foi ativada.') {
+              this.navigator('/activeAccount');
+            }
           },
         });
     } else {
