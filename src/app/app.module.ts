@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
 
 // Declaration
 import { NgModule } from '@angular/core';
@@ -46,7 +47,8 @@ import { MessageService } from 'primeng/api';
     BrowserAnimationsModule,
     OAuthModule.forRoot(),
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    ButtonModule,
   ],
   declarations: [
     AppComponent,

@@ -30,15 +30,17 @@ export class ActiveAccountComponent implements OnInit {
     if (this.userForm.valid) {
       this.authService.activeAccount(this.userForm.value).subscribe({
         next: (data) => {
-          console.log(data);
           if (data.status === "error") {
             this.alertService.showMessage("error", "Erro", data.message);
             this.navigator("/login");
+          } else {
+            this.alertService.showMessage("success", "Sucesso", "Email ativado com sucesso!");
+            this.navigator("/login");
           }
-          this.navigator("/login");
         },
         error: (error) => {
-          console.error(error);
+          console.log(error);
+          this.alertService.showMessage("error", "Erro", "Seu email ou senha estão inválidos, preencha os campos corretamente.");
         },
       });
     } else {
@@ -48,12 +50,14 @@ export class ActiveAccountComponent implements OnInit {
 
   resendCode() {
     if (this.userForm.value.email) {
+      console.log(this.userForm.value.email);
       this.authService.resendCode(this.userForm.value.email).subscribe({
         next: (data) => {
-          console.log(data);
+          this.alertService.showMessage("success", "Sucesso", "Email reenviado com sucesso!");
         },
         error: (error) => {
-          console.error(error);
+          console.log(error);
+          this.alertService.showMessage("error", "Erro", error.error.detail);
         },
       });
     } else {
