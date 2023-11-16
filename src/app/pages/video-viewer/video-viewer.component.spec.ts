@@ -26,4 +26,17 @@ describe('VideoViewerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should toggle mostrarCompleta property', () => {
+    expect(component.mostrarCompleta).toBe(false);
+
+    component.expandirDescricao();
+
+    expect(component.mostrarCompleta).toBe(true);
+
+    component.expandirDescricao();
+
+    expect(component.mostrarCompleta).toBe(false);
+  });
+  
 });
