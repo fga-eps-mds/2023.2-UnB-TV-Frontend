@@ -5,7 +5,7 @@ import { EDUPLAY_API_URL, UNB_ID } from 'src/app/app.constant';
 import { IVideo } from 'src/shared/model/video.model';
 import { IEduplayVideosByInstitution } from 'src/shared/model/eduplay-by-institution.model';
 import { IVideoVersion } from 'src/shared/model/video-version.model';
-import { EDUPLAY_CLIENT_KEY } from "../environment/environment";
+import { EDUPLAY_CLIENT_KEY } from '../environment/environment';
 
 type VideoResponseType = HttpResponse<IVideo>;
 type VideoArrayResponseType = HttpResponse<IVideo[]>;
@@ -49,5 +49,14 @@ export class VideoService {
       `${this.resourceUrl}/${idVideo}`,
       { headers: headers, observe: 'response' }
     );
+  }
+
+  findVideoById(idVideo: number): Observable<VideoResponseType> {
+    let headers = new HttpHeaders({ clientkey: this.eduplayClientKey });
+
+    return this.http.get<IVideo>(`${this.resourceUrl}/${idVideo}`, {
+      headers: headers,
+      observe: 'response',
+    });
   }
 }
