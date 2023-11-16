@@ -26,6 +26,8 @@ import { AgoraComponent } from './pages/agora/agora.component';
 import { ProgramacaoComponent } from './pages/programacao/programacao.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
+import { MenuModule } from 'primeng/menu';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { ParticipateComponent } from './pages/participate/participate.component'
     HttpClientModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MenuModule,
+    ToastModule
   ],
   providers: [
     AuthGuard,
