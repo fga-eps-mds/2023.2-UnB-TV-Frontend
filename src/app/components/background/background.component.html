@@ -4,14 +4,19 @@
             <img alt="simbolo-unb" src="../../../assets/Simbolo_UnBTV-01 1.png">
         </div>
         <div class="flex flex-row items-center justify-center w-full">
-            <div class="text-programs">
-              <div class="px-2 cursor-pointer">Início</div>|
-              <div class="px-2 cursor-pointer">Agora na TV</div>|
-              <div class="px-2 cursor-pointer">Programação</div>|
-              <div class="px-2 cursor-pointer">Transmissões</div>|
-              <div class="pl-2 cursor-pointer" [routerLink]="['/participate']">Participe</div>
-            </div>
-            <img class="cursor-pointer" alt="hamburguer" src="../../../assets/hamburguer.svg">
+            <nav class="text-programs">
+              <a routerLink="" class="px-2 cursor-pointer">Início</a>|
+              <a routerLink="/agora" class="px-2 cursor-pointer">Agora na TV</a>|
+              <a routerLink="/programacao" class="px-2 cursor-pointer">Programação</a>|
+              <a routerLink="/transmissoes" class="pl-2 cursor-pointer">Transmissões</a>
+
+            </nav>
+            <img alt="hamburguer" class="cursor-pointer" (click)="toggleMenu()" src="../../../assets/hamburguer.svg">
+        </div>
+        <div class="menu flex flex-col" *ngIf="isMenuOpened">
+          <a class="menu-item cursor-pointer">teste</a>
+          <a class="menu-item cursor-pointer">teste</a>
+          <a class="menu-item cursor-pointer">teste</a>
         </div>
     </div>
     <div class="flex-grow">

@@ -22,6 +22,8 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { AgoraComponent } from './pages/agora/agora.component';
+import { ProgramacaoComponent } from './pages/programacao/programacao.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
 
@@ -42,6 +44,8 @@ import { ParticipateComponent } from './pages/participate/participate.component'
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
+    AgoraComponent,
+    ProgramacaoComponent,
     SuggestAgendaComponent,
     ParticipateComponent,
   ],
