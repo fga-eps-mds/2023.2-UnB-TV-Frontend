@@ -42,7 +42,7 @@ export class ResetPasswordComponent implements OnInit {
           this.navigator('/login');
         },
         error: (error) => {
-          console.error(error);
+          this.alertService.showMessage("error", "Erro", "Os campos estão incorretos, preencha os campos correctamente.");
         },
       });
     } else {

@@ -31,17 +31,14 @@ export class CheckCodeRestPasswordComponent {
   }
 
   sendEmail() {
-    console.log(this.userForm.value);
-    console.log({email: this.userForm.value.email});
-
     if (this.userForm.value.email) {
       this.authService.sendEmailPassword({email: this.userForm.value.email}).subscribe({
         next: (data) => {
-          console.log(data);
-          this.activeCode = true
+          this.alertService.showMessage("success", "Sucesso", "Email enviado para realizar a troca de senha.");
+          this.activeCode = true;
         },
         error: (error) => {
-          console.error(error);
+          this.alertService.showMessage("error", "Erro", "Email inválido!");
         },
       });
     } else {
@@ -53,11 +50,11 @@ export class CheckCodeRestPasswordComponent {
     if (this.userForm.valid) {
       this.authService.verifyCodePassword(this.userForm.value).subscribe({
         next: (data) => {
-          console.log(data);
+          this.alertService.showMessage("success", "Sucesso", "Código válido!");
           this.navigator('/changePassword');
         },
         error: (error) => {
-          console.error(error);
+          this.alertService.showMessage("error", "Erro", error.error.detail);
         },
       });
     } else {

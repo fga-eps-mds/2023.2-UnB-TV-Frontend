@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
         });
       },
       error: (error) => {
-        console.error(error);
+        this.alertService.showMessage("error", "Erro", error.error.detail);
       },
     });
   }
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
           this.navigator('/activeAccount');
         },
         error: (error) => {
-          console.error(error);
+          this.alertService.showMessage("error", "Erro", error.error.detail);
         },
       });
     } else {

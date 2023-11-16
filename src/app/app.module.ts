@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
 
 // Declaration
 import { NgModule } from '@angular/core';
@@ -24,10 +25,10 @@ import { LoginSocialComponent } from './pages/login-social/login-social.componen
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { UserTokenInterceptor } from './services/user-token-interceptor.service';
+import { UserTokenInterceptor } from './interceptor/user-token-interceptor.service';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
-import { AuthGuard } from './services/auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
@@ -46,7 +47,8 @@ import { MessageService } from 'primeng/api';
     BrowserAnimationsModule,
     OAuthModule.forRoot(),
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    ButtonModule,
   ],
   declarations: [
     AppComponent,
@@ -77,7 +79,7 @@ import { MessageService } from 'primeng/api';
     },
     { provide: OAuthStorage, useValue: localStorage },
     MessageService,
-    ConfirmationService,
+    ConfirmationService
   ],
   bootstrap: [AppComponent],
 })
