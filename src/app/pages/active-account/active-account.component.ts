@@ -40,7 +40,7 @@ export class ActiveAccountComponent implements OnInit {
         },
         error: (error) => {
           console.log(error);
-          this.alertService.showMessage("error", "Erro", "Seu email ou senha estão inválidos, preencha os campos corretamente.");
+          this.alertService.showMessage("error", "Erro", "Seu email ou código estão inválidos, preencha os campos corretamente.");
         },
       });
     } else {
