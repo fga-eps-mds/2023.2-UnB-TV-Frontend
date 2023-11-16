@@ -14,16 +14,17 @@ import { AuthGuard } from './services/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
+import { NoTokenGuard } from './services/no-token.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'loginsocial', component: LoginSocialComponent },
+  { path: 'login', component: LoginComponent, canActivate: [NoTokenGuard], },
+  { path: 'register', component: RegisterComponent, canActivate: [NoTokenGuard], },
+  { path: 'loginsocial', component: LoginSocialComponent, canActivate: [NoTokenGuard], },
+  { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent, canActivate: [NoTokenGuard], },
+  { path: 'changePassword', component: ResetPasswordComponent, canActivate: [NoTokenGuard], },
   { path: 'videos', component: VideoComponent },
   { path: 'video/:idVideo', component: VideoViewerComponent },
   { path: 'activeAccount', component: ActiveAccountComponent },
-  { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
-  { path: 'changePassword', component: ResetPasswordComponent },
   { path: 'suggestAgenda', component: SuggestAgendaComponent },
   { path: 'participate', component: ParticipateComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
