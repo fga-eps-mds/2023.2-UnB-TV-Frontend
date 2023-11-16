@@ -49,11 +49,11 @@ export class UserService {
   }
 
   updateUser(id: any, body: any): Observable<any> {
-    return this.http.patch(`${this.apiURL}/users/${id}`, body);
+    return this.http.patch(`${this.usersAPIURL}/users/${id}`, body);
   }
 
   updateUserRole(id: any): Observable<any> {
-    return this.http.patch(`${this.apiURL}/users/role/${id}`, {});
+    return this.http.patch(`${this.usersAPIURL}/users/role/${id}`, {});
   }
 
   deleteUser(id: any): Observable<any> {
