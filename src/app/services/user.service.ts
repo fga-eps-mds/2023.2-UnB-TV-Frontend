@@ -52,11 +52,11 @@ export class UserService {
     return this.http.patch(`${this.apiURL}/users/${id}`, body);
   }
 
+  updateUserRole(id: any): Observable<any> {
+    return this.http.patch(`${this.apiURL}/users/role/${id}`, {});
+  }
+
   deleteUser(id: any): Observable<any> {
     return this.http.delete(`${this.apiURL}/users/${id}`);
   }
-
-  updateUserRole(id: any): Observable<any> {
-    return this.http.patch(`${this.apiURL}/users/role/${id}`, {});
-}
 }

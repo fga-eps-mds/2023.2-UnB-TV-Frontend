@@ -1,14 +1,15 @@
 import { UserService } from './../../services/user.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-update-role',
   templateUrl: './update-role.component.html',
   styleUrls: ['./update-role.component.css'],
 })
-export class UpdateRoleComponent {
+export class UpdateRoleComponent implements OnInit {
   users: any = [];
   userId: number = 0;
 
@@ -64,12 +65,9 @@ export class UpdateRoleComponent {
     }).subscribe({
       next: (data: Response) => {
         this.users = data.body;
-        if (data.headers.has("x-total-count")) {
+        if (data && data.headers && data.headers.has("x-total-count")) {
           const totalCountHeader = data.headers.get("x-total-count");
-
-          if (totalCountHeader !== null) {
-            this.total = Number.parseInt(totalCountHeader, 10); 
-          }
+          this.total = Number.parseInt(totalCountHeader || '0', 10); 
         }
       },
       error: (erro) => {

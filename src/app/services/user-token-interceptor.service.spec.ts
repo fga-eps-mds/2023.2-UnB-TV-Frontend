@@ -30,7 +30,7 @@ describe('TokenInterceptorService', () => {
 
   it('should add header Authorization to request', () => {
     localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvMTV2aWN0b3IwOEBnbWFpbC5jb20iLCJleHAiOjE2OTkzMTI5MzV9.1B9qBJt8rErwBKyD5JCdsPozsw86oQ38tdfDuMM2HFI');
-    userService.getAllUsers().subscribe((res) => {
+    userService.getAllUsers({}).subscribe((res) => {
       expect(res).toBeTruthy();
     });
     const req = httpMock.expectOne(`${userService.apiURL}/users`);
