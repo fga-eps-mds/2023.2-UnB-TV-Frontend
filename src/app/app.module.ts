@@ -25,10 +25,10 @@ import { LoginSocialComponent } from './pages/login-social/login-social.componen
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { UserTokenInterceptor } from './services/user-token-interceptor.service';
+import { UserTokenInterceptor } from './interceptor/user-token-interceptor.service';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
-import { AuthGuard } from './services/auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';

@@ -10,11 +10,11 @@ import { ActiveAccountComponent } from './pages/active-account/active-account.co
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
-import { AuthGuard } from './services/auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
-import { NoTokenGuard } from './services/no-token.guard';
+import { NoTokenGuard } from './guard/no-token.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [NoTokenGuard], },
