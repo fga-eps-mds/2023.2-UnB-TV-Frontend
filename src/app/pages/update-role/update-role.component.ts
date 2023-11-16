@@ -46,7 +46,8 @@ export class UpdateRoleComponent implements OnInit {
   };
 
   filterUser() {
-    this.getAllUsers()
+    this.pageIndex = 0;
+    this.getAllUsers();
   };
 
   onPaginateChange(event: PageEvent) {
