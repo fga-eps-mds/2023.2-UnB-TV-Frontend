@@ -1,25 +1,24 @@
 
-<div class="grid">
-    <table>
+<div class="text-blue-brand padded-cell-day">
         <thead>
             <tr>
                 <th>
-                    Horário
-                </th>
-                <th>
-                    Programa
+                   {{ day }}
                 </th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let item of schedule">
-                <td>
-                    {{ item.time }}
-                </td>
-                <td>
-                    {{ item.activity }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-  </div>
+</div>
+    <div>
+        <table>
+            <tbody>
+                <tr *ngFor="let item of schedule">
+                    <td class="padded-cell">
+                      {{ item.time }}
+                    </td>
+                    <td class="padded-cell">
+                      {{ item.activity }}
+                    </td>
+                  </tr>
+            </tbody>
+        </table>
+</div>

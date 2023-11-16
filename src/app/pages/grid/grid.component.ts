@@ -1201,6 +1201,6 @@ export class GridComponent {
     this.schedule = grids[this.day.toUpperCase()].map((program: any) => {
       
       return {time: program.horario, activity: program.nome}
-  })
-} 
+    })
+  } 
 }
