@@ -30,7 +30,7 @@ describe('AuthService', () => {
     service.registerUser(userResponse).subscribe(res => {
       expect(res).toEqual(userResponse);
     });
-    const req = httpMock.expectOne(`${service.apiURL}/auth/register`);
+    const req = httpMock.expectOne(`${service.usersAPIURL}/auth/register`);
     expect(req.request.method).toBe('POST');
     req.flush(userResponse);
   });
@@ -44,7 +44,7 @@ describe('AuthService', () => {
     service.loginUser(userResponse).subscribe(res => {
       expect(res).toEqual(userResponse);
     });
-    const req = httpMock.expectOne(`${service.apiURL}/auth/login`);
+    const req = httpMock.expectOne(`${service.usersAPIURL}/auth/login`);
     expect(req.request.method).toBe('POST');
     req.flush(userResponse);
   });
@@ -57,7 +57,7 @@ describe('AuthService', () => {
     service.activeAccount(userResponse).subscribe(res => {
       expect(res).toEqual(userResponse);
     });
-    const req = httpMock.expectOne(`${service.apiURL}/auth/activate-account`);
+    const req = httpMock.expectOne(`${service.usersAPIURL}/auth/activate-account`);
     expect(req.request.method).toBe('PATCH');
     req.flush(userResponse);
   });
@@ -69,7 +69,7 @@ describe('AuthService', () => {
     service.resendCode(userResponse).subscribe(res => {
       expect(res).toEqual(userResponse);
     });
-    const req = httpMock.expectOne(`${service.apiURL}/auth/resend-code`);
+    const req = httpMock.expectOne(`${service.usersAPIURL}/auth/resend-code`);
     expect(req.request.method).toBe('POST');
     req.flush(userResponse);
   });
@@ -81,7 +81,7 @@ describe('AuthService', () => {
     service.sendEmailPassword(userResponse).subscribe(res => {
       expect(res).toEqual(userResponse);
     });
-    const req = httpMock.expectOne(`${service.apiURL}/auth/reset-password/request`);
+    const req = httpMock.expectOne(`${service.usersAPIURL}/auth/reset-password/request`);
     expect(req.request.method).toBe('POST');
     req.flush(userResponse);
   });
@@ -94,7 +94,7 @@ describe('AuthService', () => {
     service.verifyCodePassword(userResponse).subscribe(res => {
       expect(res).toEqual(userResponse);
     });
-    const req = httpMock.expectOne(`${service.apiURL}/auth/reset-password/verify`);
+    const req = httpMock.expectOne(`${service.usersAPIURL}/auth/reset-password/verify`);
     expect(req.request.method).toBe('POST');
     req.flush(userResponse);
   });
@@ -108,7 +108,7 @@ describe('AuthService', () => {
     service.updatePassword(userResponse).subscribe(res => {
       expect(res).toEqual(userResponse);
     });
-    const req = httpMock.expectOne(`${service.apiURL}/auth/reset-password/change`);
+    const req = httpMock.expectOne(`${service.usersAPIURL}/auth/reset-password/change`);
     expect(req.request.method).toBe('PATCH');
     req.flush(userResponse);
   });

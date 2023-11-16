@@ -11,8 +11,8 @@ type CommentResponseType = HttpResponse<IComment[]>;
 })
 export class VideoCommentService {
 
-  public apiURLVideo = environment.apiURLVideo;
-  public apiURLUsers = environment.apiURL;
+  public apiURLVideo = environment.videoAPIURL;
+  public apiURLUsers = environment.usersAPIURL;
 
   constructor(private http: HttpClient) { }
 

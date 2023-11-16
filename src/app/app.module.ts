@@ -23,6 +23,8 @@ import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
+import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
+import { ParticipateComponent } from './pages/participate/participate.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { VideoCommentComponent } from './components/video-comment/video-comment.
     CheckCodeRestPasswordComponent,
     EditUserComponent,
     VideoCommentComponent,
+    SuggestAgendaComponent,
+    ParticipateComponent
   ],
   imports: [
     BrowserModule,
