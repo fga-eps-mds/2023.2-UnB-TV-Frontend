@@ -1,5 +1,5 @@
 
-<div class="text-blue-brand padded-cell-day">
+<div class="text-blue-brand padded-cell-day center-text">
         <thead>
             <tr>
                 <th>
@@ -8,17 +8,22 @@
             </tr>
         </thead>
 </div>
-    <div>
-        <table>
-            <tbody>
-                <tr *ngFor="let item of schedule">
-                    <td class="padded-cell">
-                      {{ item.time }}
-                    </td>
-                    <td class="padded-cell">
-                      {{ item.activity }}
-                    </td>
-                  </tr>
-            </tbody>
-        </table>
+
+<div>
+  <table class="center-table">
+    <tbody>
+      <tr *ngFor="let item of schedule">
+        <td class="padded-cell">
+          {{ item.time }}
+        </td>
+            <td>
+              {{ item.activity }}
+            </td>
+        </tr>
+    </tbody>
+  </table>  
+<div>
+    <div class="center-button">
+      <button class="text-blue-brand" (click)="redirectBack()">Voltar</button>
+    </div>
 </div>
