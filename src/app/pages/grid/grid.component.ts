@@ -14,7 +14,7 @@ export interface Schedule {
 export class GridComponent {
   day: string = "";
   schedule: Schedule[] = [];
-  constructor(private route: ActivatedRoute){
+  constructor(private route: ActivatedRoute, private router: Router){
 
   }
 
@@ -1202,5 +1202,9 @@ export class GridComponent {
       
       return {time: program.horario, activity: program.nome}
     })
+  }
+  redirectBack() {
+    this.router.navigate(['/grid-days/']);
+
   } 
 }
