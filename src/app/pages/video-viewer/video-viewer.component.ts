@@ -10,14 +10,13 @@ import {
   VideoDetails,
 } from 'src/shared/model/video-details.model';
 import { VideoService } from '../../services/video.service';
-
+import { IVideo, Video } from 'src/shared/model/video.model';
 
 @Component({
   selector: 'app-video-viewer',
   templateUrl: './video-viewer.component.html',
   styleUrls: ['./video-viewer.component.css'],
 })
-
 export class VideoViewerComponent implements OnInit {
   videoVersion: IVideoVersion = new VideoVersion();
   videoMP4: IVideoDetails = new VideoDetails();
@@ -25,6 +24,7 @@ export class VideoViewerComponent implements OnInit {
   videoDescription: string = '';
   limiteCaracteres = 100;
   mostrarCompleta = false;
+  video: IVideo = new Video();
 
   expandirDescricao() {
     this.mostrarCompleta = !this.mostrarCompleta;
@@ -32,11 +32,11 @@ export class VideoViewerComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private videoService: VideoService,
-  ) { }
+    private videoService: VideoService
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+    this.route.params.subscribe((params: { [x: string]: number }) => {
       this.videoService
         .findVideoVersionByVideoId(params['idVideo'])
         .subscribe((res: HttpResponse<IVideoVersion>) => {
@@ -58,9 +58,16 @@ export class VideoViewerComponent implements OnInit {
         });
     });
 
-    this.route.queryParams.subscribe((params) => {
-      this.videoTitle = params['title'];
+    this.route.params.subscribe((params: { [x: string]: number }) => {
+      this.videoService
+        .findVideoById(params['idVideo'])
+        .subscribe((res: HttpResponse<IVideo>) => {
+          this.video = !!res?.body ? res.body : this.video;
+        });
     });
 
+    this.route.queryParams.subscribe((params: { [x: string]: string }) => {
+      this.videoTitle = params['title'];
+    });
   }
 }
