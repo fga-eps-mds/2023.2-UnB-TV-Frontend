@@ -14,6 +14,8 @@ import { AuthGuard } from './services/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { UpdateRoleComponent } from './pages/update-role/update-role.component';
 import { AdminGuard } from './services/admin.guard';
+import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
+import { ParticipateComponent } from './pages/participate/participate.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'activeAccount', component: ActiveAccountComponent },
   { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
   { path: 'changePassword', component: ResetPasswordComponent },
+  { path: 'suggestAgenda', component: SuggestAgendaComponent },
+  { path: 'participate', component: ParticipateComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
   { path: 'update-role', component: UpdateRoleComponent, canActivate: [AdminGuard], },

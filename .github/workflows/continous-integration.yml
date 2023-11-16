@@ -1,9 +1,9 @@
-name: CI Pipeline Frontend
+name: Análise de Código
 
 on: push
 
 jobs:
-  build:
+  sonarcloud:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,7 +14,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: lts/*
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install ⚙️
         run: npm install
@@ -24,3 +24,10 @@ jobs:
 
       - name: Test 📋
         run: npm run test:prod
+
+      - name: Executa SonarCloud Scan
+        if: ${{ always() }}
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{secrets.API_TOKEN_GITHUB}}
+          SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}

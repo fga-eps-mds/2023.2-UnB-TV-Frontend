@@ -17,12 +17,12 @@ interface IGetAllUsers {
   providedIn: 'root'
 })
 export class UserService {
-  public apiURL = environment.apiURL;
+  public usersAPIURL = environment.usersAPIURL;
 
   constructor(private http: HttpClient) { }
 
   getUser(id: any): Observable<any> {
-    return this.http.get(`${this.apiURL}/users/${id}`);
+    return this.http.get(`${this.usersAPIURL}/users/${id}`);
   }
 
   getAllUsers({ name, email, nameEmail, connection, offset, limit }: IGetAllUsers): Observable<any> {
@@ -38,7 +38,7 @@ export class UserService {
     const searchParams = new URLSearchParams(params);
     const queryString = searchParams.toString();
 
-    return this.http.get(`${this.apiURL}/users${queryString && '?' + queryString}`, {observe: 'response'});
+    return this.http.get(`${this.usersAPIURL}/users${queryString && '?' + queryString}`, {observe: 'response'});
   }
 
   getRoles() {
@@ -57,6 +57,6 @@ export class UserService {
   }
 
   deleteUser(id: any): Observable<any> {
-    return this.http.delete(`${this.apiURL}/users/${id}`);
+    return this.http.delete(`${this.usersAPIURL}/users/${id}`);
   }
 }

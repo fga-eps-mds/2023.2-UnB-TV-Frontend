@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { VideoService } from './video.service';
 import { EDUPLAY_API_URL, UNB_ID } from 'src/app/app.constant';
 import { EDUPLAY_CLIENT_KEY } from '../environment/environment';
+import { VideoService } from './video.service';
 
 describe('VideoService', () => {
   let service: VideoService;

@@ -25,6 +25,8 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { UpdateRoleComponent } from './pages/update-role/update-role.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
+import { ParticipateComponent } from './pages/participate/participate.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     CheckCodeRestPasswordComponent,
     EditUserComponent,
     UpdateRoleComponent,
+    SuggestAgendaComponent,
+    ParticipateComponent,
   ],
   imports: [
     BrowserModule,
