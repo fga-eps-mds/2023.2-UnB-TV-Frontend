@@ -1,10 +1,10 @@
 /* Em styles.css ou no seu arquivo CSS global */
+@import "assets/theme/theme.css";
+@import "~primeng/resources/primeng.min.css";
+
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-@import "assets/theme/theme.css";
-@import "~primeng/resources/primeng.min.css";
 
 @font-face {
   font-family: "unb-pro";
