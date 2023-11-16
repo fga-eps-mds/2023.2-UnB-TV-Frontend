@@ -22,6 +22,7 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './services/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
 
@@ -30,7 +31,6 @@ import { ParticipateComponent } from './pages/participate/participate.component'
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    BackgroundComponent,
     LoginSocialComponent,
     VideoComponent,
     VideoViewerComponent,
@@ -42,15 +42,15 @@ import { ParticipateComponent } from './pages/participate/participate.component'
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
+    VideoCommentComponent,
     SuggestAgendaComponent,
-    ParticipateComponent,
+    ParticipateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    HttpClientModule,
   ],
   providers: [
     AuthGuard,
