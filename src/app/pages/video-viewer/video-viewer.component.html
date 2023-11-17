@@ -1,16 +1,28 @@
 <div class="max-w-full justify-center max-h-full flex">
   <div class="max-w-full max-h-full flex justify-center flex-col gap-8 p-5">
-    <video
+    <!-- <video
       class="w-full h-2/3 max-w-6xl"
       [src]="videoMP4.url | safe"
       title="trusted video url"
       allowfullscreen
       controls
-    ></video>
+    ></video> -->
+    <div [innerHTML]="videoUrl"></div>
     <div class="max-w-full justify-start max-h-full flex">
       <h4 class="font-custom font-bold" >
         {{ video.title }}
       </h4>
+    </div>
+    <div class="max-w-full justify-start max-h-full flex text-[12px] font-custom">
+      <div>
+        <span *ngIf="!mostrarCompleta && videoDescription.length > limiteCaracteres" class="clamped-description" [innerHTML]="videoDescription"></span>
+        <button *ngIf="!mostrarCompleta && videoDescription.length > limiteCaracteres" class="font-bold" (click)="expandirDescricao()">Mostrar</button>
+
+        <span *ngIf="mostrarCompleta" [innerHTML]="videoDescription"></span>
+        <div *ngIf="mostrarCompleta">
+          <button class="font-bold" (click)="expandirDescricao()">Mostrar menos</button>
+        </div>
+      </div>
     </div>
     <div>
       <app-video-comment/>

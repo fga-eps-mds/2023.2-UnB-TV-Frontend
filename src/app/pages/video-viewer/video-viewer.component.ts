@@ -11,6 +11,7 @@ import {
 } from 'src/shared/model/video-details.model';
 import { VideoService } from '../../services/video.service';
 import { IVideo, Video } from 'src/shared/model/video.model';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-video-viewer',
@@ -25,6 +26,7 @@ export class VideoViewerComponent implements OnInit {
   limiteCaracteres = 100;
   mostrarCompleta = false;
   video: IVideo = new Video();
+  videoUrl!: SafeHtml;
 
   expandirDescricao() {
     this.mostrarCompleta = !this.mostrarCompleta;
@@ -32,7 +34,8 @@ export class VideoViewerComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private videoService: VideoService
+    private videoService: VideoService,
+    private domSanitizer:DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -63,9 +66,12 @@ export class VideoViewerComponent implements OnInit {
         .findVideoById(params['idVideo'])
         .subscribe((res: HttpResponse<IVideo>) => {
           this.video = !!res?.body ? res.body : this.video;
+          this.videoUrl = this.domSanitizer.bypassSecurityTrustHtml(this.video.embed as string);
+          this.videoDescription = this.video.description?this.video.description:'';
+          console.log(this.video)
         });
     });
 
-    
+
   }
 }
