@@ -1,0 +1,5 @@
+button, [type='button'], [type='reset'], [type='submit'] {
+    -webkit-appearance: button;
+    background-color: #0087ce !important;
+    background-image: none;
+}

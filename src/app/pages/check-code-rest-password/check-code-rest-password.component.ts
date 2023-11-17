@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class CheckCodeRestPasswordComponent {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService,
   ) {}
 
   ngOnInit(): void {
@@ -29,21 +31,18 @@ export class CheckCodeRestPasswordComponent {
   }
 
   sendEmail() {
-    console.log(this.userForm.value);
-    console.log({email: this.userForm.value.email});
-
     if (this.userForm.value.email) {
       this.authService.sendEmailPassword({email: this.userForm.value.email}).subscribe({
         next: (data) => {
-          console.log(data);
-          this.activeCode = true
+          this.alertService.showMessage("success", "Sucesso", "Email enviado para realizar a troca de senha.");
+          this.activeCode = true;
         },
         error: (error) => {
-          console.error(error);
+          this.alertService.showMessage("error", "Erro", "Email inválido!");
         },
       });
     } else {
-      alert('Preencha todos os campos corretamente!');
+      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
     }
   }
 
@@ -51,15 +50,15 @@ export class CheckCodeRestPasswordComponent {
     if (this.userForm.valid) {
       this.authService.verifyCodePassword(this.userForm.value).subscribe({
         next: (data) => {
-          console.log(data);
+          this.alertService.showMessage("success", "Sucesso", "Código válido!");
           this.navigator('/changePassword');
         },
         error: (error) => {
-          console.error(error);
+          this.alertService.showMessage("error", "Erro", error.error.detail);
         },
       });
     } else {
-      alert('Preencha todos os campos corretamente!');
+      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
     }
   }
 

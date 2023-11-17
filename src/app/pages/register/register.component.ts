@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MustMatch } from 'src/app/helper/must-match.validator';
-import { AuthService } from '../../services/auth.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { UserService } from '../../services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,42 +13,68 @@ import { AuthService } from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   userForm!: FormGroup;
+  vinculo: any = {};
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private userService: UserService,
+    private authService: AuthService,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
+    this.getVinculo();
     this.userForm = this.fb.group(
       {
         name: ['', [Validators.required]],
         email: ['', [Validators.email, Validators.required]],
-        connection: ['', [Validators.required]],
+        connection: [[], [Validators.required]],
         password: ['', [Validators.required]],
         confirmPassword: ['', [Validators.required]],
-      },
-      {
+      },{
         validator: MustMatch('password', 'confirmPassword'),
       }
     );
   }
 
+  getVinculo() {
+    this.userService.getVinculo().subscribe({
+      next: (data) => {
+        this.vinculo = data.map((name: any) => {
+          return {
+            name: name,
+          }
+        });
+      },
+      error: (error) => {
+        this.alertService.showMessage("error", "Erro", error.error.detail);
+      },
+    });
+  }
+
   register() {
     if (this.userForm.valid) {
-      this.authService.registerUser(this.userForm.value).subscribe({
+      const data = {...this.userForm.value, connection: this.userForm.value.connection.name};
+      this.authService.registerUser(data).subscribe({
         next: (data) => {
-          console.log(data);
-          alert('Usuário cadastrado com sucesso!');
+          this.alertService.showMessage(
+            'success',
+            'Sucesso',
+            'Usuário cadastrado com sucesso!'
+          );
           this.navigator('/activeAccount');
         },
         error: (error) => {
-          console.error(error);
+          this.alertService.showMessage("error", "Erro", error.error.detail);
         },
       });
     } else {
-      alert('Preencha todos os campos corretamente!');
+      this.alertService.showMessage(
+        'info',
+        'Alerta',
+        'Preencha todos os campos corretamente!'
+      );
     }
   }
 
