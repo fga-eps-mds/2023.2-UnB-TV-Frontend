@@ -18,7 +18,8 @@ export class GridComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private gridService: GridService
+    private gridService: GridService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -31,5 +32,9 @@ export class GridComponent {
         console.error(error);
       }
     })
+  }
+  redirectBack() {
+    this.router.navigate(['/grid-days/']);
+
   } 
 }

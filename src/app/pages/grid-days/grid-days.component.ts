@@ -11,12 +11,10 @@ export class GridDaysComponent {
   days: string[] = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
 
   constructor(
-    private route: Router
-  ) { 
+    private route: Router) { 
 
   }
   redirect(day: string) {
-    console.log(day);
     this.route.navigate(['/grid-days/'+ day]);
 
   }
