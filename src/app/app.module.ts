@@ -23,7 +23,6 @@ import { SafePipe } from './pipes/safe.pipe';
 import { BackgroundComponent } from './components/background/background.component';
 import { LoginSocialComponent } from './pages/login-social/login-social.component';
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserTokenInterceptor } from './interceptor/user-token-interceptor.service';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
@@ -62,7 +61,6 @@ import { MessageService } from 'primeng/api';
     SafePipe,
     BackgroundComponent,
     ActiveAccountComponent,
-    HomePageComponent,
     ProfileComponent,
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
