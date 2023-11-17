@@ -1,29 +1,18 @@
 
-<div class="flex justify-center items-center h-4/5">
+<div class="flex justify-center items-center h-4/5 flex-col">
   <form  class="text-center">
-    <div class="mb-4 flex flex-col justify-start items-center bg-zinc-300 p-4 rounded-xl shadow-md">
+    <div class="mb-4 flex flex-col justify-start items-center bg-zinc-300 p-4 rounded-xl shadow-md" *ngIf="user">
       <div class="flex flex-row">
         <div class="font-bold">
           Nome:&nbsp;
         </div>
-          {{ user.name }}
+        {{ user.name }}
       </div>
       <div class="flex flex-row">
         <div class="font-bold">
           Vínculo:&nbsp;
         </div>
-        <div *ngIf="user.connection === 'ALUNO'">
-          Aluno
-        </div>
-        <div *ngIf="user.connection === 'PROFESSOR'">
-          Professor
-        </div>
-        <div *ngIf="user.connection === 'COMUNIDADE-ACADEMICA'">
-          Comunidade Acadêmica
-        </div>
-        <div *ngIf="user.connection === 'EXTERNO'">
-          Externo
-        </div>
+        {{ user.connection }}
       </div>
       <div class="flex flex-row">
         <div class="font-bold">
@@ -34,4 +23,10 @@
     </div>
     <button class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32" (click)="navigatorEdit()">Editar perfil</button>
   </form>
+  <div class="flex items-center justify-center">
+    <button class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32" (click)="deleteUser()">Deletar usuário</button>
+  </div>
+  <div class="flex items-center justify-center">
+    <button class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-16" (click)="logoutUser()">Sair</button>
+  </div>
 </div>
