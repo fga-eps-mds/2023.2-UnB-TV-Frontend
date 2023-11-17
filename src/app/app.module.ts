@@ -23,7 +23,6 @@ import { SafePipe } from './pipes/safe.pipe';
 import { BackgroundComponent } from './components/background/background.component';
 import { LoginSocialComponent } from './pages/login-social/login-social.component';
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserTokenInterceptor } from './interceptor/user-token-interceptor.service';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
@@ -31,6 +30,7 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { MenuModule } from 'primeng/menu';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
@@ -49,6 +49,7 @@ import { MessageService } from 'primeng/api';
     InputTextModule,
     DropdownModule,
     ButtonModule,
+    MenuModule,
   ],
   declarations: [
     AppComponent,
@@ -60,14 +61,13 @@ import { MessageService } from 'primeng/api';
     SafePipe,
     BackgroundComponent,
     ActiveAccountComponent,
-    HomePageComponent,
     ProfileComponent,
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
-    VideoCommentComponent,
     SuggestAgendaComponent,
-    ParticipateComponent
+    ParticipateComponent,
+    VideoCommentComponent,
   ],
   providers: [
     { provide: 'authGuard', useClass: AuthGuard },
@@ -83,4 +83,4 @@ import { MessageService } from 'primeng/api';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
