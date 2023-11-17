@@ -3,7 +3,7 @@
     <div class="pt-10 flex justify-center items-center">
       <img alt="simbolo-unb" src="../../../assets/Simbolo_UnBTV-01 1.png" />
     </div>
-    <nav class="flex flex-row items-center justify-between pl-3">
+    <nav class="flex flex-row items-center justify-center pl-3">
       <ul class="flex flex-row gap-1 text-xs">
         <li class="text-blue-brand">
           <a [routerLink]="['/stream']">Agora na TV</a>
@@ -21,8 +21,7 @@
           <a [routerLink]="['/participate']">Participe</a>
         </li>
       </ul>
-      <div class="card flex justify-content-center">
-        <p-toast></p-toast>
+      <div class="card flex justify-content-center mx-2">
         <p-menu #menu [model]="items" [popup]="true"></p-menu>
         <button
           pButton
