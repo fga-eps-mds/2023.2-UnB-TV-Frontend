@@ -12,19 +12,8 @@
         {{ video.title }}
       </h4>
     </div>
-    <div class="max-w-full justify-start max-h-full flex text-[12px] font-custom">
-      <div>
-        <span *ngIf="!mostrarCompleta && videoDescription.length > limiteCaracteres" class="clamped-description" [innerHTML]="videoDescription"></span>
-        <button *ngIf="!mostrarCompleta && videoDescription.length > limiteCaracteres" class="font-bold" (click)="expandirDescricao()">Mostrar</button>
-        
-        <span *ngIf="mostrarCompleta" [innerHTML]="videoDescription"></span>
-        <div *ngIf="mostrarCompleta">
-          <button class="font-bold" (click)="expandirDescricao()">Mostrar menos</button>
-        </div>
-      </div>
+    <div>
+      <app-video-comment/>
     </div>
-    
-    
-    
-    </div>
+  </div>
 </div>
