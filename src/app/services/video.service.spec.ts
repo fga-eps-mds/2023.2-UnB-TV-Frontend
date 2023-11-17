@@ -278,41 +278,6 @@ describe('VideoService', () => {
     });
   });
 
-  describe('findVideoVersionByVideoId', () => {
-    it('should return video version by video ID', () => {
-      const mockId = 137155;
-      const mockData = {
-        videoVersionList: [
-          {
-            id: 198889,
-            fileFormat: 'MP4',
-            bitRate: 400,
-            frameRate: 0.0,
-            frameWidth: 640,
-            frameHeight: 360,
-            url: 'https://cdn.eduplay.rnp.br/route/GFo4bTLBMlME/1625266532841.mp4?s=aHR0cHM6Ly9tZWRpYS5lZHVwbGF5LnJucC5ici9tZWRpYS9HRm80YlRMQk1sTUUvMTYyNTI2NjUzMjg0MS5tcDQ_bT1hOHRCay1Ed1ZIX2thOGllMlBoRkxB&p=0&m=9xeIa_Ss6Z_kmZ-wjeczWg',
-          },
-          {
-            fileFormat: 'HLS',
-            url: 'https://cdn.eduplay.rnp.br/route/GFo4bTLBMlME/index.m3u8?s=aHR0cHM6Ly9tZWRpYS5lZHVwbGF5LnJucC5ici9tZWRpYS9HRm80YlRMQk1sTUUvaW5kZXgubTN1OD94PTEmbT01Zi04czV1TmJRelM5V3BrblpSRTRn&x=1&p=0&m=q_L7ZIxmqATQnM0n7KREyg',
-          },
-        ],
-      };
-
-      service.findVideoVersionByVideoId(mockId).subscribe((response) => {
-        expect(response.body).toEqual(mockData);
-      });
-
-      const req = httpMock.expectOne(
-        `${EDUPLAY_API_URL}video/versions/${mockId}`
-      );
-      expect(req.request.method).toBe('GET');
-      expect(req.request.headers.get('clientkey')).toBe(EDUPLAY_CLIENT_KEY);
-
-      req.flush(mockData);
-    });
-  });
-
   describe('findVideoById', () => {
     it('should return a video', () => {
       const mockId = 185814;

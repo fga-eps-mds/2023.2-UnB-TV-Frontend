@@ -31,26 +31,6 @@ export class VideoService {
     );
   }
 
-  findVideoVersionByVideoId(
-    idVideo: number
-  ): Observable<VideoVersionResponseType> {
-    let headers = new HttpHeaders({ clientkey: this.eduplayClientKey });
-
-    return this.http.get<IVideoVersion>(
-      `${this.resourceUrl}/versions/${idVideo}`,
-      { headers: headers, observe: 'response' }
-    );
-  }
-
-  findDescriptionByVideoId(idVideo: number): Observable<HttpResponse<{description: string}>> {
-    let headers = new HttpHeaders({ clientkey: this.eduplayClientKey });
-
-    return this.http.get<{description: string}>(
-      `${this.resourceUrl}/${idVideo}`,
-      { headers: headers, observe: 'response' }
-    );
-  }
-
   findVideoById(idVideo: number): Observable<VideoResponseType> {
     let headers = new HttpHeaders({ clientkey: this.eduplayClientKey });
 
