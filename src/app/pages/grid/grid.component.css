@@ -5,20 +5,13 @@
     padding-left: 20px; 
   }
 .center-table {
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
   font-size: 14px;
-}
-.center-text {
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
 }
 .center-button {
   margin-left: auto;
   margin-right: auto;
   width: 5%;
 }
-
-
+tr:not(:last-child) {
+  border-bottom-width: 0.01em;
+}

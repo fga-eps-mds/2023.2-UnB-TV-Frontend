@@ -15,6 +15,7 @@ export interface Schedule {
 export class GridComponent {
   day: string = "";
   schedule: Schedule[] = [];
+  loadingSchedule: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,9 +28,11 @@ export class GridComponent {
     this.gridService.getSchedule(this.day).subscribe({
       next: (data) => {
         this.schedule = data[this.day.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")];
+        this.loadingSchedule = false;
       },
       error: (error) => {
         console.error(error);
+        this.loadingSchedule = false;
       }
     })
   }

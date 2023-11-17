@@ -37,6 +37,7 @@ import { ParticipateComponent } from './pages/participate/participate.component'
 import { GridComponent } from './pages/grid/grid.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { MessageService } from 'primeng/api';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import { MessageService } from 'primeng/api';
     InputTextModule,
     DropdownModule,
     ButtonModule,
+    ProgressSpinnerModule
   ],
   declarations: [
     AppComponent,
