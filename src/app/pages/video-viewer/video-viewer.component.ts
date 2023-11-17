@@ -66,8 +66,6 @@ export class VideoViewerComponent implements OnInit {
         });
     });
 
-    this.route.queryParams.subscribe((params: { [x: string]: string }) => {
-      this.videoTitle = params['title'];
-    });
+    
   }
 }
