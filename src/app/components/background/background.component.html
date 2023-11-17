@@ -1,50 +1,42 @@
 <div class="w-full flex h-screen flex-col">
-  <div>
+  <div class="m-3">
     <div class="pt-10 flex justify-center items-center">
       <img alt="simbolo-unb" src="../../../assets/Simbolo_UnBTV-01 1.png" />
     </div>
-    <div class="flex flex-row items-center justify-center w-full">
-      <nav class="text-programs">
-        <a [routerLink]="['/stream']">Agora na TV</a>
-        <div class="mx-2">|</div>
-        <a [routerLink]="['/videos']">Catálogo</a>
-        <div class="mx-2">|</div>
-        <a [routerLink]="['/grid-days']">Programação</a>
-        <div class="mx-2">|</div>
-        <a [routerLink]="['/participate']">Participe</a>
-      </nav>
-      <!-- <img
-        alt="hamburguer"
-        (click)="toggleMenu()"
-        src="../../../assets/hamburguer.svg"
-      /> -->
-    </div>
-    <!-- <div class="menu">
-      <p-menu #menu [model]="items" [popup]="true"></p-menu>
-      <button
-        pButton
-        type="button"
-        (click)="menu.toggle($event)"
-        icon="pi pi-bars"
-        label="Show"
-      ></button>
-    </div> -->
-    <div class="card flex justify-content-center">
-      <p-toast></p-toast>
-      <p-menu #menu [model]="items" [popup]="true"></p-menu>
-      <button
-        pButton
-        type="button"
-        (click)="menu.toggle($event)"
-        icon="pi pi-bars"
-        label="Show"
-      ></button>
-    </div>
+    <nav class="flex flex-row items-center justify-between pl-3">
+      <ul class="flex flex-row gap-1 text-xs">
+        <li class="text-blue-brand">
+          <a [routerLink]="['/stream']">Agora na TV</a>
+        </li>
+        <div class="mx-2 text-blue-brand">|</div>
+        <li class="text-blue-brand">
+          <a [routerLink]="['/videos']">Catálogo</a>
+        </li>
+        <div class="mx-2 text-blue-brand">|</div>
+        <li class="text-blue-brand">
+          <a [routerLink]="['/grid-days']">Programação</a>
+        </li>
+        <div class="mx-2 text-blue-brand">|</div>
+        <li class="text-blue-brand">
+          <a [routerLink]="['/participate']">Participe</a>
+        </li>
+      </ul>
+      <div class="card flex justify-content-center">
+        <p-toast></p-toast>
+        <p-menu #menu [model]="items" [popup]="true"></p-menu>
+        <button
+          pButton
+          type="button"
+          (click)="menu.toggle($event)"
+          label="&#9776;"
+        ></button>
+      </div>
+    </nav>
   </div>
-  <div class="flex-grow">
+  <div class="flex-grow m-3">
     <ng-content></ng-content>
   </div>
-  <div class="flex flex-row items-center justify-center pb-10">
+  <div class="flex flex-row items-center justify-center pb-10 mt-20">
     <div class="pr-2">
       <a href="url_do_link_para_form-unb" target="_blank">
         <img alt="form-unb" src="../../../assets/form-unb-tv.svg" />

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -9,23 +10,20 @@ import { MenuItem, MessageService } from 'primeng/api';
   providers: [MessageService]
 })
 export class BackgroundComponent implements OnInit {
-  isMenuOpened: boolean = false;
   items: MenuItem[] = [];
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
+    console.log(this.route.snapshot);
     this.items = [
       {
-        label: 'Profile',
-        icon: 'pi pi-user',
+        label: 'Perfil',
         routerLink: '/profile'
       }
     ]
-  }
-
-  toggleMenu(): void {
-    this.isMenuOpened = !this.isMenuOpened;
   }
 
 }
