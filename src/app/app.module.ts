@@ -31,8 +31,6 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
-import { AgoraComponent } from './pages/agora/agora.component';
-import { ProgramacaoComponent } from './pages/programacao/programacao.component';
 import { MenuModule } from 'primeng/menu';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
@@ -69,8 +67,6 @@ import { MessageService } from 'primeng/api';
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
-    AgoraComponent,
-    ProgramacaoComponent,
     SuggestAgendaComponent,
     ParticipateComponent,
     VideoCommentComponent,

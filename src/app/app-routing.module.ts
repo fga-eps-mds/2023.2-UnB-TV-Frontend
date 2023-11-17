@@ -14,9 +14,6 @@ import { AuthGuard } from './guard/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
-import { ProgramacaoComponent } from './pages/programacao/programacao.component';
-import { AgoraComponent } from './pages/agora/agora.component';
-import { TransmissoesComponent } from './pages/transmissoes/transmissoes.component';
 import { WithTokenGuard } from './guard/with-token.guard';
 
 const routes: Routes = [
@@ -33,9 +30,6 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
   { path: '', component: HomePageComponent, canActivate: [AuthGuard], },
-  { path: 'programacao', component: ProgramacaoComponent },
-  { path: 'agora', component: AgoraComponent },
-  { path: 'transmissoes', component: TransmissoesComponent }
 ];
 
 @NgModule({
