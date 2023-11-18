@@ -6,6 +6,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { of, throwError } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from '../login/login.component';
+import { MessageService } from 'primeng/api';
 
 const mockData: any = {
   "email": "mario@gmail.com",
@@ -34,7 +35,7 @@ describe('ActiveAccountComponent', () => {
           { path: 'login', component: LoginComponent },
         ]
       ), ReactiveFormsModule],
-      providers: [{ provide: AuthService, useValue: new AuthServiceMock() }, FormBuilder],
+      providers: [{ provide: AuthService, useValue: new AuthServiceMock() }, FormBuilder, MessageService],
       declarations: [ActiveAccountComponent]
     })
       .compileComponents();

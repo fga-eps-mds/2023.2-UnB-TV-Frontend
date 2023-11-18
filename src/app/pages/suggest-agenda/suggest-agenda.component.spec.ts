@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
 import { EmailService } from 'src/app/services/email.service';
 import { SuggestAgendaComponent } from './suggest-agenda.component';
+import { MessageService } from 'primeng/api';
 
 
 const mockData = "email has been sent"
@@ -25,7 +26,7 @@ describe('SuggestAgendaComponent', () => {
       declarations: [SuggestAgendaComponent],
       imports: [HttpClientTestingModule,
         ReactiveFormsModule],
-      providers: [FormBuilder, { provide: EmailService, useValue: new EmailServiceMock() }]
+      providers: [FormBuilder, { provide: EmailService, useValue: new EmailServiceMock() }, MessageService]
     })
       .compileComponents();
 

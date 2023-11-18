@@ -5,6 +5,7 @@ import { of, throwError } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 const mockData: any = {
   "id": 1,
@@ -35,7 +36,7 @@ describe('ProfileComponent', () => {
         ]
       )],
       declarations: [ProfileComponent],
-      providers: [{ provide: UserService, useValue: new UserServiceMock() }]
+      providers: [{ provide: UserService, useValue: new UserServiceMock() }, MessageService, ConfirmationService]
     })
       .compileComponents();
 

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { of, throwError } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MessageService } from 'primeng/api';
 
 class AuthServiceMock {
   constructor() { }
@@ -26,6 +27,7 @@ describe('ResetPasswordComponent', () => {
       providers: [
         { provide: AuthService, useValue: new AuthServiceMock() },
         { provide: FormBuilder },
+        MessageService
       ],
     });
     fixture = TestBed.createComponent(ResetPasswordComponent);
