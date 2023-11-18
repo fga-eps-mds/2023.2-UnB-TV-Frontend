@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { EmailService } from './email.service';
 import { IEmailData } from 'src/shared/model/email.model';
+import { environment } from '../environment/environment';
 
 const mockEmailData: IEmailData = {
   tema: 'tema',
@@ -35,14 +36,15 @@ describe('EmailService', () => {
     expect(service).toBeTruthy();
   });
 
-  // it('should call sendEmail',() => {
-  //   service.sendEmail(mockEmailData).subscribe((res) => {
-  //     expect(res).toEqual({ success: true });
-  //   });
+  it('should call sendEmail', () => {
+    const adminAPIUrl = environment.adminAPIURL + '/pauta/email';
+    service.sendEmail(mockEmailData).subscribe((res) => {
+      expect(res).toEqual({ success: true });
+    });
 
-  //   const req = httpMock.expectOne('http://localhost:3000/pauta/email');
-  //   expect(req.request.method).toBe('POST');
-  //   req.flush({ success: true });
-  // })
+    const req = httpMock.expectOne(adminAPIUrl);
+    expect(req.request.method).toBe('POST');
+    req.flush({ success: true });
+  })
 
 });
