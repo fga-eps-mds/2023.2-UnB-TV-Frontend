@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
 import {
   IVideoVersion,
-  VideoVersion,
 } from 'src/shared/model/video-version.model';
 import {
   IVideoDetails,
