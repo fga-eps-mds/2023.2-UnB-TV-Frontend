@@ -80,7 +80,7 @@ describe('EditUserComponent', () => {
     expect(component.updateUser).toHaveBeenCalled();
   });
 
-  it('should call alert when form is not valid1', () => {
+  it('should call showMessage when form is not valid', () => {
     fixture.detectChanges();
     const mySpy = spyOn(alertService, 'showMessage');
     component.updateUser();
