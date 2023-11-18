@@ -1,14 +1,19 @@
 <div class="max-w-full justify-center max-h-full flex">
-  <div class="max-w-full max-h-full flex justify-center flex-col gap-8 p-5">
-    <div [innerHTML]="videoUrl"></div>
+  <div
+    class="max-w-full md:max-w-2xl max-h-full flex justify-center flex-col gap-6 p-3"
+  >
+    <iframe
+      title="{{ video.title }}"
+      [src]="videoUrl"
+      allowfullscreen
+      class="min-h-[200px] md:min-h-[350px]"
+    ></iframe>
     <div class="max-w-full justify-start max-h-full flex">
       <h4 class="font-custom font-bold">
         {{ video.title }}
       </h4>
     </div>
-    <div
-      class="max-w-full justify-start max-h-full flex text-[12px] font-custom"
-    >
+    <div class="max-w-full max-h-full flex text-[12px] font-custom">
       <div>
         <span
           *ngIf="!mostrarCompleta && videoDescription.length > limiteCaracteres"
