@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterTestingModule } from '@angular/router/testing';
 import { VideoViewerComponent } from './video-viewer.component';
 import { SafePipe } from 'src/app/pipes/safe.pipe';
 import { VideoCommentComponent } from 'src/app/components/video-comment/video-comment.component';
@@ -14,11 +14,13 @@ describe('VideoViewerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [VideoViewerComponent, SafePipe, VideoCommentComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule],
-      providers: [{ provide: VideoService }, FormBuilder]
-
-    })
-      .compileComponents();
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        ReactiveFormsModule,
+      ],
+      providers: [{ provide: VideoService }, FormBuilder],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(VideoViewerComponent);
     component = fixture.componentInstance;
@@ -40,5 +42,23 @@ describe('VideoViewerComponent', () => {
 
     expect(component.mostrarCompleta).toBe(false);
   });
-  
+
+  describe('Getting the video url', () => {
+    it('should extract video URL from embed code', () => {
+      const embedCode =
+        '<iframe width="671" height="377" src="https://eduplay.rnp.br/portal/video/embed/190486" frameborder="0" scrolling="no" allowfullscreen></iframe>';
+      const extractedUrl = component.extractVideoUrl(embedCode);
+
+      expect(extractedUrl).toBe(
+        'https://eduplay.rnp.br/portal/video/embed/190486'
+      );
+    });
+
+    it('should return null for invalid embed code', () => {
+      const invalidEmbedCode = '<iframe></iframe>';
+      const extractedUrl = component.extractVideoUrl(invalidEmbedCode);
+
+      expect(extractedUrl).toBeNull();
+    });
+  });
 });
