@@ -19,9 +19,10 @@ import { VideoService } from '../../services/video.service';
 })
 
 export class VideoViewerComponent implements OnInit {
-  videoVersion: IVideoVersion = new VideoVersion();
+  videoVersion!: IVideoVersion;
   videoMP4: IVideoDetails = new VideoDetails();
   videoTitle: string = '';
+  idVideo!: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,23 +30,23 @@ export class VideoViewerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.videoService
-        .findVideoVersionByVideoId(params['idVideo'])
-        .subscribe((res: HttpResponse<IVideoVersion>) => {
-          this.videoVersion = !!res.body ? res.body : this.videoVersion;
+    this.idVideo = this.route.snapshot.params['idVideo'];
+    this.findVideo();
+    this.videoTitle = this.route.snapshot.queryParams['title'];
 
+  }
+
+  findVideo = () => {
+    this.videoService.findVideoVersionByVideoId(this.idVideo)
+      .subscribe({
+        next: (data: HttpResponse<IVideoVersion>) => {
+          this.videoVersion = data.body ? data.body : this.videoVersion;
           const videoMP4Found = this.videoVersion.videoVersionList?.find(
             (video) => video.fileFormat === 'MP4'
           );
 
           this.videoMP4 = !!videoMP4Found ? videoMP4Found : this.videoMP4;
-        });
-    });
-
-    this.route.queryParams.subscribe((params) => {
-      this.videoTitle = params['title'];
-    });
-
+        }
+      });
   }
 }

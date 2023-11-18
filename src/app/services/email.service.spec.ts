@@ -1,9 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { EmailService } from './email.service';
+import { IEmailData } from 'src/shared/model/email.model';
+
+const mockEmailData: IEmailData = {
+  tema: 'tema',
+  descricao: 'descricao',
+  quando: 'quando',
+  local: 'local',
+  responsavel: 'responsavel',
+  telefone_responsavel: 'telefone_responsavel',
+  email_contato: 'email_contato',
+  recipients: ['recipients']
+};
 
 describe('EmailService', () => {
   let service: EmailService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -11,9 +24,25 @@ describe('EmailService', () => {
       providers: [EmailService]
     });
     service = TestBed.inject(EmailService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify(); // Ensure that there are no outstanding requests.
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  // it('should call sendEmail',() => {
+  //   service.sendEmail(mockEmailData).subscribe((res) => {
+  //     expect(res).toEqual({ success: true });
+  //   });
+
+  //   const req = httpMock.expectOne('http://localhost:3000/pauta/email');
+  //   expect(req.request.method).toBe('POST');
+  //   req.flush({ success: true });
+  // })
+
 });

@@ -107,6 +107,8 @@ describe('ActiveAccountComponent', () => {
   it('should call AlertServiceShowMessage when form is not valid', () => {
     spyOn(component, 'activeAccount').and.callThrough();
     fixture.detectChanges();
+    const form = component.userForm;
+    form.setValue(mockDataError);
     const alertSpy = spyOn(alertService, 'showMessage').and.callThrough();
 
     const submitButton = fixture.nativeElement.querySelector(

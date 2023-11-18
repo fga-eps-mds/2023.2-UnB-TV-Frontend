@@ -51,8 +51,8 @@ export class RegisterComponent implements OnInit {
           }
         });
       },
-      error: (error) => {
-        this.alertService.showMessage("error", "Erro", error.error.detail);
+      error: (error: ErrorResponseType) => {
+        this.alertService.errorMessage(error.error);
       },
     });
   }

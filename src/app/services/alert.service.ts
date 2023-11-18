@@ -18,15 +18,19 @@ export class AlertService {
     });
   }
 
+  // succesMessage(message: string) {
+  //   this.messageService.add({ severity: 'success', summary: 'Sucesso', key: 'myToast', detail: `${message}` });
+  // }
+
   errorMessage(error: IError) {
     this.messageService.add({ severity: 'error', summary: 'Error', key: 'myToast', detail: `${error.detail}` });
   }
 
-  infoMessage(message: string) {
-    this.messageService.add({ severity: 'info', summary: 'Info', key: 'myToast', detail: `${message}` });
-  }
+  // infoMessage(message: string) {
+  //   this.messageService.add({ severity: 'info', summary: 'Info', key: 'myToast', detail: `${message}` });
+  // }
 
-  warnMessage(message: string) {
-    this.messageService.add({ severity: 'warn', summary: 'Warn', key: 'myToast', detail: `${message}` });
-  }
+  // warnMessage(message: string) {
+  //   this.messageService.add({ severity: 'warn', summary: 'Warn', key: 'myToast', detail: `${message}` });
+  // }
 }

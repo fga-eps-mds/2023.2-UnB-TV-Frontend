@@ -58,6 +58,20 @@ describe('SuggestAgendaComponent', () => {
     expect(component.sendSuggestAgenda).toHaveBeenCalled();
   });
 
+  it('should call suggestAgendaComponent with invalid form', () => {
+    fixture.detectChanges();
+    spyOn(component, 'sendSuggestAgenda').and.callThrough();
+    const form = component.suggestAgendaForm;
+    form.setValue({ descricao: '', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '', local: '', emailContato: '' });
+
+    const submitButton = fixture.nativeElement.querySelector(
+      'button[type="submit"]'
+    );
+    submitButton.click();
+
+    expect(component.sendSuggestAgenda).toHaveBeenCalled();
+  });
+
   it('should call onRequiredFieldsChange when responsavel input value changes', () => {
     fixture.detectChanges();
     spyOn(component, 'onRequiredFieldsChange');
