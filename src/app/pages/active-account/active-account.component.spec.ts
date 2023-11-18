@@ -7,6 +7,7 @@ import { of, throwError } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from '../login/login.component';
 import { MessageService } from 'primeng/api';
+import { AlertService } from 'src/app/services/alert.service';
 
 const mockData: any = {
   "email": "mario@gmail.com",
@@ -23,10 +24,18 @@ class AuthServiceMock {
   }
 }
 
+class AlertServiceMock {
+  constructor() { }
+  showMessage() {
+    return of({ success: true });
+  }
+}
+
 describe('ActiveAccountComponent', () => {
   let component: ActiveAccountComponent;
   let fixture: ComponentFixture<ActiveAccountComponent>;
   let authService: AuthService;
+  let alertService: AlertService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,7 +44,11 @@ describe('ActiveAccountComponent', () => {
           { path: 'login', component: LoginComponent },
         ]
       ), ReactiveFormsModule],
-      providers: [{ provide: AuthService, useValue: new AuthServiceMock() }, FormBuilder, MessageService],
+      providers: [
+        { provide: AlertService, useValue: new AlertServiceMock() },
+        { provide: AuthService, useValue: new AuthServiceMock() },
+        FormBuilder,
+        MessageService],
       declarations: [ActiveAccountComponent]
     })
       .compileComponents();
@@ -44,6 +57,8 @@ describe('ActiveAccountComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     authService = TestBed.inject(AuthService);
+    alertService = TestBed.inject(AlertService);
+
   });
 
   it('should create', () => {
@@ -64,17 +79,17 @@ describe('ActiveAccountComponent', () => {
     expect(component.activeAccount).toHaveBeenCalled();
   });
 
-  it('should call alert when form is not valid', () => {
+  it('should call AlertServiceShowMessage when form is not valid', () => {
     spyOn(component, 'activeAccount').and.callThrough();
-    const alertSpy = spyOn(window, 'alert');
     fixture.detectChanges();
+    const alertSpy = spyOn(alertService, 'showMessage').and.callThrough();
 
     const submitButton = fixture.nativeElement.querySelector(
       'button[type="submit"]'
     );
     submitButton.click();
 
-    expect(alertSpy).toHaveBeenCalledWith('Preencha todos os campos corretamente!');
+    expect(alertSpy).toHaveBeenCalled();
   });
 
   it('should call activeAccount and return an error', () => {

@@ -5,6 +5,10 @@ import { MustMatch } from 'src/app/helper/must-match.validator';
 import { AlertService } from 'src/app/services/alert.service';
 import { UserService } from '../../services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
+
+type ErrorResponseType = HttpErrorResponse;
 
 @Component({
   selector: 'app-register',
@@ -21,7 +25,7 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private alertService: AlertService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getVinculo();
@@ -32,9 +36,9 @@ export class RegisterComponent implements OnInit {
         connection: [[], [Validators.required]],
         password: ['', [Validators.required]],
         confirmPassword: ['', [Validators.required]],
-      },{
-        validator: MustMatch('password', 'confirmPassword'),
-      }
+      }, {
+      validator: MustMatch('password', 'confirmPassword'),
+    }
     );
   }
 
@@ -55,7 +59,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     if (this.userForm.valid) {
-      const data = {...this.userForm.value, connection: this.userForm.value.connection.name};
+      const data = { ...this.userForm.value, connection: this.userForm.value.connection.name };
       this.authService.registerUser(data).subscribe({
         next: (data) => {
           this.alertService.showMessage(
@@ -65,8 +69,9 @@ export class RegisterComponent implements OnInit {
           );
           this.navigator('/activeAccount');
         },
-        error: (error) => {
-          this.alertService.showMessage("error", "Erro", error.error.detail);
+        error: (error: ErrorResponseType) => {
+          console.log(error.error);
+          this.alertService.errorMessage(error.error);
         },
       });
     } else {

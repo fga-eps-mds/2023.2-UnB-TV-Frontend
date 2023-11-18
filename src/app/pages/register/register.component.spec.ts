@@ -29,6 +29,9 @@ class AlertServiceMock {
   showMessage() {
     return of({ success: true });
   }
+  errorMessage() {
+    return of({ success: true });
+  }
 }
 
 describe('RegisterComponent', () => {
@@ -46,7 +49,7 @@ describe('RegisterComponent', () => {
           ]
         )
       ],
-      providers: [{ provide: AuthService, useValue: new AuthServiceMock() }, FormBuilder, {provide: AlertService, useValue: new AlertServiceMock()}],
+      providers: [{ provide: AuthService, useValue: new AuthServiceMock() }, FormBuilder, { provide: AlertService, useValue: new AlertServiceMock() }],
       declarations: [RegisterComponent]
     })
       .compileComponents();
@@ -69,7 +72,7 @@ describe('RegisterComponent', () => {
 
   it('should call register method when the form is submitted', () => {
     spyOn(component, 'register').and.callThrough();
-    const alertSpy = spyOn(window, 'alert');
+    const alertSpy = spyOn(alertService, 'showMessage').and.callThrough();
     fixture.detectChanges();
     const form = component.userForm;
     form.setValue(mockData);
@@ -80,7 +83,7 @@ describe('RegisterComponent', () => {
     submitButton.click();
 
     expect(component.register).toHaveBeenCalled();
-    expect(alertSpy).toHaveBeenCalledWith('Usuário cadastrado com sucesso!');
+    expect(alertSpy).toHaveBeenCalled();
   });
 
   it('should call register and return an error', () => {

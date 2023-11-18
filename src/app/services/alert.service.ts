@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { IError } from 'src/shared/model/http-error.model';
+
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {
@@ -16,8 +18,8 @@ export class AlertService {
     });
   }
 
-  errorMessage(message: string) {
-    this.messageService.add({ severity: 'error', summary: 'Error', key: 'myToast', detail: `${message}` });
+  errorMessage(error: IError) {
+    this.messageService.add({ severity: 'error', summary: 'Error', key: 'myToast', detail: `${error.detail}` });
   }
 
   infoMessage(message: string) {
