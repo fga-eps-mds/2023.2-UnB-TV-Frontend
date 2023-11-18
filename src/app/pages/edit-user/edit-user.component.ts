@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { UserService } from 'src/app/services/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit-user',
@@ -97,8 +98,8 @@ export class EditUserComponent implements OnInit {
           );
           this.navigator('/profile');
         },
-        error: (error) => {
-          this.alertService.showMessage('error', 'Erro', error.error.detail);
+        error: (error: HttpErrorResponse) => {
+          this.alertService.errorMessage(error.error);
         },
       });
     } else {
