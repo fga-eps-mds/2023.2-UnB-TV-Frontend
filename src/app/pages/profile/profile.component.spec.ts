@@ -41,7 +41,7 @@ class AuthServiceMock {
 }
 
 class ConfirmationServiceMock {
-  confirm() {}
+  confirm() { }
 }
 
 describe('ProfileComponent', () => {
@@ -78,6 +78,7 @@ describe('ProfileComponent', () => {
     authService = TestBed.inject(AuthService);
     confirmationService = TestBed.inject(ConfirmationService);
     router = TestBed.inject(Router);
+    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvMTV2aWN0b3IwOEBnbWFpbC5jb20iLCJleHAiOjE2OTkzMTI5MzV9.1B9qBJt8rErwBKyD5JCdsPozsw86oQ38tdfDuMM2HFI');
   });
 
   it('should create', () => {
