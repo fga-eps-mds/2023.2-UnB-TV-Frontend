@@ -9,8 +9,10 @@ import { CheckCodeRestPasswordComponent } from '../check-code-rest-password/chec
 import { RegisterComponent } from '../register/register.component';
 import { of, throwError } from 'rxjs';
 import { AlertService } from '../../services/alert.service';
-import { MessageService } from 'primeng/api';
 import { VideoComponent } from '../video/video.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ActiveAccountComponent } from '../active-account/active-account.component';
+
 
 const mockUserReturn = {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvMTV2aWN0b3IwOEBnbWFpbC5jb20iLCJleHAiOjE2OTkzMTI5MzV9.1B9qBJt8rErwBKyD5JCdsPozsw86oQ38tdfDuMM2HFI",
@@ -21,19 +23,17 @@ class AuthServiceMock {
   constructor() { }
 
   loginUser() {
-    return throwError({ error: { message: 'Erro' } });
+    return of({ success: true });
   }
 }
 
-class MessageServiceMock {
-  messages: any[] = [];
-
-  add(message: any) {
-    this.messages.push(message);
+class AlertServiceMock {
+  constructor() { }
+  showMessage() {
+    return of({ success: true });
   }
-
-  clear() {
-    this.messages = [];
+  errorMessage() {
+    return of({ success: true });
   }
 }
 
@@ -42,7 +42,6 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let authService: AuthService;
   let alertService: AlertService;
-  let messageService: MessageServiceMock; // Use the mock class
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -51,15 +50,16 @@ describe('LoginComponent', () => {
           { path: 'profile', component: ProfileComponent },
           { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
           { path: 'register', component: RegisterComponent },
-          { path: 'videos', component: VideoComponent }
+          { path: 'videos', component: VideoComponent },
+          { path: 'activeAccount', component: ActiveAccountComponent }
         ]
       )],
       providers: [
         FormBuilder,
         AuthService,
         AlertService,
-        { provide: MessageService, useClass: MessageServiceMock }, // Provide the mock class
-        { provide: AuthService, useClass: AuthServiceMock }
+        { provide: AlertService, useValue: new AlertServiceMock() }, // Provide the mock class
+        { provide: AuthService, useValue: new AuthServiceMock() }
       ],
       declarations: [LoginComponent],
     }).compileComponents();
@@ -68,7 +68,6 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     authService = TestBed.inject(AuthService);
     alertService = TestBed.inject(AlertService);
-    messageService = TestBed.inject(MessageService) as unknown as MessageServiceMock; // Inject the mock class
   });
 
   it('should create', () => {
@@ -121,16 +120,15 @@ describe('LoginComponent', () => {
     expect(component.navigator).toHaveBeenCalledWith('/register');
   });
 
-  it('should call login and handle error', fakeAsync(() => {
+  it('should call login and return an error', () => {
     fixture.detectChanges();
     const form = component.userForm;
     form.setValue({ email: 'test@example.com', password: 'password' });
-
-    const mySpy = spyOn(authService, 'loginUser').and.returnValue(throwError({ error: { message: 'Erro' } }));
-
+    const mySpy = spyOn(authService, 'loginUser').and.returnValue(throwError(() => new HttpErrorResponse({ error: { detail: 'A sua conta ainda não foi ativada.' } })));
+    spyOn(component, 'navigator').and.callThrough();
     component.login();
-    tick();
-
     expect(mySpy).toHaveBeenCalled();
-  }));
+    expect(component.navigator).toHaveBeenCalledWith('/activeAccount');
+  });
+
 });

@@ -17,7 +17,7 @@
         {{ user.email }}
       </div>
     </div>
-    <button
+    <button id="editUser"
       class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32"
       (click)="navigatorEdit()"
     >
@@ -25,7 +25,7 @@
     </button>
   </div>
   <div class="flex items-center justify-center">
-    <button
+    <button id="deleteUser"
       class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32"
       (click)="deleteUser()"
     >
@@ -34,6 +34,7 @@
   </div>
   <div class="flex items-center justify-center">
     <button
+    id="logout"
       class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-16"
       (click)="logoutUser()"
     >

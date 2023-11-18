@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { of, throwError } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MessageService } from 'primeng/api';
+import { AlertService } from 'src/app/services/alert.service';
 
 class AuthServiceMock {
   constructor() { }
@@ -12,11 +14,21 @@ class AuthServiceMock {
   }
 }
 
+class AlertServiceMock {
+  constructor() { }
+  showMessage() {
+    return of({ success: true });
+  }
+  errorMessage() {
+    return of({ success: true });
+  }
+}
 
 describe('ResetPasswordComponent', () => {
   let component: ResetPasswordComponent;
   let fixture: ComponentFixture<ResetPasswordComponent>;
   let authService: AuthService;
+  let alertService: AlertService;
 
   beforeEach(() => {
 
@@ -24,12 +36,15 @@ describe('ResetPasswordComponent', () => {
       imports: [HttpClientTestingModule, ReactiveFormsModule],
       declarations: [ResetPasswordComponent],
       providers: [
+        { provide: AlertService, useValue: new AlertServiceMock() },
         { provide: AuthService, useValue: new AuthServiceMock() },
         { provide: FormBuilder },
+        MessageService
       ],
     });
     fixture = TestBed.createComponent(ResetPasswordComponent);
     authService = TestBed.inject(AuthService);
+    alertService = TestBed.inject(AlertService);
     component = fixture.componentInstance;
   });
 
@@ -65,7 +80,7 @@ describe('ResetPasswordComponent', () => {
   });
 
   it('should show an alert on error', () => {
-    const alertSpy = spyOn(window, 'alert');
+    const alertSpy = spyOn(alertService, 'showMessage').and.callThrough();
     spyOn(component, 'changePassword').and.callThrough();
     fixture.detectChanges();
 
@@ -73,7 +88,7 @@ describe('ResetPasswordComponent', () => {
       'button[type="submit"]'
     );
     submitButton.click();
-    expect(alertSpy).toHaveBeenCalledWith('Preencha todos os campos corretamente!');
+    expect(alertSpy).toHaveBeenCalled();
   });
 
   it('should call changePassword and return an error', () => {

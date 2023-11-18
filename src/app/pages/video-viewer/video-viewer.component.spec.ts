@@ -6,6 +6,7 @@ import { SafePipe } from 'src/app/pipes/safe.pipe';
 import { VideoCommentComponent } from 'src/app/components/video-comment/video-comment.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { VideoService } from 'src/app/services/video.service';
+import { ActivatedRoute } from '@angular/router';
 
 describe('VideoViewerComponent', () => {
   let component: VideoViewerComponent;
@@ -19,7 +20,14 @@ describe('VideoViewerComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
       ],
-      providers: [{ provide: VideoService }, FormBuilder],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: { snapshot: { params: { id: 1 } } },
+        },
+        { provide: VideoService },
+        FormBuilder,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(VideoViewerComponent);
