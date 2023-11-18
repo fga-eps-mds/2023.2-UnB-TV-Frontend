@@ -6,6 +6,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { of, throwError } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { ProfileComponent } from '../profile/profile.component';
+import { MessageService } from 'primeng/api';
 
 const mockData: any = {
   "name": "Mario",
@@ -33,14 +34,14 @@ describe('EditUserComponent', () => {
         ]
       ), ReactiveFormsModule],
       declarations: [EditUserComponent],
-      providers: [{ provide: UserService, useValue: new UserServiceMock() }, FormBuilder],
+      providers: [{ provide: UserService, useValue: new UserServiceMock() }, FormBuilder, MessageService],
     })
       .compileComponents();
 
     fixture = TestBed.createComponent(EditUserComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     userService = TestBed.inject(UserService);
+    fixture.detectChanges();
   });
 
   it('should create', () => {
