@@ -7,6 +7,7 @@ import { of, throwError } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 import { MessageService } from 'primeng/api';
+import { AlertService } from 'src/app/services/alert.service';
 
 const mockData: any = {
   "email": "mario@gmail.com",
@@ -23,10 +24,18 @@ class AuthServiceMock {
   }
 }
 
+class AlertServiceMock {
+  errorMessage(){ 
+  }
+  showMessage() {
+  }
+}
+
 describe('CheckCodeRestPasswordComponent', () => {
   let component: CheckCodeRestPasswordComponent;
   let fixture: ComponentFixture<CheckCodeRestPasswordComponent>;
   let authService: AuthService;
+  let alertService: AlertService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -35,7 +44,7 @@ describe('CheckCodeRestPasswordComponent', () => {
           { path: 'changePassword', component: ResetPasswordComponent },
         ]
       ), ReactiveFormsModule],
-      providers: [{ provide: AuthService, useValue: new AuthServiceMock() }, FormBuilder, MessageService],
+      providers: [{ provide: AuthService, useValue: new AuthServiceMock() }, { provide: AlertService, useValue: new AlertServiceMock() }, FormBuilder, MessageService],
       declarations: [CheckCodeRestPasswordComponent]
     })
       .compileComponents();
@@ -44,6 +53,7 @@ describe('CheckCodeRestPasswordComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     authService = TestBed.inject(AuthService);
+    alertService = TestBed.inject(AlertService);
   });
 
   it('should create', () => {
@@ -64,10 +74,10 @@ describe('CheckCodeRestPasswordComponent', () => {
     expect(component.sendEmail).toHaveBeenCalled();
   });
 
-  it('should call alert when form is not valid', () => {
+  it('should call showMessage when form is not valid', () => {
     fixture.detectChanges();
     spyOn(component, 'sendEmail').and.callThrough();
-    const alertSpy = spyOn(window, 'alert');
+    const alertSpy = spyOn(alertService, 'showMessage');
     const form = component.userForm;
     form.setValue({ "email": '', code: '' });
 
@@ -76,7 +86,9 @@ describe('CheckCodeRestPasswordComponent', () => {
     );
     submitButton.click();
 
-    expect(alertSpy).toHaveBeenCalledWith('Preencha todos os campos corretamente!');
+    expect(alertSpy).toHaveBeenCalledWith('info',
+    'Alerta',
+    'Preencha todos os campos corretamente!');
   });
 
   it('should call sendEmail and return an error', () => {
@@ -104,10 +116,9 @@ describe('CheckCodeRestPasswordComponent', () => {
     expect(component.checkCode).toHaveBeenCalled();
   });
 
-  it('should call alert when form is not valid', () => {
-    fixture.detectChanges();
+  it('should call showMessage when form is not valid', () => {
     spyOn(component, 'checkCode').and.callThrough();
-    const alertSpy = spyOn(window, 'alert');
+    const alertSpy = spyOn(alertService, 'showMessage');
     component.activeCode = true;
     fixture.detectChanges();
     const submitButton = fixture.nativeElement.querySelector(
@@ -115,7 +126,9 @@ describe('CheckCodeRestPasswordComponent', () => {
     );
     submitButton.click();
 
-    expect(alertSpy).toHaveBeenCalledWith('Preencha todos os campos corretamente!');
+    expect(alertSpy).toHaveBeenCalledWith('info',
+    'Alerta',
+    'Preencha todos os campos corretamente!');
   });
 
   it('should call checkCode and return an error', () => {
