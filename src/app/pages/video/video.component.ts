@@ -16,15 +16,18 @@ export class VideoComponent implements OnInit {
   constructor(private videoService: VideoService) { }
 
   ngOnInit(): void {
-    this.videoService.findAll().subscribe(
-      (res: HttpResponse<IEduplayVideosByInstitution>) => {
-        this.videosEduplay = !!res.body?.videoList ? res.body.videoList : [];
+    this.findAll();
+  }
 
+  findAll(): void {
+    this.videoService.findAll().subscribe({
+      next: (data) => {
+        this.videosEduplay = data.body?.videoList || [];
       },
-      (error: HttpErrorResponse) => {
-        console.log('error', error.message);
+      error: (error) => {
+        console.log(error);
       },
-      () => { }
+    }
     );
   }
 }

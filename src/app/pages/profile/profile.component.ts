@@ -3,6 +3,12 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import jwt_decode from 'jwt-decode';
+import { AlertService } from 'src/app/services/alert.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
+type ErrorResponseType = HttpErrorResponse;
 
 @Component({
   selector: 'app-profile',
@@ -16,8 +22,11 @@ export class ProfileComponent {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
+    private alertService: AlertService,
+    private confirmationService: ConfirmationService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.setUserIdFromToken(localStorage.getItem('token') as string);
@@ -32,28 +41,58 @@ export class ProfileComponent {
   getUser() {
     this.userService.getUser(this.userId).subscribe({
       next: (data) => {
-        console.log(data);
         this.user = data;
       },
-      error: (error) => {
-        console.error(error);
+      error: (error: ErrorResponseType) => {
+        console.log(error);
+        this.alertService.errorMessage(error.error);
       },
     });
   }
 
-  navigator(rota: string): void {
-    this.router.navigate([rota]);
+  logoutUser() {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja sair?',
+      header: 'Confirmação',
+      key: 'myDialog',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.authService.logout();
+      },
+      reject: () => {
+      },
+    });
+  }
+
+  deleteUser() {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja deletar esse usuário?',
+      header: 'Confirmação',
+      key: 'myDialog',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.userService.deleteUser(this.userId).subscribe({
+          next: (data) => {
+            this.alertService.showMessage(
+              'sucess',
+              'Sucesso',
+              'Usuário deletado com sucesso!'
+            );
+            this.authService.logout();
+          },
+          error: (error: ErrorResponseType) => {
+            console.log(error);
+            this.alertService.errorMessage(error.error);
+          },
+        });
+      },
+      reject: () => {
+      },
+    });
+
   }
 
   navigatorEdit(): void {
-    console.log('Dados do usuário:', this.user);
-
-    const navigationExtras: NavigationExtras = {
-      state: {
-        user: this.user
-      }
-    };
-    this.router.navigate([`/editUser/${this.userId}`], navigationExtras);
+    this.router.navigate([`/editUser/${this.user.id}`]);
   }
-
 }

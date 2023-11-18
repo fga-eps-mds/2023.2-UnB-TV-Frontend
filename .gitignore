@@ -42,4 +42,6 @@ testem.log
 Thumbs.db
 
 ./github
-/src/app/secret/
+/src/app/environment
+/src/app/secret
+/src/app/app.constant.ts

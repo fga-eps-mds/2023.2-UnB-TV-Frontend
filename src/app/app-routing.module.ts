@@ -1,4 +1,3 @@
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
@@ -11,8 +10,11 @@ import { ActiveAccountComponent } from './pages/active-account/active-account.co
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password/check-code-rest-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
-import { AuthGuard } from './services/auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
+import { ParticipateComponent } from './pages/participate/participate.component';
+import { WithTokenGuard } from './guard/with-token.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,9 +26,19 @@ const routes: Routes = [
   { path: 'activeAccount', component: ActiveAccountComponent },
   { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
   { path: 'changePassword', component: ResetPasswordComponent },
+  { path: '', component: VideoComponent, canActivate: [AuthGuard], }, // Default route - Showd be stream component
+  { path: 'login', component: LoginComponent, canActivate: [WithTokenGuard], },
+  { path: 'register', component: RegisterComponent, canActivate: [WithTokenGuard], },
+  { path: 'loginsocial', component: LoginSocialComponent, canActivate: [WithTokenGuard], },
+  { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent, canActivate: [WithTokenGuard], },
+  { path: 'changePassword', component: ResetPasswordComponent, canActivate: [WithTokenGuard], },
+  { path: 'videos', component: VideoComponent, canActivate: [AuthGuard], },
+  { path: 'video/:idVideo', component: VideoViewerComponent, canActivate: [AuthGuard], },
+  { path: 'activeAccount', component: ActiveAccountComponent, canActivate: [WithTokenGuard], },
+  { path: 'suggestAgenda', component: SuggestAgendaComponent, canActivate: [AuthGuard], },
+  { path: 'participate', component: ParticipateComponent, canActivate: [AuthGuard], },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
-  { path: '', component: HomePageComponent, canActivate: [AuthGuard], }
 ];
 
 @NgModule({
