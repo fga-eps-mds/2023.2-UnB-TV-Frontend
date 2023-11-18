@@ -30,7 +30,7 @@ class UserServiceMock {
 }
 
 class AlertServiceMock {
-  errorMessage(){ 
+  errorMessage() {
   }
   showMessage() {
   }
@@ -63,6 +63,20 @@ describe('EditUserComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call getUser and return an error', () => {
+    fixture.detectChanges();
+    const mySpy = spyOn(userService, 'getUser').and.returnValue(throwError(() => new Error('Erro')));
+    component.getUser();
+    expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call getVinculo and return an error', () => {
+    fixture.detectChanges();
+    const mySpy = spyOn(userService, 'getVinculo').and.returnValue(throwError(() => new Error('Erro')));
+    component.getVinculo();
+    expect(mySpy).toHaveBeenCalled();
   });
 
   it('should call updateUser method when the form is submitted', () => {

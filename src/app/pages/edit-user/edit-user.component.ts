@@ -5,6 +5,8 @@ import { AlertService } from 'src/app/services/alert.service';
 import { UserService } from 'src/app/services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
+type ErrorResponseType = HttpErrorResponse;
+
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -22,7 +24,7 @@ export class EditUserComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private alertService: AlertService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const userId = this.route.snapshot.params['id'];
@@ -43,8 +45,8 @@ export class EditUserComponent implements OnInit {
           this.initializeForm();
         }
       },
-      error: (error) => {
-        this.alertService.showMessage('error', 'Erro', error.error.detail);
+      error: (error: ErrorResponseType) => {
+        this.alertService.errorMessage(error.error);
       },
     });
   }
@@ -76,8 +78,8 @@ export class EditUserComponent implements OnInit {
           };
         });
       },
-      error: (error) => {
-        this.alertService.showMessage('error', 'Erro', error.error.detail);
+      error: (error: ErrorResponseType) => {
+        this.alertService.errorMessage(error.error);
       },
     });
   }
@@ -98,7 +100,7 @@ export class EditUserComponent implements OnInit {
           );
           this.navigator('/profile');
         },
-        error: (error: HttpErrorResponse) => {
+        error: (error: ErrorResponseType) => {
           this.alertService.errorMessage(error.error);
         },
       });

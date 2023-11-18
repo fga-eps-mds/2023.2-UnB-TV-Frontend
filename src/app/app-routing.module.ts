@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'changePassword', component: ResetPasswordComponent, canActivate: [WithTokenGuard], },
   { path: 'videos', component: VideoComponent, canActivate: [AuthGuard], },
   { path: 'video/:idVideo', component: VideoViewerComponent, canActivate: [AuthGuard], },
-  { path: 'activeAccount', component: ActiveAccountComponent, canActivate: [AuthGuard], },
+  { path: 'activeAccount', component: ActiveAccountComponent, canActivate: [WithTokenGuard], },
   { path: 'suggestAgenda', component: SuggestAgendaComponent, canActivate: [AuthGuard], },
   { path: 'participate', component: ParticipateComponent, canActivate: [AuthGuard], },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
