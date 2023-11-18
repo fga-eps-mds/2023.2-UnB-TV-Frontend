@@ -7,6 +7,8 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 const mockData: any = {
   "id": 1,
@@ -34,11 +36,22 @@ class AlertServiceMock {
   }
 }
 
+class AuthServiceMock {
+  logout() { }
+}
+
+class ConfirmationServiceMock {
+  confirm() {}
+}
+
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   let userService: UserService;
   let alertService: AlertService;
+  let authService: AuthService;
+  let confirmationService: ConfirmationService;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -51,8 +64,9 @@ describe('ProfileComponent', () => {
       providers: [
         { provide: AlertService, useValue: new AlertServiceMock() },
         { provide: UserService, useValue: new UserServiceMock() },
-        MessageService,
-        ConfirmationService
+        { provide: AuthService, useValue: new AuthServiceMock() },
+        { provide: ConfirmationService, useValue: new ConfirmationServiceMock() },
+        MessageService
       ]
     })
       .compileComponents();
@@ -61,6 +75,9 @@ describe('ProfileComponent', () => {
     component = fixture.componentInstance;
     userService = TestBed.inject(UserService);
     alertService = TestBed.inject(AlertService);
+    authService = TestBed.inject(AuthService);
+    confirmationService = TestBed.inject(ConfirmationService);
+    router = TestBed.inject(Router);
   });
 
   it('should create', () => {
@@ -83,13 +100,41 @@ describe('ProfileComponent', () => {
     expect(mySpy).toHaveBeenCalled();
   });
 
-  // it('should call navigator method when "Editar perfil" is clicked', () => {
-  //   component.user = mockData;
-  //   spyOn(component, 'navigatorEdit').and.callThrough();
-  //   const editProfilebutton = fixture.nativeElement.querySelector('.text-white');
-  //   fixture.detectChanges();
-  //   // editProfilebutton.click();
-  //   expect(true).toBe(true);
-  // });
+  it('should call confirm of confirmationService when logout is clicked', () => {
+    spyOn(component, 'logoutUser').and.callThrough();
+    const mySpy = spyOn(confirmationService, 'confirm');
+    fixture.detectChanges();
+    const submitButton = fixture.nativeElement.querySelector(
+      '#logout'
+    );
+    submitButton.click();
+
+    expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call confirm of confirmationService when deleteUser is clicked', () => {
+    spyOn(component, 'deleteUser').and.callThrough();
+    const mySpy = spyOn(confirmationService, 'confirm');
+    fixture.detectChanges();
+    const submitButton = fixture.nativeElement.querySelector(
+      '#deleteUser'
+    );
+    submitButton.click();
+
+    expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call navigatorEdit when editUser is clicked', () => {
+    spyOn(component, 'navigatorEdit').and.callThrough();
+    const navigateSpy = spyOn(router, 'navigate');
+    fixture.detectChanges();
+    const submitButton = fixture.nativeElement.querySelector(
+      '#editUser'
+    );
+    submitButton.click();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/editUser/1']);
+  });
+
 
 });
