@@ -20,4 +20,16 @@ describe('WithTokenGuard', () => {
   it('should be created', () => {
     expect(guard).toBeTruthy();
   });
+
+  it('should return false for a logged in user', () => {
+    localStorage.setItem('token', 'testtoken');
+    expect(guard.canActivate()).toBe(false);
+  }
+  );
+
+  it('should return true for a logged out user', () => {
+    localStorage.removeItem('token');
+    expect(guard.canActivate()).toBe(true);
+  }
+  );
 });

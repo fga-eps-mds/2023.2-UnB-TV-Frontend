@@ -14,6 +14,11 @@ const mockData: any = {
   "code": 123456,
 }
 
+const mockDataError: any = {
+  "email": "",
+  "code": 123456,
+}
+
 class AuthServiceMock {
   constructor() { }
   activeAccount() {
@@ -27,6 +32,9 @@ class AuthServiceMock {
 class AlertServiceMock {
   constructor() { }
   showMessage() {
+    return of({ success: true });
+  }
+  errorMessage() {
     return of({ success: true });
   }
 }
@@ -79,6 +87,23 @@ describe('ActiveAccountComponent', () => {
     expect(component.activeAccount).toHaveBeenCalled();
   });
 
+  it('should call AlertServiceShowMessage when form is  valid', () => {
+    spyOn(component, 'activeAccount').and.callThrough();
+    const form = component.userForm;
+    form.setValue(mockData);
+    fixture.detectChanges();
+    const mySpy = spyOn(authService, 'activeAccount').and.returnValue(of({ status: "error" }));
+    const alertSpy = spyOn(alertService, 'showMessage').and.callThrough();
+
+    const submitButton = fixture.nativeElement.querySelector(
+      'button[type="submit"]'
+    );
+    submitButton.click();
+
+    expect(alertSpy).toHaveBeenCalled();
+    expect(mySpy).toHaveBeenCalled();
+  });
+
   it('should call AlertServiceShowMessage when form is not valid', () => {
     spyOn(component, 'activeAccount').and.callThrough();
     fixture.detectChanges();
@@ -99,6 +124,35 @@ describe('ActiveAccountComponent', () => {
     const mySpy = spyOn(authService, 'activeAccount').and.returnValue(throwError(() => new Error('Erro')));
     component.activeAccount();
     expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call resendCode', () => {
+    fixture.detectChanges();
+    const form = component.userForm;
+    form.setValue(mockData);
+    const mySpy = spyOn(authService, 'resendCode').and.callThrough();
+    component.resendCode();
+    expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call resendCode with invalid form', () => {
+    const form = component.userForm;
+    form.setValue(mockDataError);
+    fixture.detectChanges();
+    spyOn(authService, 'resendCode').and.callThrough();
+    const alertSpy = spyOn(alertService, 'showMessage').and.callThrough();
+    component.resendCode();
+    expect(alertSpy).toHaveBeenCalled();
+  });
+
+  it('should call resendCode and return an error', () => {
+    const form = component.userForm;
+    form.setValue(mockData);
+    fixture.detectChanges();
+    const myspy = spyOn(authService, 'resendCode').and.returnValue(throwError(() => new Error('Erro')));
+    const alertSpy = spyOn(alertService, 'showMessage').and.callThrough();
+    component.resendCode();
+    expect(myspy).toHaveBeenCalled();
   });
 
 });
