@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-check-code-rest-password',
@@ -53,8 +54,8 @@ export class CheckCodeRestPasswordComponent {
           this.alertService.showMessage("success", "Sucesso", "Código válido!");
           this.navigator('/changePassword');
         },
-        error: (error) => {
-          this.alertService.showMessage("error", "Erro", error.error.detail);
+        error: (error: HttpErrorResponse) => {
+          this.alertService.errorMessage(error.error);
         },
       });
     } else {

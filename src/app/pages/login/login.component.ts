@@ -4,8 +4,12 @@ import { Router } from '@angular/router';
 import { MustMatch } from 'src/app/helper/must-match.validator';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
-
+type ErrorResponseType = HttpErrorResponse;
+interface IDetails {
+  detail: string;
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,9 +40,10 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token', data.access_token);
             this.navigator('/videos');
           },
-          error: (error) => {
-            this.alertService.showMessage("error", "Erro", error.error.detail);
-            if(error.error.detail === 'A sua conta ainda não foi ativada.') {
+          error: (error: ErrorResponseType) => {
+            this.alertService.errorMessage(error.error);
+            let errorDetail: IDetails = { ...error.error };
+            if (errorDetail.detail === 'A sua conta ainda não foi ativada.') {
               this.navigator('/activeAccount');
             }
           },

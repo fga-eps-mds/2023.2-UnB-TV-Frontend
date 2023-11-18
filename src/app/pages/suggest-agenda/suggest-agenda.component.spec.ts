@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
 import { EmailService } from 'src/app/services/email.service';
 import { SuggestAgendaComponent } from './suggest-agenda.component';
+import { MessageService } from 'primeng/api';
 
 
 const mockData = "email has been sent"
@@ -25,7 +26,7 @@ describe('SuggestAgendaComponent', () => {
       declarations: [SuggestAgendaComponent],
       imports: [HttpClientTestingModule,
         ReactiveFormsModule],
-      providers: [FormBuilder, { provide: EmailService, useValue: new EmailServiceMock() }]
+      providers: [FormBuilder, { provide: EmailService, useValue: new EmailServiceMock() }, MessageService]
     })
       .compileComponents();
 
@@ -48,6 +49,20 @@ describe('SuggestAgendaComponent', () => {
     spyOn(component, 'sendSuggestAgenda').and.callThrough();
     const form = component.suggestAgendaForm;
     form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '', local: '', emailContato: '' });
+
+    const submitButton = fixture.nativeElement.querySelector(
+      'button[type="submit"]'
+    );
+    submitButton.click();
+
+    expect(component.sendSuggestAgenda).toHaveBeenCalled();
+  });
+
+  it('should call suggestAgendaComponent with invalid form', () => {
+    fixture.detectChanges();
+    spyOn(component, 'sendSuggestAgenda').and.callThrough();
+    const form = component.suggestAgendaForm;
+    form.setValue({ descricao: '', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '', local: '', emailContato: '' });
 
     const submitButton = fixture.nativeElement.querySelector(
       'button[type="submit"]'
