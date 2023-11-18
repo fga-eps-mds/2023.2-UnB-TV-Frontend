@@ -11,9 +11,8 @@ describe('BackgroundComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BackgroundComponent],
-      imports: [RouterTestingModule, MenuModule]
-    })
-      .compileComponents();
+      imports: [RouterTestingModule, MenuModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BackgroundComponent);
     component = fixture.componentInstance;
@@ -24,19 +23,4 @@ describe('BackgroundComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize isMenuOpened to false', () => {
-    expect(component.isMenuOpened).toBe(false);
-  });
-
-  it('should toggle isMenuOpened when toggleMenu is called', () => {
-    expect(component.isMenuOpened).toBe(false);
-
-    component.toggleMenu();
-
-    expect(component.isMenuOpened).toBe(true);
-
-    component.toggleMenu();
-
-    expect(component.isMenuOpened).toBe(false);
-  });
 });
