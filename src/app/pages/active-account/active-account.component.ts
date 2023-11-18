@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { AlertService } from "../../services/alert.service";
+import { HttpErrorResponse } from '@angular/common/http';
+
+type ErrorResponseType = HttpErrorResponse;
 
 @Component({
   selector: "app-active-account",
@@ -17,7 +20,7 @@ export class ActiveAccountComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private alertService: AlertService,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
@@ -55,9 +58,9 @@ export class ActiveAccountComponent implements OnInit {
         next: (data) => {
           this.alertService.showMessage("success", "Sucesso", "Email reenviado com sucesso!");
         },
-        error: (error) => {
+        error: (error: ErrorResponseType) => {
           console.log(error);
-          this.alertService.showMessage("error", "Erro", error.error.detail);
+          this.alertService.errorMessage(error.error);
         },
       });
     } else {

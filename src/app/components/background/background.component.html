@@ -1,57 +1,75 @@
 <div class="w-full flex h-screen flex-col">
-    <div>
-        <div class="pt-10 flex justify-center items-center">
-            <img alt="simbolo-unb" src="../../../assets/Simbolo_UnBTV-01 1.png">
-        </div>
-        <div class="flex flex-row items-center justify-center w-full">
-            <div class="text-programs">
-              <div class="px-2">Início</div>|
-              <div class="px-2">Agora na TV</div>|
-              <div class="px-2">Programação</div>|
-              <div class="px-2">Transmissões</div>|
-              <div class="pl-2" [routerLink]="['/participate']">Participe</div>
-            </div>
-            <img alt="hamburguer" src="../../../assets/hamburguer.svg">
-        </div>
+  <div class="m-3">
+    <div class="pt-10 flex justify-center items-center">
+      <img alt="simbolo-unb" src="../../../assets/Simbolo_UnBTV-01 1.png" />
     </div>
-    <div class="flex-grow">
-        <ng-content></ng-content>
+    <nav class="flex flex-row items-center justify-center pl-3">
+      <ul class="flex flex-row gap-1 text-xs">
+        <li class="text-blue-brand">
+          <a [routerLink]="['/stream']">Agora na TV</a>
+        </li>
+        <div class="mx-2 text-blue-brand">|</div>
+        <li class="text-blue-brand">
+          <a [routerLink]="['/videos']">Catálogo</a>
+        </li>
+        <div class="mx-2 text-blue-brand">|</div>
+        <li class="text-blue-brand">
+          <a [routerLink]="['/grid-days']">Programação</a>
+        </li>
+        <div class="mx-2 text-blue-brand">|</div>
+        <li class="text-blue-brand">
+          <a [routerLink]="['/participate']">Participe</a>
+        </li>
+      </ul>
+      <div class="card flex justify-content-center mx-2">
+        <p-menu #menu [model]="items" [popup]="true"></p-menu>
+        <button
+          pButton
+          type="button"
+          (click)="menu.toggle($event)"
+          label="&#9776;"
+        ></button>
+      </div>
+    </nav>
+  </div>
+  <div class="flex-grow m-3">
+    <ng-content></ng-content>
+  </div>
+  <div class="flex flex-row items-center justify-center pb-10 mt-20">
+    <div class="pr-2">
+      <a href="url_do_link_para_form-unb" target="_blank">
+        <img alt="form-unb" src="../../../assets/form-unb-tv.svg" />
+      </a>
     </div>
-    <div class="flex flex-row items-center justify-center pb-10 mt-20">
-      <div class="pr-2">
-        <a href="url_do_link_para_form-unb" target="_blank">
-          <img alt="form-unb" src="../../../assets/form-unb-tv.svg">
-        </a>
-      </div>
-      <div class="pr-2">
-        <a href="https://unbtv.unb.br/contato" target="_blank">
-          <img alt="telefone" src="../../../assets/telefone.svg">
-        </a>
-      </div>
-      <div class="pr-2">
-        <a href="https://unbtv.unb.br" target="_blank">
-          <img alt="website" src="../../../assets/website.svg">
-        </a>
-      </div>
-      <div class="pr-2">
-        <a href="https://www.youtube.com/@UnBTV" target="_blank">
-          <img alt="youtube" src="../../../assets/youtube.svg">
-        </a>
-      </div>
-      <div class="pr-2">
-        <a href="https://www.instagram.com/unbtv/" target="_blank">
-          <img alt="instagram" src="../../../assets/instagram.svg">
-        </a>
-      </div>
-      <div class="pr-2">
-        <a href="https://www.facebook.com/UnBTV" target="_blank">
-          <img alt="facebook" src="../../../assets/facebook.svg">
-        </a>
-      </div>
-      <div class="pr-2">
-        <a href="twitter.com/unb_tv" target="_blank">
-          <img alt="x" src="../../../assets/x.svg">
-        </a>
-      </div>
+    <div class="pr-2">
+      <a href="https://unbtv.unb.br/contato" target="_blank">
+        <img alt="telefone" src="../../../assets/telefone.svg" />
+      </a>
     </div>
+    <div class="pr-2">
+      <a href="https://unbtv.unb.br" target="_blank">
+        <img alt="website" src="../../../assets/website.svg" />
+      </a>
+    </div>
+    <div class="pr-2">
+      <a href="https://www.youtube.com/@UnBTV" target="_blank">
+        <img alt="youtube" src="../../../assets/youtube.svg" />
+      </a>
+    </div>
+    <div class="pr-2">
+      <a href="https://www.instagram.com/unbtv/" target="_blank">
+        <img alt="instagram" src="../../../assets/instagram.svg" />
+      </a>
+    </div>
+    <div class="pr-2">
+      <a href="https://www.facebook.com/UnBTV" target="_blank">
+        <img alt="facebook" src="../../../assets/facebook.svg" />
+      </a>
+    </div>
+    <div class="pr-2">
+      <a href="twitter.com/unb_tv" target="_blank">
+        <img alt="x" src="../../../assets/x.svg" />
+      </a>
+    </div>
+  </div>
 </div>

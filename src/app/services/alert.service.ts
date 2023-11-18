@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { IError } from 'src/shared/model/http-error.model';
+
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {
@@ -16,15 +18,19 @@ export class AlertService {
     });
   }
 
-  errorMessage(message: string) {
-    this.messageService.add({ severity: 'error', summary: 'Error', key: 'myToast', detail: `${message}` });
+  // succesMessage(message: string) {
+  //   this.messageService.add({ severity: 'success', summary: 'Sucesso', key: 'myToast', detail: `${message}` });
+  // }
+
+  errorMessage(error: IError) {
+    this.messageService.add({ severity: 'error', summary: 'Error', key: 'myToast', detail: `${error.detail}` });
   }
 
-  infoMessage(message: string) {
-    this.messageService.add({ severity: 'info', summary: 'Info', key: 'myToast', detail: `${message}` });
-  }
+  // infoMessage(message: string) {
+  //   this.messageService.add({ severity: 'info', summary: 'Info', key: 'myToast', detail: `${message}` });
+  // }
 
-  warnMessage(message: string) {
-    this.messageService.add({ severity: 'warn', summary: 'Warn', key: 'myToast', detail: `${message}` });
-  }
+  // warnMessage(message: string) {
+  //   this.messageService.add({ severity: 'warn', summary: 'Warn', key: 'myToast', detail: `${message}` });
+  // }
 }

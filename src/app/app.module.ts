@@ -23,7 +23,6 @@ import { SafePipe } from './pipes/safe.pipe';
 import { BackgroundComponent } from './components/background/background.component';
 import { LoginSocialComponent } from './pages/login-social/login-social.component';
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserTokenInterceptor } from './interceptor/user-token-interceptor.service';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
@@ -31,6 +30,7 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { MenuModule } from 'primeng/menu';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
@@ -52,7 +52,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputTextModule,
     DropdownModule,
     ButtonModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    MenuModule
   ],
   declarations: [
     AppComponent,
@@ -64,16 +65,15 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     SafePipe,
     BackgroundComponent,
     ActiveAccountComponent,
-    HomePageComponent,
     ProfileComponent,
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
-    VideoCommentComponent,
     SuggestAgendaComponent,
     ParticipateComponent,
     GridComponent,
     GridDaysComponent,
+    VideoCommentComponent
   ],
   providers: [
     { provide: 'authGuard', useClass: AuthGuard },
@@ -89,4 +89,4 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

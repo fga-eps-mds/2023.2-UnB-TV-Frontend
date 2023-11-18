@@ -1,4 +1,3 @@
-import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
@@ -20,19 +19,19 @@ import { GridComponent } from './pages/grid/grid.component';
 import { WithTokenGuard } from './guard/with-token.guard';
 
 const routes: Routes = [
+  { path: '', component: VideoComponent, canActivate: [AuthGuard], }, // Default route - Showd be stream component
   { path: 'login', component: LoginComponent, canActivate: [WithTokenGuard], },
   { path: 'register', component: RegisterComponent, canActivate: [WithTokenGuard], },
   { path: 'loginsocial', component: LoginSocialComponent, canActivate: [WithTokenGuard], },
   { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent, canActivate: [WithTokenGuard], },
   { path: 'changePassword', component: ResetPasswordComponent, canActivate: [WithTokenGuard], },
-  { path: 'videos', component: VideoComponent },
-  { path: 'video/:idVideo', component: VideoViewerComponent },
-  { path: 'activeAccount', component: ActiveAccountComponent },
-  { path: 'suggestAgenda', component: SuggestAgendaComponent },
-  { path: 'participate', component: ParticipateComponent },
+  { path: 'videos', component: VideoComponent, canActivate: [AuthGuard], },
+  { path: 'video/:idVideo', component: VideoViewerComponent, canActivate: [AuthGuard], },
+  { path: 'activeAccount', component: ActiveAccountComponent, canActivate: [WithTokenGuard], },
+  { path: 'suggestAgenda', component: SuggestAgendaComponent, canActivate: [AuthGuard], },
+  { path: 'participate', component: ParticipateComponent, canActivate: [AuthGuard], },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
-  { path: '', component: HomePageComponent, canActivate: [AuthGuard], },
   { path: 'grid-days', component: GridDaysComponent },
   { path: 'grid-days/:day', component: GridComponent },
 ];

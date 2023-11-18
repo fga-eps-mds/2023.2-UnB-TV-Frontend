@@ -35,9 +35,7 @@ export class VideoCommentComponent implements OnInit {
       comment: ['', [Validators.required, Validators.maxLength(1000)]],
     },
     );
-    this.route.params.subscribe((params) => {
-      this.video_id = params['idVideo'];
-    })
+    this.video_id = this.route.snapshot.params['idVideo'];
     if (this.authService.isAuthenticated()) {
       this.setUserIdFromToken(localStorage.getItem('token') as string);
     } else {
