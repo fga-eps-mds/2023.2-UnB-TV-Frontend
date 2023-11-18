@@ -21,6 +21,12 @@ export class VideoViewerComponent implements OnInit {
     this.mostrarCompleta = !this.mostrarCompleta;
   }
 
+  extractVideoUrl(embedCode: string): string | null {
+    const regex = /<iframe.*?src=["'](.*?)["']/;
+    const match = embedCode.match(regex);
+    return match ? match[1] : null;
+  }
+
   constructor(
     private route: ActivatedRoute,
     private videoService: VideoService,
@@ -34,9 +40,14 @@ export class VideoViewerComponent implements OnInit {
         .subscribe((res: HttpResponse<IVideo>) => {
           this.video = !!res?.body ? res.body : this.video;
 
-          this.videoUrl = this.domSanitizer.bypassSecurityTrustHtml(
-            this.video.embed as string
-          );
+          const embedCode = this.video.embed as string;
+          const url = this.extractVideoUrl(embedCode);
+
+          if (url) {
+            this.videoUrl =
+              this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+          }
+
           this.videoDescription = this.video.description
             ? this.video.description
             : '';
