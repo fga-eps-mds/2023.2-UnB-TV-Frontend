@@ -1,14 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MenuItem, MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-background',
   templateUrl: './background.component.html',
-  styleUrls: ['./background.component.css']
+  styleUrls: ['./background.component.css'],
+  providers: [MessageService]
 })
-export class BackgroundComponent {
-  isMenuOpened: boolean = false;
+export class BackgroundComponent implements OnInit {
+  items: MenuItem[] = [];
 
-  toggleMenu(): void {
-    this.isMenuOpened = !this.isMenuOpened;
+  constructor(
+  ) { }
+
+  ngOnInit(): void {
+    this.items = [
+      {
+        label: 'Perfil',
+        routerLink: '/profile'
+      }
+    ]
   }
+
 }
