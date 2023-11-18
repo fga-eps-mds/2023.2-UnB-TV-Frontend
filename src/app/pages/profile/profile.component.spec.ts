@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { EditUserComponent } from '../edit-user/edit-user.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { AlertService } from 'src/app/services/alert.service';
 
 const mockData: any = {
   "id": 1,
@@ -23,10 +24,21 @@ class UserServiceMock {
   }
 }
 
+class AlertServiceMock {
+  constructor() { }
+  showMessage() {
+    return of({ success: true });
+  }
+  errorMessage() {
+    return of({ success: true });
+  }
+}
+
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
   let userService: UserService;
+  let alertService: AlertService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,13 +48,19 @@ describe('ProfileComponent', () => {
         ]
       )],
       declarations: [ProfileComponent],
-      providers: [{ provide: UserService, useValue: new UserServiceMock() }, MessageService, ConfirmationService]
+      providers: [
+        { provide: AlertService, useValue: new AlertServiceMock() },
+        { provide: UserService, useValue: new UserServiceMock() },
+        MessageService,
+        ConfirmationService
+      ]
     })
       .compileComponents();
 
     fixture = TestBed.createComponent(ProfileComponent);
     component = fixture.componentInstance;
     userService = TestBed.inject(UserService);
+    alertService = TestBed.inject(AlertService);
   });
 
   it('should create', () => {

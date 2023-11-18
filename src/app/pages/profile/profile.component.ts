@@ -6,6 +6,9 @@ import jwt_decode from 'jwt-decode';
 import { AlertService } from 'src/app/services/alert.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
+type ErrorResponseType = HttpErrorResponse;
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +26,7 @@ export class ProfileComponent {
     private alertService: AlertService,
     private confirmationService: ConfirmationService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.setUserIdFromToken(localStorage.getItem('token') as string);
@@ -40,8 +43,9 @@ export class ProfileComponent {
       next: (data) => {
         this.user = data;
       },
-      error: (error) => {
-        this.alertService.showMessage('error', 'Erro', error.error.detail);
+      error: (error: ErrorResponseType) => {
+        console.log(error);
+        this.alertService.errorMessage(error.error);
       },
     });
   }
@@ -76,8 +80,9 @@ export class ProfileComponent {
             );
             this.authService.logout();
           },
-          error: (error) => {
-            this.alertService.showMessage('error', 'Erro', error.error.detail);
+          error: (error: ErrorResponseType) => {
+            console.log(error);
+            this.alertService.errorMessage(error.error);
           },
         });
       },
