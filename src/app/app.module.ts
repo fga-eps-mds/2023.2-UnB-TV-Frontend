@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { InputTextModule } from 'primeng/inputtext';
@@ -34,7 +34,6 @@ import { MenuModule } from 'primeng/menu';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
-import { MessageService } from 'primeng/api';
 
 @NgModule({
   imports: [
@@ -65,8 +64,6 @@ import { MessageService } from 'primeng/api';
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
-    AgoraComponent,
-    ProgramacaoComponent,
     SuggestAgendaComponent,
     ParticipateComponent,
     VideoCommentComponent,
@@ -85,4 +82,4 @@ import { MessageService } from 'primeng/api';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
