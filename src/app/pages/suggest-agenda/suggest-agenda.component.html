@@ -3,11 +3,11 @@
         <h1>Sugestão de Pautas</h1>
         <form [formGroup]="suggestAgendaForm" (submit)="sendSuggestAgenda()" class="flex flex-col gap-y-3">
             <input pInputText type="text" class="input first" name="tema" formControlName="tema" placeholder="Tema" >
-            <textarea class="input descricao" name="descicao" formControlName="descricao" placeholder="Descrição" required [ngClass]="{'required-field': !isDescricaoFilled}" (change)="onRequiredFieldsChange()"></textarea>
+            <textarea class="input descricao" name="descicao" formControlName="descricao" placeholder="Descrição *" required [ngClass]="{'required-field': !isDescricaoFilled}" (change)="onRequiredFieldsChange()"></textarea>
             <input pInputText type="text" class="input first" name="quando" formControlName="quando" placeholder="Quando (data e hora)" >
             <input pInputText type="text" class="input first" name="local" formControlName="local" placeholder="Local" >
-            <input pInputText type="text" class="input first" name="responsavel" formControlName="responsavel" placeholder="Responsável" required [ngClass]="{'required-field': !isResponsavelFilled}" (change)="onRequiredFieldsChange()">
-            <input pInputText type="text" class="input first" name="telefone-responsavel" formControlName="telefoneResponsavel" placeholder="Telefone do Responsável" required [ngClass]="{'required-field': !isTelefoneFilled}" (change)="onRequiredFieldsChange()">
+            <input pInputText type="text" class="input first" name="responsavel" formControlName="responsavel" placeholder="Responsável *" required [ngClass]="{'required-field': !isResponsavelFilled}" (change)="onRequiredFieldsChange()">
+            <input pInputText type="text" class="input first" name="telefone-responsavel" formControlName="telefoneResponsavel" placeholder="Telefone do Responsável *" required [ngClass]="{'required-field': !isTelefoneFilled}" (change)="onRequiredFieldsChange()">
             <input pInputText type="text" class="input first" name="email-contato" formControlName="emailContato" placeholder="E-mail para contato" >
             <div>
                 <button type="submit">
