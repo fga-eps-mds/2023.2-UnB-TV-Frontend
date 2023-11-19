@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environment/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   public usersAPIURL = environment.usersAPIURL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   registerUser(user: any): Observable<any> {
     return this.http.post(`${this.usersAPIURL}/auth/register`, user);
@@ -25,7 +26,7 @@ export class AuthService {
   }
 
   resendCode(email: any): Observable<any> {
-    return this.http.post(`${this.usersAPIURL}/auth/resend-code`, email);
+    return this.http.post(`${this.usersAPIURL}/auth/resend-code`, { email });
   }
 
   sendEmailPassword(email: any): Observable<any> {
@@ -47,5 +48,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

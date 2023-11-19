@@ -3,8 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MustMatch } from 'src/app/helper/must-match.validator';
 import { AuthService } from '../../services/auth.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
-
+type ErrorResponseType = HttpErrorResponse;
+interface IDetails {
+  detail: string;
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -32,14 +38,18 @@ export class LoginComponent implements OnInit {
         .loginUser(this.userForm.value).subscribe({
           next: (data) => {
             localStorage.setItem('token', data.access_token);
-            this.navigator('/profile');
+            this.navigator('/videos');
           },
-          error: (error) => {
-            console.error(error);
+          error: (error: ErrorResponseType) => {
+            this.alertService.errorMessage(error.error);
+            let errorDetail: IDetails = { ...error.error };
+            if (errorDetail.detail === 'A sua conta ainda não foi ativada.') {
+              this.navigator('/activeAccount');
+            }
           },
         });
     } else {
-      alert('Preencha todos os campos corretamente!');
+      this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
     }
   }
 

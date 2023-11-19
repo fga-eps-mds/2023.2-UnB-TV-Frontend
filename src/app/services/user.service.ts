@@ -59,4 +59,8 @@ export class UserService {
   deleteUser(id: any): Observable<any> {
     return this.http.delete(`${this.usersAPIURL}/users/${id}`);
   }
+
+  getVinculo(): Observable<any> {
+    return this.http.get(`${this.usersAPIURL}/auth/vinculo`);
+  }
 }

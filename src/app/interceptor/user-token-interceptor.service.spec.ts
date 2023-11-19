@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { UserTokenInterceptor } from './user-token-interceptor.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { UserService } from './user.service';
+import { UserService } from '../services/user.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
