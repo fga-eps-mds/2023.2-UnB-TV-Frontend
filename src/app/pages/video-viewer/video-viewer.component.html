@@ -16,21 +16,21 @@
     <div class="max-w-full max-h-full flex text-[12px] font-custom">
       <div>
         <span
-          *ngIf="!mostrarCompleta && videoDescription.length > limiteCaracteres"
+          *ngIf="!showDescription && videoDescription.length > characterLimit"
           class="clamped-description"
           [innerHTML]="videoDescription"
         ></span>
         <button
-          *ngIf="!mostrarCompleta && videoDescription.length > limiteCaracteres"
+          *ngIf="!showDescription && videoDescription.length > characterLimit"
           class="font-bold"
-          (click)="expandirDescricao()"
+          (click)="expandDescription()"
         >
           Mostrar
         </button>
 
-        <span *ngIf="mostrarCompleta" [innerHTML]="videoDescription"></span>
-        <div *ngIf="mostrarCompleta">
-          <button class="font-bold" (click)="expandirDescricao()">
+        <span *ngIf="showDescription" [innerHTML]="videoDescription"></span>
+        <div *ngIf="showDescription">
+          <button class="font-bold" (click)="expandDescription()">
             Mostrar menos
           </button>
         </div>

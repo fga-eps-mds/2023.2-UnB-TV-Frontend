@@ -7,10 +7,12 @@ import { VideoCommentComponent } from 'src/app/components/video-comment/video-co
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { VideoService } from 'src/app/services/video.service';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 describe('VideoViewerComponent', () => {
   let component: VideoViewerComponent;
   let fixture: ComponentFixture<VideoViewerComponent>;
+  let domSanitizer: DomSanitizer;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -27,6 +29,10 @@ describe('VideoViewerComponent', () => {
         },
         { provide: VideoService },
         FormBuilder,
+        {
+          provide: DomSanitizer, 
+          useValue: { bypassSecurityTrustResourceUrl: (value: string) => value }
+        }
       ],
     }).compileComponents();
 
@@ -34,24 +40,26 @@ describe('VideoViewerComponent', () => {
     component = fixture.componentInstance;
     localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvMTV2aWN0b3IwOEBnbWFpbC5jb20iLCJleHAiOjE2OTkzMTI5MzV9.1B9qBJt8rErwBKyD5JCdsPozsw86oQ38tdfDuMM2HFI');
     fixture.detectChanges();
+    domSanitizer = TestBed.inject(DomSanitizer);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  describe('expand Description', () => {
+    it('should toggle showDescription when expandDescription is called', () => {
+      
+      expect(component.showDescription).toBe(false);
+      
+      component.expandDescription();
+      
+      expect(component.showDescription).toBe(true);
+      
+      component.expandDescription();
 
-  it('should toggle mostrarCompleta property', () => {
-    expect(component.mostrarCompleta).toBe(false);
-
-    component.expandirDescricao();
-
-    expect(component.mostrarCompleta).toBe(true);
-
-    component.expandirDescricao();
-
-    expect(component.mostrarCompleta).toBe(false);
-  });
-
+      expect(component.showDescription).toBe(false);
+    });
+  }); 
   describe('Getting the video url', () => {
     it('should extract video URL from embed code', () => {
       const embedCode =
@@ -69,5 +77,8 @@ describe('VideoViewerComponent', () => {
 
       expect(extractedUrl).toBeNull();
     });
+
   });
-});
+
+  
+}); 

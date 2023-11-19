@@ -12,14 +12,14 @@ import { IVideo, Video } from 'src/shared/model/video.model';
 })
 export class VideoViewerComponent implements OnInit {
   videoDescription: string = '';
-  limiteCaracteres = 100;
-  mostrarCompleta = false;
+  characterLimit = 100;
+  showDescription = false;
   video: IVideo = new Video();
   videoUrl!: SafeHtml;
   idVideo!: number;
 
-  expandirDescricao() {
-    this.mostrarCompleta = !this.mostrarCompleta;
+  expandDescription() {
+    this.showDescription = !this.showDescription;
   }
 
   extractVideoUrl(embedCode: string): string | null {
@@ -46,11 +46,9 @@ export class VideoViewerComponent implements OnInit {
 
         const embedCode = this.video.embed as string;
         const url = this.extractVideoUrl(embedCode);
-
         if (url) {
           this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
         }
-
         this.videoDescription = this.video.description
           ? this.video.description
           : '';
