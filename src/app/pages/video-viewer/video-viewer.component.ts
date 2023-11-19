@@ -16,6 +16,7 @@ export class VideoViewerComponent implements OnInit {
   mostrarCompleta = false;
   video: IVideo = new Video();
   videoUrl!: SafeHtml;
+  idVideo!: number;
 
   expandirDescricao() {
     this.mostrarCompleta = !this.mostrarCompleta;
@@ -34,24 +35,26 @@ export class VideoViewerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: { [x: string]: number }) => {
-      this.videoService
-        .findVideoById(params['idVideo'])
-        .subscribe((res: HttpResponse<IVideo>) => {
-          this.video = !!res?.body ? res.body : this.video;
-
-          const embedCode = this.video.embed as string;
-          const url = this.extractVideoUrl(embedCode);
-
-          if (url) {
-            this.videoUrl =
-              this.domSanitizer.bypassSecurityTrustResourceUrl(url);
-          }
-
-          this.videoDescription = this.video.description
-            ? this.video.description
-            : '';
-        });
-    });
+    this.idVideo = this.route.snapshot.params['idVideo'];
+    this.findVideoById();
   }
+
+  findVideoById = () => {
+    this.videoService.findVideoById(this.idVideo).subscribe({
+      next: (data: HttpResponse<IVideo>) => {
+        this.video = data.body ? data.body : this.video;
+
+        const embedCode = this.video.embed as string;
+        const url = this.extractVideoUrl(embedCode);
+
+        if (url) {
+          this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+        }
+
+        this.videoDescription = this.video.description
+          ? this.video.description
+          : '';
+      },
+    });
+  };
 }
