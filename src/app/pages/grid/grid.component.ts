@@ -25,6 +25,10 @@ export class GridComponent {
 
   ngOnInit() {
     this.day = this.route.snapshot.params['day'];
+    this.getGridByDay();
+  }
+
+  getGridByDay(): void {
     this.gridService.getSchedule(this.day).subscribe({
       next: (data) => {
         this.schedule = data[this.day.toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")];

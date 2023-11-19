@@ -34,10 +34,43 @@ describe('GridComponent', () => {
     component = fixture.componentInstance;
     gridService = TestBed.inject(GridService);
     router = TestBed.inject(Router);
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
+
+  it('shoud call getGridByDay', () => {
+    const mySpy = spyOn(component, 'getGridByDay');
+    fixture.detectChanges();
+    expect(mySpy).toHaveBeenCalled();
+  })
+
+  it('should call getSchedule', () => {
+    const mySpy = spyOn(gridService, 'getSchedule').and.callThrough();
+    component.day = 'Domingo';
+    component.getGridByDay();
+    fixture.detectChanges();
+    expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call getSchedule and return an error', () => {
+    const mySpy = spyOn(gridService, 'getSchedule').and.returnValue(throwError(() => new Error('Erro')));
+    component.getGridByDay();
+    expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call redirect when redirect is clicked', () => {
+    spyOn(component, 'redirectBack').and.callThrough();
+    const navigateSpy = spyOn(router, 'navigate');
+    fixture.detectChanges();
+    const submitButton = fixture.nativeElement.querySelector(
+      '#redirectBack'
+    );
+    submitButton.click();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['/grid-days/']);
+  });
+
 });
