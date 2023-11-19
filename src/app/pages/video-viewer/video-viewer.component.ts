@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { VideoService } from '../../services/video.service';
 import { IVideo, Video } from 'src/shared/model/video.model';
 
@@ -15,7 +15,7 @@ export class VideoViewerComponent implements OnInit {
   characterLimit = 100;
   showDescription = false;
   video: IVideo = new Video();
-  videoUrl!: SafeHtml;
+  videoUrl!: SafeResourceUrl;
   idVideo!: number;
 
   expandDescription() {
@@ -46,9 +46,9 @@ export class VideoViewerComponent implements OnInit {
 
         const embedCode = this.video.embed as string;
         const url = this.extractVideoUrl(embedCode);
-        if (url) {
+       if (url) {
           this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
-        }
+        } 
         this.videoDescription = this.video.description
           ? this.video.description
           : '';
