@@ -1,0 +1,5 @@
+html, body, .max-w-full, .max-h-full, #streamIframe {
+    width: 67.55%;
+    height: 100%;
+    margin: auto;
+  }
