@@ -32,39 +32,41 @@
       </div>
     </nav>
   </div>
-  <div class="flex-grow m-3">
+  <div class="flex-grow p-3">
     <ng-content></ng-content>
   </div>
-  <div class="flex flex-row items-center justify-center pb-10 mt-20">
-    <div class="pr-2">
-      <a href="https://unbtv.unb.br/contato" target="_blank">
+  <footer
+    class="flex flex-row items-center justify-center gap-3 py-6 px-3 md:py-10 mt-5"
+  >
+    <div>
+      <a [href]="mobileDevide ? 'tel:+556131072775' : 'https://unbtv.unb.br/contato'" target="_blank">
         <img alt="telefone" src="../../../assets/telefone.svg" />
       </a>
     </div>
-    <div class="pr-2">
+    <div>
       <a href="https://unbtv.unb.br" target="_blank">
         <img alt="website" src="../../../assets/website.svg" />
       </a>
     </div>
-    <div class="pr-2">
+    <div>
       <a href="https://www.youtube.com/@UnBTV" target="_blank">
         <img alt="youtube" src="../../../assets/youtube.svg" />
       </a>
     </div>
-    <div class="pr-2">
+    <div>
       <a href="https://www.instagram.com/unbtv/" target="_blank">
         <img alt="instagram" src="../../../assets/instagram.svg" />
       </a>
     </div>
-    <div class="pr-2">
+    <div>
       <a href="https://www.facebook.com/UnBTV" target="_blank">
         <img alt="facebook" src="../../../assets/facebook.svg" />
       </a>
     </div>
-    <div class="pr-2">
-      <a href="twitter.com/unb_tv" target="_blank">
+    <div>
+      <a href="https://twitter.com/unb_tv" target="_blank">
         <img alt="x" src="../../../assets/x.svg" />
       </a>
     </div>
-  </div>
+  </footer>
 </div>
