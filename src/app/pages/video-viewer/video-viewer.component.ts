@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { VideoService } from '../../services/video.service';
 import { IVideo, Video } from 'src/shared/model/video.model';
 
@@ -15,40 +14,29 @@ export class VideoViewerComponent implements OnInit {
   characterLimit = 100;
   showDescription = false;
   video: IVideo = new Video();
-  videoUrl!: SafeResourceUrl;
   idVideo!: number;
+  eduplayVideoUrl = "https://eduplay.rnp.br/portal/video/embed/";
 
   expandDescription() {
     this.showDescription = !this.showDescription;
   }
 
-  extractVideoUrl(embedCode: string): string | null {
-    const regex = /<iframe.*?src=["'](.*?)["']/;
-    const match = embedCode.match(regex);
-    return match ? match[1] : null;
-  }
-
   constructor(
     private route: ActivatedRoute,
     private videoService: VideoService,
-    private domSanitizer: DomSanitizer
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    const iframe = document.getElementById('embeddedVideo') as HTMLIFrameElement;
     this.idVideo = this.route.snapshot.params['idVideo'];
     this.findVideoById();
+    iframe.src = this.eduplayVideoUrl + this.idVideo;
   }
 
   findVideoById = () => {
     this.videoService.findVideoById(this.idVideo).subscribe({
       next: (data: HttpResponse<IVideo>) => {
         this.video = data.body ? data.body : this.video;
-
-        const embedCode = this.video.embed as string;
-        const url = this.extractVideoUrl(embedCode);
-       if (url) {
-          this.videoUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(url);
-        } 
         this.videoDescription = this.video.description
           ? this.video.description
           : '';

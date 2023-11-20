@@ -6,12 +6,19 @@ import { VideoCommentComponent } from 'src/app/components/video-comment/video-co
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { VideoService } from 'src/app/services/video.service';
 import { ActivatedRoute } from '@angular/router';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { of } from 'rxjs';
+
+class VideoServiceMock {
+  constructor() { }
+  findVideoById() {
+    return of({});
+  }
+}
 
 describe('VideoViewerComponent', () => {
   let component: VideoViewerComponent;
   let fixture: ComponentFixture<VideoViewerComponent>;
-  let domSanitizer: DomSanitizer;
+  let videoService: VideoService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,14 +31,10 @@ describe('VideoViewerComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: { snapshot: { params: { id: 1 } } },
+          useValue: { snapshot: { params: { id: 190329 } } },
         },
-        { provide: VideoService },
+        { provide: VideoService, useValue: new VideoServiceMock() },
         FormBuilder,
-        {
-          provide: DomSanitizer, 
-          useValue: { bypassSecurityTrustResourceUrl: (value: string) => value }
-        }
       ],
     }).compileComponents();
 
@@ -39,45 +42,30 @@ describe('VideoViewerComponent', () => {
     component = fixture.componentInstance;
     localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvMTV2aWN0b3IwOEBnbWFpbC5jb20iLCJleHAiOjE2OTkzMTI5MzV9.1B9qBJt8rErwBKyD5JCdsPozsw86oQ38tdfDuMM2HFI');
     fixture.detectChanges();
-    domSanitizer = TestBed.inject(DomSanitizer);
+    videoService = TestBed.inject(VideoService);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  describe('expand Description', () => {
-    it('should toggle showDescription when expandDescription is called', () => {
-      
-      expect(component.showDescription).toBe(false);
-      
-      component.expandDescription();
-      
-      expect(component.showDescription).toBe(true);
-      
-      component.expandDescription();
 
-      expect(component.showDescription).toBe(false);
-    });
-  }); 
-  describe('Getting the video url', () => {
-    it('should extract video URL from embed code', () => {
-      const embedCode =
-        '<iframe width="671" height="377" src="https://eduplay.rnp.br/portal/video/embed/190486" frameborder="0" scrolling="no" allowfullscreen></iframe>';
-      const extractedUrl = component.extractVideoUrl(embedCode);
+  it('should toggle showDescription when expandDescription is called', () => {
 
-      expect(extractedUrl).toBe(
-        'https://eduplay.rnp.br/portal/video/embed/190486'
-      );
-    });
+    expect(component.showDescription).toBe(false);
 
-    it('should return null for invalid embed code', () => {
-      const invalidEmbedCode = '<iframe></iframe>';
-      const extractedUrl = component.extractVideoUrl(invalidEmbedCode);
+    component.expandDescription();
 
-      expect(extractedUrl).toBeNull();
-    });
+    expect(component.showDescription).toBe(true);
 
+    component.expandDescription();
+
+    expect(component.showDescription).toBe(false);
   });
 
-  
+  it('should call findVideoById and return video', () => {
+    const mySpy = spyOn(videoService, 'findVideoById').and.callThrough();
+    component.findVideoById();
+    expect(mySpy).toHaveBeenCalled();
+  });
+
 }); 
