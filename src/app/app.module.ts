@@ -19,7 +19,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { VideoComponent } from './pages/video/video.component';
 import { VideoViewerComponent } from './pages/video-viewer/video-viewer.component';
-import { SafePipe } from './pipes/safe.pipe';
 import { BackgroundComponent } from './components/background/background.component';
 import { LoginSocialComponent } from './pages/login-social/login-social.component';
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
@@ -66,7 +65,6 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     LoginSocialComponent,
     VideoComponent,
     VideoViewerComponent,
-    SafePipe,
     BackgroundComponent,
     ActiveAccountComponent,
     ProfileComponent,

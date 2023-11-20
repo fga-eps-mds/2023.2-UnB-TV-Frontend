@@ -4,8 +4,8 @@
       <div
         *ngFor="let image of video.images"
         [routerLink]="['/video', video.id]"
-        [queryParams]="{ title: video.title }"
-      >
+        class="cursor-pointer"
+        >
         <img
           src="{{ image.href }}"
           alt="{{ video.title }}"
