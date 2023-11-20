@@ -1,8 +1,8 @@
 // Import
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
@@ -31,11 +31,16 @@ import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { StreamViewComponent } from './pages/stream-view/stream-view.component';
+import { UpdateRoleComponent } from './pages/update-role/update-role.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { MenuModule } from 'primeng/menu';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
+import { GridComponent } from './pages/grid/grid.component';
+import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { MessageService } from 'primeng/api';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   imports: [
@@ -45,12 +50,15 @@ import { MessageService } from 'primeng/api';
     ReactiveFormsModule,
     ToastModule,
     ConfirmDialogModule,
-    BrowserAnimationsModule,
     OAuthModule.forRoot(),
     InputTextModule,
     DropdownModule,
     ButtonModule,
+    ProgressSpinnerModule,
     MenuModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ],
 
   declarations: [
@@ -68,9 +76,12 @@ import { MessageService } from 'primeng/api';
     CheckCodeRestPasswordComponent,
     EditUserComponent,
     StreamViewComponent,
+    UpdateRoleComponent,
     SuggestAgendaComponent,
     ParticipateComponent,
-    VideoCommentComponent,
+    GridComponent,
+    GridDaysComponent,
+    VideoCommentComponent
   ],
 
   providers: [

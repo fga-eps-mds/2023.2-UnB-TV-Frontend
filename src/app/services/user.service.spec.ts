@@ -53,8 +53,8 @@ describe('UserService', () => {
         "role": "USER",
         "is_active": true
       }];
-    service.getAllUsers().subscribe(res => {
-      expect(res).toEqual(userResponse);
+    service.getAllUsers({}).subscribe(res => {
+      expect(res.body).toEqual(userResponse);
     });
     const req = httpMock.expectOne(`${service.usersAPIURL}/users`);
     expect(req.request.method).toBe('GET');
@@ -97,6 +97,23 @@ describe('UserService', () => {
     req.flush(userResponse);
   }
   );
+
+  it('should update user role', () => {
+    const userResponse: any = {
+      "id": 1,
+      "name": "Mario",
+      "connection": "ALUNO",
+      "email": "mario@gmail.com",
+      "role": "USER",
+      "is_active": true
+    }
+    service.updateUserRole(1).subscribe(res => {
+      expect(res).toEqual(userResponse);
+    });
+    const req = httpMock.expectOne(`${service.usersAPIURL}/users/role/1`);
+    expect(req.request.method).toBe('PATCH');
+    req.flush(userResponse);
+  })
 
   afterEach(() => {
     httpMock.verify();

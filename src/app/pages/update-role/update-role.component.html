@@ -1,0 +1,79 @@
+<div class="mx-5">
+  <div class="filter-container">
+    <div>
+      <label>Nome ou Email:</label>
+      <input
+        [(ngModel)]="filterInputValue"
+        (change)="filterUser()"
+        placeholder="Filtrar pelo nome do usuário"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5 outline-none"
+      />
+    </div>
+    <div>
+      <label>Vínculo:</label>
+      <select
+        (change)="filterUser()"
+        [(ngModel)]="filterConnectionValue"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-100 p-2.5 outline-none"
+      >
+        <option disabled hidden value="">Selecione um vínculo</option>
+        <option value="">Sem Filtro</option>
+        <option value="ESTUDANTE">Estudante</option>
+        <option value="PROFESSOR">Professor</option>
+        <option value="SERVIDOR">Servidor</option> 
+        <option value="TERCEIRIZADO">Terceirizado</option> 
+        <option value="ESTAGIARIO">Estagiario</option> 
+        <option value="COMUNIDADE EXTERNA">Comunidade Externa</option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="users && users.length; else noUsers">
+    <table
+      class="table-auto mt-3"
+      style="border-collapse: collapse !important"
+      aria-label="Tabela de usuários"
+    >
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Vínculo</th>
+          <th>Cargo</th>
+          <th>Ativo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.connection }}</td>
+          <td>
+            <select
+              class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none"
+              [(ngModel)]="user.role"
+              (change)="updateUserRole(user.id)"
+              *ngIf="user.id !== userId; else readOnly"
+            >
+              <option value="USER">Usuário</option>
+              <option value="ADMIN">Administrador</option>
+            </select>
+            <ng-template #readOnly> Administrador </ng-template>
+          </td>
+          <td>{{ user.is_active ? "Sim" : "Não" }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <mat-paginator
+      [pageIndex]="pageIndex"
+      [length]="total"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 25]"
+      aria-label="User Pagination"
+      (page)="onPaginateChange($event)"
+    ></mat-paginator>
+  </div>
+
+  <ng-template #noUsers>
+    <h3>Nenhum usuário encontrado</h3>
+  </ng-template>
+</div>
