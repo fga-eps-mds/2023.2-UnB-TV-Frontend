@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { InputTextModule } from 'primeng/inputtext';
@@ -37,7 +37,6 @@ import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.co
 import { ParticipateComponent } from './pages/participate/participate.component';
 import { GridComponent } from './pages/grid/grid.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
-import { MessageService } from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
@@ -92,4 +91,4 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
