@@ -38,7 +38,6 @@ import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.co
 import { ParticipateComponent } from './pages/participate/participate.component';
 import { GridComponent } from './pages/grid/grid.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
-import { MessageService } from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
