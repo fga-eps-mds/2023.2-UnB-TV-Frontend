@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 type ErrorResponseType = HttpErrorResponse;
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

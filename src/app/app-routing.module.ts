@@ -11,6 +11,8 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AuthGuard } from './guard/auth.guard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { UpdateRoleComponent } from './pages/update-role/update-role.component';
+import { AdminGuard } from './services/admin.guard';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component'; 
@@ -34,6 +36,7 @@ const routes: Routes = [
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
   { path: 'grid-days', component: GridDaysComponent },
   { path: 'grid-days/:day', component: GridComponent },
+  { path: 'update-role', component: UpdateRoleComponent, canActivate: [AdminGuard], }
 ];
 
 @NgModule({
