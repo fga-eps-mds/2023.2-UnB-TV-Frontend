@@ -1,8 +1,8 @@
 // Import
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
@@ -30,6 +30,8 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { UpdateRoleComponent } from './pages/update-role/update-role.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { MenuModule } from 'primeng/menu';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
@@ -44,12 +46,14 @@ import { MessageService } from 'primeng/api';
     ReactiveFormsModule,
     ToastModule,
     ConfirmDialogModule,
-    BrowserAnimationsModule,
     OAuthModule.forRoot(),
     InputTextModule,
     DropdownModule,
     ButtonModule,
     MenuModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   declarations: [
     AppComponent,
@@ -65,6 +69,7 @@ import { MessageService } from 'primeng/api';
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
+    UpdateRoleComponent,
     SuggestAgendaComponent,
     ParticipateComponent,
     VideoCommentComponent,
