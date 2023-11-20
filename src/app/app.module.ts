@@ -36,7 +36,10 @@ import { MenuModule } from 'primeng/menu';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
+import { GridComponent } from './pages/grid/grid.component';
+import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { MessageService } from 'primeng/api';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   imports: [
@@ -50,6 +53,7 @@ import { MessageService } from 'primeng/api';
     InputTextModule,
     DropdownModule,
     ButtonModule,
+    ProgressSpinnerModule,
     MenuModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -72,7 +76,9 @@ import { MessageService } from 'primeng/api';
     UpdateRoleComponent,
     SuggestAgendaComponent,
     ParticipateComponent,
-    VideoCommentComponent,
+    GridComponent,
+    GridDaysComponent,
+    VideoCommentComponent
   ],
   providers: [
     { provide: 'authGuard', useClass: AuthGuard },

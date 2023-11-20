@@ -15,6 +15,9 @@ import { UpdateRoleComponent } from './pages/update-role/update-role.component';
 import { AdminGuard } from './services/admin.guard';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
+import { GridDaysComponent } from './pages/grid-days/grid-days.component'; 
+import { GridComponent } from './pages/grid/grid.component'; 
+
 import { WithTokenGuard } from './guard/with-token.guard';
 
 const routes: Routes = [
@@ -31,7 +34,9 @@ const routes: Routes = [
   { path: 'participate', component: ParticipateComponent, canActivate: [AuthGuard], },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
   { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
-  { path: 'update-role', component: UpdateRoleComponent, canActivate: [AdminGuard], },
+  { path: 'grid-days', component: GridDaysComponent },
+  { path: 'grid-days/:day', component: GridComponent },
+  { path: 'update-role', component: UpdateRoleComponent, canActivate: [AdminGuard], }
 ];
 
 @NgModule({
