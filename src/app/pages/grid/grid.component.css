@@ -1,0 +1,17 @@
+.padded-cell {
+    padding-left: 40px; 
+  }
+.padded-cell-day {
+    padding-left: 20px; 
+  }
+.center-table {
+  font-size: 14px;
+}
+.center-button {
+  margin-left: auto;
+  margin-right: auto;
+  width: 5%;
+}
+tr:not(:last-child) {
+  border-bottom-width: 0.01em;
+}

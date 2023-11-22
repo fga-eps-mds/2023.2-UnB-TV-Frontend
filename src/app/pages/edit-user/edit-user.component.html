@@ -1,0 +1,18 @@
+<div class="flex justify-center items-center h-4/5">
+  <form [formGroup]="userForm" (submit)="updateUser()" class="text-center">
+    <div class="mb-4">
+      <input pInputText class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="text" formControlName="name" name="name" placeholder="Nome" required>
+    </div>
+    <div class="mb-4">
+      <input pInputText class="w-64 h-8 border rounded-lg border-gray-300 pl-4" type="email" formControlName="email" name="email" placeholder="E-mail" required>
+    </div>
+    <div class="mb-4">
+      <p-dropdown [style]="{width: '16rem',
+      height: '2.25rem',
+      textAlign: 'justify',
+      alignItems: 'center',
+      display: 'flex'}" [options]="vinculo" optionLabel="name" formControlName="connection" [showClear]="true" placeholder="Vinculo"></p-dropdown>
+      </div>
+    <button class="w-24 h-8 bg-blue-brand rounded-lg justify-center my-8 text-white" type="submit">Editar</button>
+  </form>
+</div>

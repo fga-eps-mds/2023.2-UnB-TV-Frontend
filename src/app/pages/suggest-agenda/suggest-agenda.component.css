@@ -1,0 +1,66 @@
+
+.containner {
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: -300px;
+}
+
+.containner h1 {
+    color: #0087C8;
+    font-size: 13px;
+    font-family: "unb-pro", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 12.35px;
+    margin-left: 29px;
+    margin-top: 45px;
+    margin-bottom: 40px;
+    text-align: start;
+}
+
+.first {
+    border: 0.15px solid #3C3C3B;
+    margin-left: 29px;
+    width: 330px;
+    border-radius: 9px;
+    height: 30px;
+    padding: 9px 0 10px 28px;
+}
+
+form ::placeholder {
+    font-size: 13px;
+    font-family: "unb-pro", sans-serif;    
+}
+
+.descricao {
+    border: 0.15px solid #3C3C3B;
+    margin-left: 29px;
+    width: 330px;
+    border-radius: 9px;
+    height: 100px;
+    padding: 9px 0 10px 28px;
+}
+
+.descricao::placeholder {
+    top: -35px;
+}
+
+button {
+    background-color: #0087C8;
+    padding: 3px 33px 3px 33px;
+    border-radius: 9px;
+    margin-top: 7px;
+}
+
+span {
+    color: white;
+    font-family: "unb-pro", sans-serif;
+    font-size: 13px;
+}
+
+.input:focus {
+    outline: none !important;
+    border: 0.25px solid #00A550;
+}

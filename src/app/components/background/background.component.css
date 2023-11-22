@@ -1,0 +1,13 @@
+:host ::ng-deep {
+  .p-button {
+    background-color: transparent;
+    color: #0087ce;
+    border: none;
+  }
+  .p-button:hover {
+    background-color: transparent;
+    color: #0087ce;
+    border: none;
+    box-shadow: none;
+  }
+}
