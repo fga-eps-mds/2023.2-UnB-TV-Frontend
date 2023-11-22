@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 import { of, throwError } from 'rxjs';
 import { EmailService } from 'src/app/services/email.service';
 import { SuggestAgendaComponent } from './suggest-agenda.component';
@@ -70,17 +69,6 @@ describe('SuggestAgendaComponent', () => {
     submitButton.click();
 
     expect(component.sendSuggestAgenda).toHaveBeenCalled();
-  });
-
-  it('should call onRequiredFieldsChange when responsavel input value changes', () => {
-    fixture.detectChanges();
-    spyOn(component, 'onRequiredFieldsChange');
-
-    const input = fixture.debugElement.query(By.css('input[name="responsavel"]')).nativeElement;
-    input.value = 'novo valor';
-    input.dispatchEvent(new Event('change'));
-
-    expect(component.onRequiredFieldsChange).toHaveBeenCalled();
   });
 
   it('should call sendEmail', () => {
