@@ -13,9 +13,6 @@ import { AlertService } from 'src/app/services/alert.service';
 export class SuggestAgendaComponent implements OnInit {
 
   suggestAgendaForm!: FormGroup;
-  isDescricaoFilled = false;
-  isResponsavelFilled = false;
-  isTelefoneFilled = false;
   isSendingEmail = false;
 
   constructor(
@@ -62,12 +59,6 @@ export class SuggestAgendaComponent implements OnInit {
     } else {
       this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
     }
-  }
-
-  onRequiredFieldsChange(): void {
-    this.isDescricaoFilled = !!this.suggestAgendaForm.value.descricao;
-    this.isResponsavelFilled = !!this.suggestAgendaForm.value.responsavel;
-    this.isTelefoneFilled = !!this.suggestAgendaForm.value.telefoneResponsavel;
   }
 
 }

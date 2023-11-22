@@ -1,27 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
-import {
-  IVideoVersion,
-} from 'src/shared/model/video-version.model';
-import {
-  IVideoDetails,
-  VideoDetails,
-} from 'src/shared/model/video-details.model';
 import { VideoService } from '../../services/video.service';
-
+import { IVideo, Video } from 'src/shared/model/video.model';
 
 @Component({
   selector: 'app-video-viewer',
   templateUrl: './video-viewer.component.html',
   styleUrls: ['./video-viewer.component.css'],
 })
-
 export class VideoViewerComponent implements OnInit {
-  videoVersion!: IVideoVersion;
-  videoMP4: IVideoDetails = new VideoDetails();
-  videoTitle: string = '';
+  videoDescription: string = '';
+  characterLimit = 100;
+  showDescription = false;
+  video: IVideo = new Video();
   idVideo!: number;
+  eduplayVideoUrl = "https://eduplay.rnp.br/portal/video/embed/";
+
+  expandDescription() {
+    this.showDescription = !this.showDescription;
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -29,23 +27,20 @@ export class VideoViewerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const iframe = document.getElementById('embeddedVideo') as HTMLIFrameElement;
     this.idVideo = this.route.snapshot.params['idVideo'];
-    this.findVideo();
-    this.videoTitle = this.route.snapshot.queryParams['title'];
-
+    this.findVideoById();
+    iframe.src = this.eduplayVideoUrl + this.idVideo;
   }
 
-  findVideo = () => {
-    this.videoService.findVideoVersionByVideoId(this.idVideo)
-      .subscribe({
-        next: (data: HttpResponse<IVideoVersion>) => {
-          this.videoVersion = data.body ? data.body : this.videoVersion;
-          const videoMP4Found = this.videoVersion.videoVersionList?.find(
-            (video) => video.fileFormat === 'MP4'
-          );
-
-          this.videoMP4 = !!videoMP4Found ? videoMP4Found : this.videoMP4;
-        }
-      });
-  }
+  findVideoById = () => {
+    this.videoService.findVideoById(this.idVideo).subscribe({
+      next: (data: HttpResponse<IVideo>) => {
+        this.video = data.body ? data.body : this.video;
+        this.videoDescription = this.video.description
+          ? this.video.description
+          : '';
+      },
+    });
+  };
 }

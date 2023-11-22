@@ -12,6 +12,7 @@ export interface IVideo {
     qtAccess?: number;
     qtLikes?: number;
     images?: IImage[];
+    embed?: string;
 }
 
 export class Video implements IVideo {
@@ -26,7 +27,7 @@ export class Video implements IVideo {
         public generateSubtitle?: boolean,
         public qtAccess?: number,
         public qtLikes?: number,
-        public images?: IImage[]
-
+        public images?: IImage[],
+        public embed?: string,
     ) { }
 }
