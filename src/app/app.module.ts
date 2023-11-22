@@ -29,6 +29,7 @@ import { CheckCodeRestPasswordComponent } from './pages/check-code-rest-password
 import { AuthGuard } from './guard/auth.guard';
 import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { StreamViewComponent } from './pages/stream-view/stream-view.component';
 import { UpdateRoleComponent } from './pages/update-role/update-role.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MenuModule } from 'primeng/menu';
@@ -57,6 +58,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     BrowserAnimationsModule,
     MatPaginatorModule
   ],
+
   declarations: [
     AppComponent,
     LoginComponent,
@@ -70,6 +72,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ResetPasswordComponent,
     CheckCodeRestPasswordComponent,
     EditUserComponent,
+    StreamViewComponent,
     UpdateRoleComponent,
     SuggestAgendaComponent,
     ParticipateComponent,
@@ -77,6 +80,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     GridDaysComponent,
     VideoCommentComponent
   ],
+
   providers: [
     { provide: 'authGuard', useClass: AuthGuard },
     AuthService,

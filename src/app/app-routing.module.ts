@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginSocialComponent } from './pages/login-social/login-social.component';
 import { VideoComponent } from './pages/video/video.component';
+import { StreamViewComponent } from './pages/stream-view/stream-view.component';
 import { VideoViewerComponent } from './pages/video-viewer/video-viewer.component';
 import { ActiveAccountComponent } from './pages/active-account/active-account.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -21,6 +22,15 @@ import { GridComponent } from './pages/grid/grid.component';
 import { WithTokenGuard } from './guard/with-token.guard';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'loginsocial', component: LoginSocialComponent },
+  { path: 'stream', component: StreamViewComponent },
+  { path: 'videos', component: VideoComponent },
+  { path: 'video/:idVideo', component: VideoViewerComponent },
+  { path: 'activeAccount', component: ActiveAccountComponent },
+  { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
+  { path: 'changePassword', component: ResetPasswordComponent },
   { path: '', component: VideoComponent, canActivate: [AuthGuard], }, // Default route - Showd be stream component
   { path: 'login', component: LoginComponent, canActivate: [WithTokenGuard], },
   { path: 'register', component: RegisterComponent, canActivate: [WithTokenGuard], },
