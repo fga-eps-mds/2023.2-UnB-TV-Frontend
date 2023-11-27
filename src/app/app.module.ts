@@ -63,7 +63,8 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-go
     MatPaginatorModule,
     SocialLoginModule,
     NgxGoogleAnalyticsModule.forRoot('G-XL7Z0L7VM8'),
-    NgxGoogleAnalyticsRouterModule
+    NgxGoogleAnalyticsRouterModule,
+    SocialLoginModule
   ],
 
   declarations: [
