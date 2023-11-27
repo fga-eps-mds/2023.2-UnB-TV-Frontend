@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SocialAuthService } from "@abacritt/angularx-social-login";
+import { SocialAuthService, SocialUser  } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 
 @Component({
@@ -8,8 +8,21 @@ import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
   styleUrls: ['./login-social.component.css']
 })
 export class LoginSocialComponent {
+
+  private user: SocialUser | null = null;
+  private loggedIn: boolean = false;
   
-  constructor(private authService: SocialAuthService) { }
+  constructor(private authService: SocialAuthService) {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+
+      if (this.loggedIn) {
+        console.log('Nome do usuário:', user.name);
+        console.log('Email do usuário:', user.email);
+      }
+    });
+   }
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
