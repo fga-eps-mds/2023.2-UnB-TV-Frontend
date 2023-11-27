@@ -1,0 +1,12 @@
+.rectangle-45 {
+    box-sizing: border-box;
+    position: absolute;
+    width: 280px;
+    height: 170px;
+    left: 40px;
+    top: 178px;
+    background: #FFFFFF;
+    border: 0.15px solid #969696;
+    border-radius: 9px;
+}
+
