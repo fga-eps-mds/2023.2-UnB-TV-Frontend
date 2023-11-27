@@ -1,5 +1,6 @@
+
 <div class=".rectangle-45 flex justify-center items-center flex-col">
-  <div class="text-center">
+  <div class="text-center .rectangle-45">
     <div
       class="mb-4 flex flex-col justify-start items-center .rectangle-45 p-4 rounded-xl shadow-md"
       *ngIf="user"
@@ -18,24 +19,32 @@
       </div>
     </div>
     <button id="editUser"
-      class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32"
+      class="bg-blue-brand rounded-lg my-8 text-white editUser"
       (click)="navigatorEdit()"
     >
-      Editar perfil
+      Editar
     </button>
   </div>
-  <div class="flex items-center justify-center">
+  <div class="flex deleteUser align-left">
     <button id="deleteUser"
-      class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32"
+      class="deleteUser rounded-lg"
       (click)="deleteUser()"
     >
-      Deletar usuário
+      Deseja excluir o perfil?
     </button>
   </div>
-  <div class="flex items-center justify-center">
+  <div class="flex changePassword">
+    <button
+    id="changePassword"
+      class="changePassword"
+    >
+      Alterar senha
+    </button>
+  </div>
+  <div class="flex logout align-left">
     <button
     id="logout"
-      class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-16"
+      class="logout"
       (click)="logoutUser()"
     >
       Sair
