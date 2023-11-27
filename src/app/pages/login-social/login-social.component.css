@@ -5,9 +5,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 80px;
-    height: 100%;
-    margin-top: -70px;
+    width: 100%;
+    max-width: 360px;
+    margin: 70px auto 0; 
+    height: auto;
 }
 
 .google-button {
