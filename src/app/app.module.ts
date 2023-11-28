@@ -13,7 +13,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 
 // Declaration
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -39,6 +39,7 @@ import { ParticipateComponent } from './pages/participate/participate.component'
 import { GridComponent } from './pages/grid/grid.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   imports: [
@@ -56,7 +57,13 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     MenuModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
 
   declarations: [
