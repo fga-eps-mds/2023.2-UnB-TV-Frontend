@@ -8,18 +8,15 @@
       <div class="flex flex-row perfil font-bold">
         Perfil
       </div>
-      <div class="flex flex-row">
-        <div class="font-bold">Nome:&nbsp;</div>
+      <div class="flex flex-row textoCaixinha font-bold">
         {{ user.name }}
       </div>
-      <div class="flex flex-row">
-        <div class="font-bold">Vínculo:&nbsp;</div>
-        {{ user.connection }}
-      </div>
-      <div class="flex flex-row">
-        <div class="font-bold">Email:&nbsp;</div>
+      <div class="flex flex-row textoCaixinha">
         {{ user.email }}
       </div>
+     <div class="flex flex-row textoCaixinha">
+        {{ user.connection }}
+     </div>
     </div>
     <button id="editUser"
       class="bg-blue-brand rounded-lg my-8 text-white editUser"
