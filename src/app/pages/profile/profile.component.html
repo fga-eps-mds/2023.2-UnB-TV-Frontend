@@ -2,9 +2,12 @@
 <div class="flex justify-center items-center flex-col">
   <div class="text-center .rectangle-45">
     <div
-      class="mb-4 flex flex-col justify-start items-center .rectangle-45 p-4 rounded-xl shadow-md"
+      class="mb-4 flex flex-col justify-start items-center rectangle-45 p-4 rounded-xl"
       *ngIf="user"
     >
+      <div class="flex flex-row perfil font-bold">
+        Perfil
+      </div>
       <div class="flex flex-row">
         <div class="font-bold">Nome:&nbsp;</div>
         {{ user.name }}
