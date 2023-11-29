@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-background',
@@ -10,6 +11,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 export class BackgroundComponent implements OnInit {
   items: MenuItem[] = [];
   mobileDevide: boolean = true;
+  isLoginPage: boolean = false;
 
   constructor() {}
 
@@ -21,6 +23,7 @@ export class BackgroundComponent implements OnInit {
       },
     ];
     this.identifiesUserDevice();
+    this.getActiveRoute();
   }
 
   identifiesUserDevice(): void {
@@ -36,5 +39,8 @@ export class BackgroundComponent implements OnInit {
     } else {
       this.mobileDevide = false;
     }
+  }
+  getActiveRoute(): boolean {
+      return window.location.pathname === '/login';
   }
 }

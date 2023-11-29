@@ -3,6 +3,7 @@
     <div class="pt-10 flex justify-center items-center">
       <img alt="simbolo-unb" src="../../../assets/Simbolo_UnBTV-01 1.png" />
     </div>
+    <div *ngIf="!getActiveRoute()"> 
     <nav class="flex flex-row items-center justify-center pl-3">
       <ul class="flex flex-row gap-1 text-xs">
         <li class="text-blue-brand">
@@ -31,6 +32,7 @@
         ></button>
       </div>
     </nav>
+    </div>
   </div>
   <div class="flex-grow p-3">
     <ng-content></ng-content>
