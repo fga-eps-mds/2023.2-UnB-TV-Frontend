@@ -1,4 +1,4 @@
-<div class="max-w-full justify-center max-h-full flex">
+<div class="max-w-full justify-center max-h-full flex flex-col gap-5">
   <div class="max-w-6xl h-2/3 max-h-full stream-iframe-container">
     <iframe
       title="Agora na TV"
@@ -6,5 +6,12 @@
       src="https://eduplay.rnp.br/portal/tv/embed/168269"
       allowfullscreen
     ></iframe>
+  </div>
+  <div
+    class="min-w-full flex flex-col justify-center font-custom text-[#3C3C3B]"
+  >
+    <span class="text-center text-[14px] font-medium">
+      {{ todaysDate }} • {{ weekDay }}
+    </span>
   </div>
 </div>
