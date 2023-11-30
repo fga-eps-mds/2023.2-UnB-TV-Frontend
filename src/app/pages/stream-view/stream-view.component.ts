@@ -43,6 +43,9 @@ export class StreamViewComponent {
         const weekdayKey = this.formatWeekday(this.weekDay);
         this.schedules = data[weekdayKey];
       },
+      error: (error) => {
+        console.error(error);
+      },
     });
   }
 }
