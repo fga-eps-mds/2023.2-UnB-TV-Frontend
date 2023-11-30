@@ -11,7 +11,6 @@ import { AppComponent } from 'src/app/app.component';
 export class BackgroundComponent implements OnInit {
   items: MenuItem[] = [];
   mobileDevide: boolean = true;
-  isLoginPage: boolean = false;
 
   constructor() {}
 
@@ -23,7 +22,6 @@ export class BackgroundComponent implements OnInit {
       },
     ];
     this.identifiesUserDevice();
-    this.getActiveRoute();
   }
 
   identifiesUserDevice(): void {
@@ -40,7 +38,7 @@ export class BackgroundComponent implements OnInit {
       this.mobileDevide = false;
     }
   }
-  getActiveRoute(): boolean {
-      return window.location.pathname === '/login';
+  getActualRoute(): string {
+    return window.location.pathname;
   }
 }
