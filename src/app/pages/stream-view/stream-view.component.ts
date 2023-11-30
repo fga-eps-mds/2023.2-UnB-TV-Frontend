@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { DateService } from 'src/app/services/date.service';
+import { GridService } from 'src/app/services/grid.service';
+import { Schedule } from 'src/shared/model/schedule.model';
 
 @Component({
   selector: 'app-stream-view',
@@ -6,12 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./stream-view.component.css'],
 })
 export class StreamViewComponent {
-  date: Date = new Date();
+  date!: Date;
   weekDay: string = '';
   todaysDate: string = '';
+  schedules: Schedule[] = [];
+
+  constructor(
+    private gridService: GridService,
+    private dateService: DateService
+  ) {}
 
   ngOnInit(): void {
+    this.date = this.dateService.getCurrentDate();
     this.getTodaysDateInfos();
+    this.getTodaysSchedule();
   }
 
   getTodaysDateInfos(): void {
@@ -25,5 +36,21 @@ export class StreamViewComponent {
 
   capitalizeFirstLetter(value: string): string {
     return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+
+  formatWeekday(value: string): string {
+    return value.replace('-feira', '').toUpperCase();
+  }
+
+  getTodaysSchedule(): void {
+    this.gridService.getSchedule().subscribe({
+      next: (data) => {
+        const weekdayKey = this.formatWeekday(this.weekDay);
+        this.schedules = data[weekdayKey];
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
   }
 }
