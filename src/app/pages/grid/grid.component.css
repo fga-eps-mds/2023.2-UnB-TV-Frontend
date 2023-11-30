@@ -5,13 +5,19 @@
     padding-left: 20px; 
   }
 .center-table {
-  font-size: 14px;
+  font-size: 12px;
 }
-.center-button {
-  margin-left: auto;
-  margin-right: auto;
-  width: 5%;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
+
+th,
+td {
+  padding: 8px;
+}
+
 tr:not(:last-child) {
   border-bottom-width: 0.01em;
 }
