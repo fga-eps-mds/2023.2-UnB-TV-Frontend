@@ -3,6 +3,7 @@ import { of, throwError } from 'rxjs';
 import { StreamViewComponent } from './stream-view.component';
 import { GridService } from 'src/app/services/grid.service';
 import { Schedule } from 'src/shared/model/schedule.model';
+import { DateService } from 'src/app/services/date.service';
 
 const mockWeekday = 'QUINTA';
 const mockSchedules: Schedule[] = [
@@ -47,6 +48,13 @@ class GridServiceMock {
   }
 }
 
+const mockDate = new Date('2023-11-26T10:00:00.000');
+class DateServiceMock {
+  getCurrentDate(): Date {
+    return mockDate;
+  }
+}
+
 describe('StreamViewComponent', () => {
   let component: StreamViewComponent;
   let fixture: ComponentFixture<StreamViewComponent>;
@@ -55,7 +63,10 @@ describe('StreamViewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [StreamViewComponent],
-      providers: [{ provide: GridService, useValue: new GridServiceMock() }],
+      providers: [
+        { provide: GridService, useValue: new GridServiceMock() },
+        { provide: DateService, useValue: new DateServiceMock() },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(StreamViewComponent);
@@ -96,9 +107,6 @@ describe('StreamViewComponent', () => {
 
   describe('Getting date and time information ', () => {
     it('should get the day and weekday', () => {
-      const mockDate = new Date('2023-11-26T10:00:00.000');
-      component.date = mockDate;
-
       expect(component.todaysDate).toBe('26/11/2023');
       expect(component.weekDay).toBe('Domingo');
     });
