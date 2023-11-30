@@ -18,8 +18,11 @@
       class="w-full px-[1%] grid grid-col-1 font-custom text-[12px] divide-y"
     >
       <div
-        *ngFor="let schedule of schedules"
+        *ngFor="let schedule of schedules; let i = index"
         class="w-full h-7 flex items-center gap-2"
+        [ngClass]="{
+          'font-bold text-[#00A550]': currentProgram && i === highlightedIndex
+        }"
       >
         <div>{{ schedule.time }}</div>
         <div>{{ schedule.activity }}</div>
