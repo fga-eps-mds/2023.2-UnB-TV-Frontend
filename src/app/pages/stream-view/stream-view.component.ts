@@ -12,6 +12,9 @@ export class StreamViewComponent {
   date!: Date;
   weekDay: string = '';
   todaysDate: string = '';
+  currentTime: string = '';
+  currentProgram: boolean = false;
+  highlightedIndex: number | null = null;
   schedules: Schedule[] = [];
 
   constructor(
@@ -21,6 +24,7 @@ export class StreamViewComponent {
 
   ngOnInit(): void {
     this.date = this.dateService.getCurrentDate();
+    this.currentTime = this.dateService.getCurrentTime();
     this.getTodaysDateInfos();
     this.getTodaysSchedule();
   }
@@ -46,11 +50,33 @@ export class StreamViewComponent {
     this.gridService.getSchedule().subscribe({
       next: (data) => {
         const weekdayKey = this.formatWeekday(this.weekDay);
-        this.schedules = data[weekdayKey];
+        this.schedules = data[weekdayKey] || [];
       },
       error: (error) => {
         console.error(error);
       },
+      complete: () => {
+        this.checkCurrentProgram(this.currentTime, this.schedules);
+      },
     });
+  }
+
+  checkCurrentProgram(currentTime: string, schedules: Schedule[]): void {
+    const currentTimeObj =
+      this.dateService.convertTimeStringToDate(currentTime);
+
+    for (let i = 1; i < schedules.length; i++) {
+      const previousTimeObj = this.dateService.convertTimeStringToDate(
+        schedules[i - 1].time as string
+      );
+      const nextTimeObj = this.dateService.convertTimeStringToDate(
+        schedules[i].time as string
+      );
+
+      if (currentTimeObj >= previousTimeObj && currentTimeObj < nextTimeObj) {
+        this.highlightedIndex = i - 1;
+        this.currentProgram = true;
+      }
+    }
   }
 }
