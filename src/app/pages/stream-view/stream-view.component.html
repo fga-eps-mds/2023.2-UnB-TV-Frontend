@@ -1,10 +1,34 @@
-<div class="max-w-full justify-center max-h-full flex">
-  <div class="max-w-6xl h-2/3 max-h-full stream-iframe-container">
+<div
+  class="w-full max-w-3xl flex flex-col justify-center gap-5 center-container"
+>
+  <div class="w-full max-h-96 relative overflow-hidden aspect-video">
     <iframe
       title="Agora na TV"
-      class="stream-iframe"
+      class="w-full h-full top-0 left-0 bottom-0 right-0 absolute"
       src="https://eduplay.rnp.br/portal/tv/embed/168269"
       allowfullscreen
     ></iframe>
+  </div>
+  <div
+    class="min-w-full flex flex-col justify-center gap-3 font-custom text-[#3C3C3B]"
+  >
+    <span class="text-center text-[14px] font-medium">
+      {{ todaysDate }} • {{ weekDay }}
+    </span>
+
+    <section
+      class="w-full px-[1%] grid grid-col-1 font-custom text-[12px] divide-y"
+    >
+      <div
+        *ngFor="let schedule of schedules; let i = index"
+        class="w-full h-7 flex items-center gap-2"
+        [ngClass]="{
+          'font-bold text-[#00A550]': currentProgram && i === highlightedIndex
+        }"
+      >
+        <div>{{ schedule.time }}</div>
+        <div>{{ schedule.activity }}</div>
+      </div>
+    </section>
   </div>
 </div>
