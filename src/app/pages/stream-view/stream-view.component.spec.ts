@@ -48,9 +48,19 @@ class GridServiceMock {
   }
 }
 
-const mockDate = new Date('2023-11-26T10:00:00.000');
+const mockDate = new Date(
+  'Thu Nov 26 2023 08:15:00 GMT-0300 (Horário Padrão de Brasília)'
+);
 class DateServiceMock {
   getCurrentDate(): Date {
+    return mockDate;
+  }
+
+  getCurrentTime(): string {
+    return '08:15';
+  }
+
+  convertTimeStringToDate(): Date {
     return mockDate;
   }
 }
@@ -59,6 +69,7 @@ describe('StreamViewComponent', () => {
   let component: StreamViewComponent;
   let fixture: ComponentFixture<StreamViewComponent>;
   let gridService: GridService;
+  let dateService: DateService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -72,6 +83,7 @@ describe('StreamViewComponent', () => {
     fixture = TestBed.createComponent(StreamViewComponent);
     component = fixture.componentInstance;
     gridService = TestBed.inject(GridService);
+    dateService = TestBed.inject(DateService);
     fixture.detectChanges();
   });
 
@@ -150,6 +162,44 @@ describe('StreamViewComponent', () => {
       );
       component.getTodaysSchedule();
       expect(mySpy).toHaveBeenCalled();
+    });
+  });
+
+  describe('checkCurrentProgram', () => {
+    it('should check current program', () => {
+      const currentTime = '08:30';
+      const mockSchedules: Schedule[] = [
+        { time: '08:00', activity: 'ZAPPING' },
+        { time: '09:00', activity: 'INTERPROGRAMAS' },
+      ];
+
+      spyOn(dateService, 'convertTimeStringToDate').and.callFake(
+        (timeString: string) => {
+          return new Date(`2023-11-26T${timeString}:00.000`);
+        }
+      );
+      component.checkCurrentProgram(currentTime, mockSchedules);
+
+      expect(component.currentProgram).toBe(true);
+      expect(component.highlightedIndex).toBe(0);
+    });
+
+    it('should set currentProgram to false and highlightedIndex to null if no current program', () => {
+      const currentTime = '12:34';
+      const mockSchedules: Schedule[] = [
+        { time: '09:00', activity: 'Program A' },
+        { time: '09:30', activity: 'Program B' },
+      ];
+
+      spyOn(dateService, 'convertTimeStringToDate').and.callFake(
+        (timeString: string) => {
+          return new Date(`2023-11-26T${timeString}:00.000`);
+        }
+      );
+      component.checkCurrentProgram(currentTime, mockSchedules);
+
+      expect(component.currentProgram).toBe(false);
+      expect(component.highlightedIndex).toBeNull();
     });
   });
 });
