@@ -27,4 +27,11 @@ describe('AppComponent', () => {
   it('should create the app', () => {
     expect(component).toBeTruthy();
   });
+
+  it("should have as title 'UnB-TV-Frontend'", () => {
+    const title = "UnB-TV-Frontend"
+    const app =  fixture.componentInstance;
+    expect(app.title).toEqual(title);
+  });
+
 });
