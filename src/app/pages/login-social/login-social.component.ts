@@ -6,7 +6,10 @@ import { Router } from '@angular/router';
 
 interface ServerResponse {
   access_token: string;
+  is_new_user: boolean;
+  user_id: string;
 }
+
 
 @Component({
   selector: 'app-login-social',
@@ -16,6 +19,7 @@ interface ServerResponse {
 export class LoginSocialComponent {
   private user: SocialUser | null = null;
   private loggedIn: boolean = false;
+  
 
   constructor(
     private authService: SocialAuthService,
@@ -57,8 +61,13 @@ export class LoginSocialComponent {
         console.log('Resposta do servidor:', response);
   
         if (response && response.access_token) {    
-          localStorage.setItem('access_token', response.access_token);
-          this.router.navigate(['/videos']);
+          localStorage.setItem('token', response.access_token);
+          
+          if (response.is_new_user) {
+            this.router.navigate([`/editUser/${response.user_id}`]);
+          } else {
+            this.router.navigate(['/videos']);
+          }
         }
       },
       (error) => {
