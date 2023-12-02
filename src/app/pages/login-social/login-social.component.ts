@@ -3,6 +3,7 @@ import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 interface ServerResponse {
   access_token: string;
@@ -24,7 +25,9 @@ export class LoginSocialComponent {
   constructor(
     private authService: SocialAuthService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private Service: AuthService
+    
   ) {
     this.authService.authState.subscribe((user) => {
       this.user = user;
@@ -56,7 +59,7 @@ export class LoginSocialComponent {
       email: user.email
     };
   
-    this.http.post<ServerResponse>('http://localhost:8000/api/auth/login/social', userSocialData).subscribe(
+    this.Service.loginSocialUser(userSocialData).subscribe(
       (response) => {
         console.log('Resposta do servidor:', response);
   
