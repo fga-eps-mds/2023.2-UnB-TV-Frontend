@@ -52,13 +52,12 @@ export class LoginSocialComponent {
       email: user.email
     };
   
-    this.http.post('http://localhost:8000/api/auth/login/social', userSocialData).subscribe(
+    this.http.post<ServerResponse>('http://localhost:8000/api/auth/login/social', userSocialData).subscribe(
       (response) => {
         console.log('Resposta do servidor:', response);
-        
-        
-        if (response && 'access_token' in response) {
-          
+  
+        if (response && response.access_token) {    
+          localStorage.setItem('access_token', response.access_token);
           this.router.navigate(['/videos']);
         }
       },
