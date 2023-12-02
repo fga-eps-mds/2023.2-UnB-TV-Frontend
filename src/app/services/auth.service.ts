@@ -21,6 +21,10 @@ export class AuthService {
     return this.http.post(`${this.usersAPIURL}/auth/login`, user);
   }
 
+  loginSocialUser(userSocialData: any): Observable<any> {
+    return this.http.post(`${this.usersAPIURL}/auth/login/social`, userSocialData);
+  }
+
   activeAccount(emailCode: any): Observable<any> {
     return this.http.patch(`${this.usersAPIURL}/auth/activate-account`, emailCode);
   }
