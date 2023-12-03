@@ -1,4 +1,18 @@
 <div class="container">
+
+        <div id="g_id_onload"
+                data-client_id="254484469180-1imr4ds36p8rq4fe7udkja212tu0p7jl.apps.googleusercontent.com"
+                data-callback="handleCredentialResponse">
+        </div>
+        <div class="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="outline"
+                data-text="$ {button.text}"
+                data-size="large">
+        </div>
+
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
         <button class="google-button"><span>Continuar com o Google</span></button>
         <button (click)="signInWithFB()" class="facebook-button"><span>Continuar com o Facebook</span></button>
         <button [routerLink]="['/login']" class="email-button"><span>Continuar com e-mail</span></button>
