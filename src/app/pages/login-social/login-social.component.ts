@@ -1,14 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+declare var gapi: any;
 
 interface ServerResponse {
   access_token: string;
   is_new_user: boolean;
   user_id: string;
+}
+
+interface GoogleIdentityResponse {
+  credential: string;
+}
+
+interface GoogleIdentityResponse {
+  credential: string;
+  clientId: string;
+}
+
+declare global {
+  interface Window {
+    handleCredentialResponse: (response: any) => void;
+  }
 }
 
 
@@ -17,7 +33,7 @@ interface ServerResponse {
   templateUrl: './login-social.component.html',
   styleUrls: ['./login-social.component.css']
 })
-export class LoginSocialComponent {
+export class LoginSocialComponent implements OnInit {
   private user: SocialUser | null = null;
   private loggedIn: boolean = false;
   
@@ -27,7 +43,6 @@ export class LoginSocialComponent {
     private http: HttpClient,
     private router: Router,
     private Service: AuthService
-    
   ) {
     this.authService.authState.subscribe((user) => {
       this.user = user;
@@ -39,6 +54,26 @@ export class LoginSocialComponent {
       }
     });
   }
+
+  
+
+  ngOnInit(): void {
+    window['handleCredentialResponse'] = this.handleCredentialResponse.bind(this);
+  }
+
+  handleCredentialResponse(response: any) {
+    const jwt = response.credential;
+    const payload = jwt.split('.')[1];
+    const decodedPayload = atob(payload);
+    const userInformation = JSON.parse(decodedPayload);
+  
+    const user: SocialUser = new SocialUser();
+    user.name = userInformation.name;
+    user.email = userInformation.email;
+  
+    this.sendUserDataToServer(user);
+  }
+  
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((user) => {
