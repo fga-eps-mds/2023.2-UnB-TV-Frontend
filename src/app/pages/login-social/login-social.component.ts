@@ -51,6 +51,8 @@ export class LoginSocialComponent implements OnInit {
       if (this.loggedIn) {
         console.log('Nome do usuário:', user.name);
         console.log('Email do usuário:', user.email);
+
+        this.sendUserDataToServer(user);
       }
     });
   }
