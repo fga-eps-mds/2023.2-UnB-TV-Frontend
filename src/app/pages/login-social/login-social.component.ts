@@ -43,24 +43,21 @@ export class LoginSocialComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private Service: AuthService
-  ) {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = user != null;
-
-      if (this.loggedIn) {
-        console.log('Nome do usuário:', user.name);
-        console.log('Email do usuário:', user.email);
-
-        this.sendUserDataToServer(user);
-      }
-    });
-  }
+  ) { }
 
   
 
   ngOnInit(): void {
     window['handleCredentialResponse'] = this.handleCredentialResponse.bind(this);
+    this.loadGoogleButton();
+  }
+
+  loadGoogleButton(): void {
+    const googleScript = document.createElement('script');
+    googleScript.src = 'https://accounts.google.com/gsi/client';
+    googleScript.async = true;
+    googleScript.defer = true;
+    document.body.appendChild(googleScript);
   }
 
   handleCredentialResponse(response: any) {
