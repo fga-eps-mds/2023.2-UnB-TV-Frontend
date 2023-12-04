@@ -10,7 +10,6 @@ describe('LoginSocialComponent', () => {
   let component: LoginSocialComponent;
   let fixture: ComponentFixture<LoginSocialComponent>;
 
-  
   const mockSocialAuthService = jasmine.createSpyObj('SocialAuthService', ['signIn', 'signOut']);
   mockSocialAuthService.authState = of({ 
     email: 'test@example.com',
