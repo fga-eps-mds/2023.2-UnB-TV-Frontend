@@ -13,8 +13,9 @@
     align-items: center;
     width: 100%;
     max-width: 360px;
-    margin: 50px auto; 
-    height: auto;
+    margin-right: auto; 
+    margin-left: auto; 
+    height: 100%;
 }
 
 .google-button {
