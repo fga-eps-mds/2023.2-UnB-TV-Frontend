@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-background',
@@ -36,5 +37,8 @@ export class BackgroundComponent implements OnInit {
     } else {
       this.mobileDevide = false;
     }
+  }
+  getActualRoute(): string {
+    return window.location.pathname;
   }
 }
