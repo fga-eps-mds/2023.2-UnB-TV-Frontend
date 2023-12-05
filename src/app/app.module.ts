@@ -39,6 +39,7 @@ import { ParticipateComponent } from './pages/participate/participate.component'
 import { GridComponent } from './pages/grid/grid.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 
 @NgModule({
   imports: [
@@ -56,7 +57,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     MenuModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxGoogleAnalyticsModule.forRoot('G-XL7Z0L7VM8'),
+    NgxGoogleAnalyticsRouterModule
   ],
 
   declarations: [
