@@ -28,6 +28,7 @@
     "angular-oauth2-oidc": "^15.0.1",
     "hls.js": "^1.4.12",
     "jwt-decode": "^3.1.2",
+    "ngx-google-analytics": "^14.0.1",
     "postcss-cli": "^10.1.0",
     "postcss-import": "^15.1.0",
     "postcss-loader": "^7.3.3",
