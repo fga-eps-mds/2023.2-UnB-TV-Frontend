@@ -10,19 +10,23 @@
     font-family: "unb-pro", sans-serif;
     font-style: normal;
     font-weight: 700;
-    line-height: 12.35px;
-    margin-left: 29px;
-    margin-top: 45px;
-    margin-bottom: 40px;
+    line-height: 12.35px;  
     text-align: start;
+    margin-bottom: 50px;
 }
 
 .containner {
+    
     width: 360px;
-    margin-left: auto;
+    height: 100%;
     margin-right: auto;
-    text-align: center;
-    height: -300px;
+    margin-left: auto;
+    margin-top: 0; 
+    margin-bottom: 0; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 .input:focus {
