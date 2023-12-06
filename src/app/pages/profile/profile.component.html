@@ -1,44 +1,43 @@
-<div class="flex justify-center items-center flex-col">
-  <div class="text-center">
+<div class="w-full h-full flex justify-center items-center flex-col gap-11">
+  <div
+    class="max-w-[280px] max-h-[170px] grid grid-cols-1 align-middle p-4 m-0 gap-4 rounded-xl border border-gray-300 divide-y font-custom break-words text-center"
+    *ngIf="user"
+  >
+    <div class="text-center font-bold text-sm text-blue-brand">Perfil</div>
+
     <div
-      class="mb-4 flex flex-col justify-start items-center bg-zinc-300 p-4 rounded-xl shadow-md"
-      *ngIf="user"
+      class="flex flex-col justify-center items-center gap-2 pt-3 text-[12px] text-[#3c3c3b]"
     >
-      <div class="flex flex-row">
-        <div class="font-bold">Nome:&nbsp;</div>
+      <span class="w-full font-bold">
         {{ user.name }}
-      </div>
-      <div class="flex flex-row">
-        <div class="font-bold">Vínculo:&nbsp;</div>
-        {{ user.connection }}
-      </div>
-      <div class="flex flex-row">
-        <div class="font-bold">Email:&nbsp;</div>
+      </span>
+      <span class="w-full font-normal">
         {{ user.email }}
-      </div>
+      </span>
     </div>
-    <button id="editUser"
-      class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32"
-      (click)="navigatorEdit()"
+
+    <div
+      class="w-full h-8 flex justify-center items-center font-normal text-[12px] text-[#3c3c3b]"
     >
-      Editar perfil
-    </button>
+      {{ connection }}
+    </div>
   </div>
-  <div class="flex items-center justify-center">
-    <button id="deleteUser"
-      class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-32"
-      (click)="deleteUser()"
-    >
-      Deletar usuário
+
+  <button
+    id="editUser"
+    class="w-full h-[30px] max-w-[103px] bg-blue-brand rounded-lg text-white"
+    (click)="navigatorEdit()"
+  >
+    Editar
+  </button>
+
+  <div class="flex flex-initial flex-col gap-4 text-[11px] text-blue-brand">
+    <button id="deleteUser" class="rounded-lg" (click)="deleteUser()">
+      Deseja excluir o perfil?
     </button>
-  </div>
-  <div class="flex items-center justify-center">
-    <button
-    id="logout"
-      class="p-2 bg-blue-brand rounded-lg justify-center my-8 text-white md:h-10 md:w-16"
-      (click)="logoutUser()"
-    >
-      Sair
-    </button>
+
+    <button id="changePassword">Alterar senha</button>
+
+    <button id="logout" (click)="logoutUser()">Sair</button>
   </div>
 </div>

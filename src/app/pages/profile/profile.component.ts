@@ -10,7 +10,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 type ErrorResponseType = HttpErrorResponse;
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -19,6 +18,7 @@ type ErrorResponseType = HttpErrorResponse;
 export class ProfileComponent {
   user: any;
   userId: any;
+  connection: string = '';
 
   constructor(
     private router: Router,
@@ -27,7 +27,7 @@ export class ProfileComponent {
     private alertService: AlertService,
     private confirmationService: ConfirmationService,
     private authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.setUserIdFromToken(localStorage.getItem('token') as string);
@@ -43,6 +43,7 @@ export class ProfileComponent {
     this.userService.getUser(this.userId).subscribe({
       next: (data) => {
         this.user = data;
+        this.connection = this.formatingConnection(this.user.connection);
       },
       error: (error: ErrorResponseType) => {
         console.log(error);
@@ -60,8 +61,7 @@ export class ProfileComponent {
       accept: () => {
         this.authService.logout();
       },
-      reject: () => {
-      },
+      reject: () => {},
     });
   }
 
@@ -87,13 +87,16 @@ export class ProfileComponent {
           },
         });
       },
-      reject: () => {
-      },
+      reject: () => {},
     });
-
   }
 
   navigatorEdit(): void {
     this.router.navigate([`/editUser/${this.user.id}`]);
+  }
+
+  formatingConnection(value: string): string {
+    let str = value.toLowerCase();
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 }

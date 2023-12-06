@@ -18,10 +18,11 @@
     margin-top: 45px;
     margin-bottom: 40px;
     text-align: start;
+
 }
 
 .first {
-    border: 0.15px solid #3C3C3B;
+    border: 0.15px solid #969696;
     margin-left: 29px;
     width: 330px;
     border-radius: 9px;
@@ -35,7 +36,7 @@ form ::placeholder {
 }
 
 .descricao {
-    border: 0.15px solid #3C3C3B;
+    border: 0.15px solid #969696;
     margin-left: 29px;
     width: 330px;
     border-radius: 9px;
@@ -62,5 +63,15 @@ span {
 
 .input:focus {
     outline: none !important;
-    border: 0.25px solid #00A550;
+    border: 0.25px solid #0087C8;
 }
+
+.button {
+    padding: 3px 33px 3px 33px;
+    border-radius: 9px;
+    margin-top: 7px;
+}
+
+.button:hover {
+    border-color: #0087C8;
+  }
