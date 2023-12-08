@@ -9,20 +9,20 @@
   </div>
   <div class="flex justify-center flex-col gap-6 p-3 m-3">
     <div class="max-w-full justify-start max-h-full flex">
-      <h4 class="font-custom font-bold">
+      <h4 class="font-custom font-bold text-gray-800">
         {{ video.title }}
       </h4>
     </div>
-    <div class="max-w-full max-h-full flex text-[12px] font-custom">
+    <div class="max-w-full max-h-full flex text-[12px] font-custom text-gray-800">
       <div>
         <span
           *ngIf="!showDescription && videoDescription.length > characterLimit"
-          class="clamped-description"
+          class="clamped-description text-gray-800"
           [innerHTML]="videoDescription"
         ></span>
         <button
           *ngIf="!showDescription && videoDescription.length > characterLimit"
-          class="font-bold"
+          class="font-bold text-gray-800"
           (click)="expandDescription()"
         >
           Mostrar
@@ -30,7 +30,7 @@
 
         <span *ngIf="showDescription" [innerHTML]="videoDescription"></span>
         <div *ngIf="showDescription">
-          <button class="font-bold" (click)="expandDescription()">
+          <button class="font-bold text-gray-800" (click)="expandDescription()">
             Mostrar menos
           </button>
         </div>
