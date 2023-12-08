@@ -91,6 +91,21 @@ export class ProfileComponent {
     });
   }
 
+  showRenewTokenDialog() {
+    this.confirmationService.confirm({
+      message: 'Deseja se manter logado?',
+      header: 'Confirmação',
+      key: 'myDialog',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.renewToken();
+      },
+      reject: () => {
+        this.authService.logout();
+      },
+    });
+  }
+
   renewToken() {
     this.authService.refreshToken().subscribe({
       next: (response) => {
