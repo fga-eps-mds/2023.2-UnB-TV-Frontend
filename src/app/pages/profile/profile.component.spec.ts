@@ -125,6 +125,18 @@ describe('ProfileComponent', () => {
     expect(mySpy).toHaveBeenCalled();
   });
 
+  it('should renew token', () => {
+    spyOn(authService, 'refreshToken').and.returnValue(of({ access_token: 'newToken' }));
+    spyOn(localStorage, 'setItem');
+    spyOn(component, 'getUser');
+  
+    component.renewToken();
+  
+    expect(authService.refreshToken).toHaveBeenCalled();
+    expect(localStorage.setItem).toHaveBeenCalledWith('token', 'newToken');
+    expect(component.getUser).toHaveBeenCalled();
+  });
+
   it('should call navigatorEdit when editUser is clicked', () => {
     spyOn(component, 'navigatorEdit').and.callThrough();
     const navigateSpy = spyOn(router, 'navigate');
