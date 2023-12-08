@@ -91,6 +91,21 @@ export class ProfileComponent {
     });
   }
 
+  renewToken() {
+    this.authService.refreshToken().subscribe({
+      next: (response) => {
+        if (response && response.access_token) {
+          localStorage.setItem('token', response.access_token);
+          this.getUser();
+        }
+      },
+      error: (error: ErrorResponseType) => {
+        console.error('Failed to refresh token:', error);
+        this.authService.logout();
+      }
+    });
+  }
+  
   navigatorEdit(): void {
     this.router.navigate([`/editUser/${this.user.id}`]);
   }
