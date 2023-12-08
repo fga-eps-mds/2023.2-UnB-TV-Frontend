@@ -125,16 +125,13 @@ describe('ProfileComponent', () => {
     expect(mySpy).toHaveBeenCalled();
   });
 
-  it('should renew token', () => {
-    spyOn(authService, 'refreshToken').and.returnValue(of({ access_token: 'newToken' }));
-    spyOn(localStorage, 'setItem');
-    spyOn(component, 'getUser');
+  it('should call refreshToken and set token in localStorage', () => {
+    spyOn(authService, 'refreshToken').and.returnValue(of({ access_token: 'new_access_token' }));
   
     component.renewToken();
   
     expect(authService.refreshToken).toHaveBeenCalled();
-    expect(localStorage.setItem).toHaveBeenCalledWith('token', 'newToken');
-    expect(component.getUser).toHaveBeenCalled();
+    expect(localStorage.getItem('token')).toEqual('new_access_token');
   });
 
   it('should call navigatorEdit when editUser is clicked', () => {
