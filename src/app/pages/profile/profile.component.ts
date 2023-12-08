@@ -7,6 +7,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { take, timer } from 'rxjs';
 
 type ErrorResponseType = HttpErrorResponse;
 
@@ -32,6 +33,11 @@ export class ProfileComponent {
   ngOnInit(): void {
     this.setUserIdFromToken(localStorage.getItem('token') as string);
     this.getUser();
+    timer(15 * 60 * 1000)
+    .pipe(take(1))
+    .subscribe(() => {
+      this.showRenewTokenDialog();
+    });
   }
 
   setUserIdFromToken(token: string) {
