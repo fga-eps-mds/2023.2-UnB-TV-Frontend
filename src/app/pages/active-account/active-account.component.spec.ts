@@ -163,3 +163,5 @@ describe('ActiveAccountComponent', () => {
     expect(component.resendCode).toHaveBeenCalled();
 
 });
+
+});
