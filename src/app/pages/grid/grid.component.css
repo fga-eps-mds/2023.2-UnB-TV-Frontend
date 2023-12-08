@@ -18,6 +18,7 @@ td {
   padding: 5px;
 }
 
+
 tr:not(:last-child) {
   border-bottom-width: 0.01em;
 }
@@ -27,8 +28,10 @@ td::first-letter {
 }
 td {
   text-transform: lowercase;
+
 }
 
 p {
   font-size: 15px;
+
 }
