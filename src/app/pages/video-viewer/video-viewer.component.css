@@ -4,4 +4,11 @@
     -webkit-line-clamp: 3;
     overflow: hidden;
   }
-  
+.button-style {
+    border-radius: 9px;
+    background: #0087C8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15);
+}
+.font-size-default{
+    font-size: 11px;
+}

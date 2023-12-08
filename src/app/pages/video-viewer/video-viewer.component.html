@@ -11,7 +11,28 @@
     <div class="max-w-full justify-start max-h-full flex">
       <h4 class="font-custom font-bold">
         {{ video.title }}
-      </h4>
+      </h4>    
+    </div>
+    
+    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="mr-4" type="button">
+    <img src="../../../assets/share.svg" alt="compartilhar">
+    </button>
+  
+    <div id="popup-modal" tabindex="-1" width="280px" border-radius="9px" class="">
+      <div class="relative p-4 w-full max-w-md max-h-full">
+          <div class="">
+              <div class="p-4 md:p-5 text-center">
+                  <h3 class="">Compartilhar esse vídeo?</h3>
+                  <button data-modal-hide="popup-modal" type="button" class="text-white text-center button-style font-size-default">
+                    sim
+                  </button>
+                  <button data-modal-hide="popup-modal" type="button" class="text-white text-center button-style font-size-default">
+                    não
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>  
     </div>
     <div class="max-w-full max-h-full flex text-[12px] font-custom">
       <div>
@@ -36,8 +57,7 @@
         </div>
       </div>
     </div>
-    <div>
-      <app-video-comment />
-    </div>
+  <div>
+    <app-video-comment />
   </div>
 </div>

@@ -40,6 +40,7 @@ import { GridComponent } from './pages/grid/grid.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 
 @NgModule({
   imports: [
