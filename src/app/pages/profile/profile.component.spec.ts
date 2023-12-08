@@ -38,9 +38,7 @@ class AlertServiceMock {
 
 class AuthServiceMock {
   logout() { }
-  refreshToken() {
-    return of({ success: true });
-  }
+  refreshToken() { }
 }
 
 class ConfirmationServiceMock {
@@ -137,6 +135,15 @@ describe('ProfileComponent', () => {
     expect(localStorage.getItem('token')).toEqual('new_access_token');
   });
   
+  it('should handle error when renewing token', () => {
+    spyOn(authService, 'refreshToken').and.returnValue(throwError('error'));
+    spyOn(console, 'error');
+  
+    component.renewToken();
+  
+    expect(authService.refreshToken).toHaveBeenCalled();
+    expect(console.error).toHaveBeenCalledWith('Failed to refresh token:', 'error');
+  });
 
   it('should call navigatorEdit when editUser is clicked', () => {
     spyOn(component, 'navigatorEdit').and.callThrough();
