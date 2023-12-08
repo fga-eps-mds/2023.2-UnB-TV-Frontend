@@ -117,7 +117,6 @@ export class ProfileComponent {
       next: (response) => {
         if (response?.access_token) {
           localStorage.setItem('token', response.access_token);
-          this.getUser();
         }
       },
       error: (error: ErrorResponseType) => {
