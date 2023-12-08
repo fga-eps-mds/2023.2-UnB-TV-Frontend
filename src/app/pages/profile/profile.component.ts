@@ -115,7 +115,7 @@ export class ProfileComponent {
   renewToken() {
     this.authService.refreshToken().subscribe({
       next: (response) => {
-        if (response && response.access_token) {
+        if (response?.access_token) {
           localStorage.setItem('token', response.access_token);
           this.getUser();
         }
