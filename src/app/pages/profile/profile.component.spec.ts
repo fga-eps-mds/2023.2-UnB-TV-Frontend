@@ -38,6 +38,9 @@ class AlertServiceMock {
 
 class AuthServiceMock {
   logout() { }
+  refreshToken() {
+    return of({ success: true });
+  }
 }
 
 class ConfirmationServiceMock {
@@ -133,6 +136,7 @@ describe('ProfileComponent', () => {
     expect(authService.refreshToken).toHaveBeenCalled();
     expect(localStorage.getItem('token')).toEqual('new_access_token');
   });
+  
 
   it('should call navigatorEdit when editUser is clicked', () => {
     spyOn(component, 'navigatorEdit').and.callThrough();
