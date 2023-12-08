@@ -7,10 +7,11 @@
             <input pInputText type="text" class="input first button" name="quando" formControlName="quando" placeholder="Quando (data e hora)" >
             <input pInputText type="text" class="input first button" name="local" formControlName="local" placeholder="Local" >
             <input pInputText type="text" class="input first button" name="responsavel" formControlName="responsavel" placeholder="Responsável *" required >
-            <input pInputText type="text" class="input first button" name="telefone-responsavel" formControlName="telefoneResponsavel" placeholder="Telefone do Responsável *" required>
+            <input pInputText type="text" class="input first button" name="telefone-responsavel" formControlName="telefoneResponsavel" placeholder="(xx) xxxxx-xxxx *" required>
             <input pInputText type="text" class="input first button" name="email-contato" formControlName="emailContato" placeholder="E-mail para contato" >
             <div>
                 <p style="color: #969696; text-align: left; margin-left: 30px;"><small>*Campo obrigatório</small></p>
+
                 <button type="submit">
                     <span *ngIf="isSendingEmail">Enviando...</span>
                     <span *ngIf="!isSendingEmail">Enviar</span>
