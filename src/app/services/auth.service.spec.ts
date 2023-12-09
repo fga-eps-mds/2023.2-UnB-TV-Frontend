@@ -132,8 +132,10 @@ describe('AuthService', () => {
 
   it('should logout', () => {
     localStorage.setItem('token', 'testtoken');
+    const navigateSpy = spyOn(service['router'], 'navigate');
     service.logout();
     expect(localStorage.getItem('token')).toBeNull();
+    expect(navigateSpy).toHaveBeenCalledWith(['/loginsocial']);
   });
-
+  
 });
