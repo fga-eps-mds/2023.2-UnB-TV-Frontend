@@ -45,3 +45,6 @@ Thumbs.db
 /src/app/environment
 /src/app/secret
 /src/app/app.constant.ts
+certificate.cnf
+localhost.crt
+localhost.key
