@@ -49,7 +49,11 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return !!token;
   }
-
+  
+  refreshToken(): Observable<any> {
+    return this.http.post(`${this.usersAPIURL}/auth/refresh`, null);
+  }
+  
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/loginsocial']);

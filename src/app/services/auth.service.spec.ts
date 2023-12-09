@@ -118,6 +118,18 @@ describe('AuthService', () => {
     req.flush(userResponse);
   });
 
+  it('should refresh token', () => {
+    const dummyResponse = { access_token: 'dummyToken' };
+    
+    service.refreshToken().subscribe(res => {
+      expect(res).toEqual(dummyResponse);
+    });
+    
+    const req = httpMock.expectOne(`${service.usersAPIURL}/auth/refresh`);
+    expect(req.request.method).toBe('POST');
+    req.flush(dummyResponse);
+  });  
+
   it('should logout', () => {
     localStorage.setItem('token', 'testtoken');
     const navigateSpy = spyOn(service['router'], 'navigate');
