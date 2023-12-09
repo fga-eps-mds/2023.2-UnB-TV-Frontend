@@ -38,6 +38,8 @@ class AlertServiceMock {
 
 class AuthServiceMock {
   logout() { }
+  refreshToken() { }
+  showRenewTokenDialog() { }
 }
 
 class ConfirmationServiceMock {
@@ -123,6 +125,49 @@ describe('ProfileComponent', () => {
     submitButton.click();
 
     expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call refreshToken and set token in localStorage', () => {
+    spyOn(authService, 'refreshToken').and.returnValue(of({ access_token: 'new_access_token' }));
+  
+    component.renewToken();
+  
+    expect(authService.refreshToken).toHaveBeenCalled();
+    expect(localStorage.getItem('token')).toEqual('new_access_token');
+  });
+
+  it('should handle error when renewing token', () => {
+    spyOn(authService, 'refreshToken').and.returnValue(throwError('error'));
+    spyOn(console, 'error');
+  
+    component.renewToken();
+  
+    expect(authService.refreshToken).toHaveBeenCalled();
+    expect(console.error).toHaveBeenCalledWith('Failed to refresh token:', 'error');
+  });
+  it('should show renew token dialog', () => {
+    const confirmSpy = spyOn(confirmationService, 'confirm').and.callFake((params: any) => {
+      params.accept();
+      params.reject();
+  
+      // Return a mock ConfirmationService instance
+      return {} as ConfirmationService;
+    });
+    const renewTokenSpy = spyOn(component, 'renewToken');
+    const logoutSpy = spyOn(authService, 'logout');
+  
+    component.showRenewTokenDialog();
+  
+    expect(confirmSpy).toHaveBeenCalledWith({
+      message: 'Deseja se manter logado?',
+      header: 'Confirmação',
+      key: 'myDialog',
+      icon: 'pi pi-exclamation-triangle',
+      accept: jasmine.any(Function),
+      reject: jasmine.any(Function),
+    });
+    expect(renewTokenSpy).toHaveBeenCalled();
+    expect(logoutSpy).toHaveBeenCalled();
   });
 
   it('should call navigatorEdit when editUser is clicked', () => {

@@ -7,6 +7,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { take, timer } from 'rxjs';
 
 type ErrorResponseType = HttpErrorResponse;
 
@@ -32,6 +33,11 @@ export class ProfileComponent {
   ngOnInit(): void {
     this.setUserIdFromToken(localStorage.getItem('token') as string);
     this.getUser();
+    timer(15 * 60 * 1000)
+    .pipe(take(1))
+    .subscribe(() => {
+      this.showRenewTokenDialog();
+    });
   }
 
   setUserIdFromToken(token: string) {
@@ -91,6 +97,35 @@ export class ProfileComponent {
     });
   }
 
+  showRenewTokenDialog() {
+    this.confirmationService.confirm({
+      message: 'Deseja se manter logado?',
+      header: 'Confirmação',
+      key: 'myDialog',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.renewToken();
+      },
+      reject: () => {
+        this.authService.logout();
+      },
+    });
+  }
+
+  renewToken() {
+    this.authService.refreshToken().subscribe({
+      next: (response) => {
+        if (response?.access_token) {
+          localStorage.setItem('token', response.access_token);
+        }
+      },
+      error: (error: ErrorResponseType) => {
+        console.error('Failed to refresh token:', error);
+        this.authService.logout();
+      }
+    });
+  }
+  
   navigatorEdit(): void {
     this.router.navigate([`/editUser/${this.user.id}`]);
   }
