@@ -13,8 +13,8 @@
     align-items: center;
     width: 100%;
     max-width: 360px;
-    margin-right: auto; 
-    margin-left: auto; 
+    margin-right: auto;
+    margin-left: auto;
     height: 100%;
 }
 
@@ -29,13 +29,12 @@
     top: 210px;
     left: 50px;
     margin: 5px;
-    border: 0.15px solid #3C3C3B; 
+    border: 0.15px solid #3C3C3B;
     border-radius: 9px;
     line-height: 10px;
     font-weight: 400;
     font-size: 13px;
     background-image: url('../../../assets/google.png');
-    background-position: center;
     background-size: 7% auto;
     background-repeat: no-repeat;
     background-position: 220px 6px;
@@ -46,7 +45,6 @@
 
 .facebook-button {
     text-align: center;
-    background-color: white;
     color:  black;
     padding: 10px 20px;
     border-color: black;
@@ -60,14 +58,13 @@
     border-radius: 5px;
     line-height: 10px;
     background-image: url('../../../assets/facebook-icon-white-png.png');
-    background-position: center;
     background-size: 8% auto;
     background-repeat: no-repeat;
     background-position: 12px 9px;
     margin-bottom: 10.5px;
     margin-top: 19.5px;
     background-color: #1877F2;
-    
+
 }
 
 
@@ -78,8 +75,8 @@
     font-family: Helvetic ,sans-serif;
     font-size: 14px;
     color: white;
-    
-    
+
+
 }
 
 .email-button{
@@ -100,7 +97,6 @@
     margin-top: 10px;
     margin-bottom: 18.5px;
     background-image: url('../../../assets/email-svgrepo-com.svg');
-    background-position: center;
     background-size: 8% auto;
     background-repeat: no-repeat;
     background-position: 12px 9px;
