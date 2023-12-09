@@ -3,7 +3,12 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { EDUPLAY_API_URL, UNB_ID } from 'src/app/app.constant';
+import {
+  EDUPLAY_API_URL,
+  UNB_ID,
+  VIDEOS_LIMIT,
+  VIDEOS_ORDER,
+} from 'src/app/app.constant';
 import { EDUPLAY_CLIENT_KEY } from '../environment/environment';
 import { VideoService } from './video.service';
 
@@ -269,7 +274,7 @@ describe('VideoService', () => {
       });
 
       const req = httpMock.expectOne(
-        `${EDUPLAY_API_URL}video?institution=${UNB_ID}`
+        `${EDUPLAY_API_URL}video?institution=${UNB_ID}&limit=${VIDEOS_LIMIT}&order=${VIDEOS_ORDER}`
       );
       expect(req.request.method).toBe('GET');
       expect(req.request.headers.get('clientkey')).toBe(EDUPLAY_CLIENT_KEY);
