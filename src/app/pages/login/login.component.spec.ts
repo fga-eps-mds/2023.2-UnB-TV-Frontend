@@ -120,6 +120,14 @@ describe('LoginComponent', () => {
     expect(component.navigator).toHaveBeenCalledWith('/register');
   });
 
+  it('should call navigator method when "Login com redes sociais" is clicked', () => {
+    spyOn(component, 'navigator').and.callThrough();
+    const loginsocial = fixture.nativeElement.querySelector('.text-blue-brand');
+    loginsocial.click();
+
+    expect(component.navigator).toHaveBeenCalledWith('/login-social');
+  });
+
   it('should call login and return an error', () => {
     fixture.detectChanges();
     const form = component.userForm;
