@@ -122,10 +122,10 @@ describe('LoginComponent', () => {
 
   it('should call navigator method when "Login com redes sociais" is clicked', () => {
     spyOn(component, 'navigator').and.callThrough();
-    const loginsocial = fixture.nativeElement.querySelector('.text-blue-brand');
-    loginsocial.click();
+    const loginSocial = fixture.nativeElement.querySelector('.text-blue-brand');
+    loginSocial.click();
 
-    expect(component.navigator).toHaveBeenCalledWith('/login-social');
+    expect(component.navigator).toHaveBeenCalledWith('/loginsocial');
   });
 
   it('should call login and return an error', () => {
