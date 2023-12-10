@@ -3,7 +3,7 @@
     <div class="pt-10 flex justify-center items-center">
       <img alt="simbolo-unb" src="../../../assets/Simbolo_UnBTV-01 1.png" />
     </div>
-    <div *ngIf="getActualRoute() !== '/login'">
+    <div *ngIf="getActualRoute() !== '/login' && getActualRoute() !== '/loginsocial'">
     <nav class="flex flex-row items-center justify-center pl-3">
       <ul class="flex flex-row gap-1 text-xs">
         <div *ngIf="getActualRoute() === '/stream'">

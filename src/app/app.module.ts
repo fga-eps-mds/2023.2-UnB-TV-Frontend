@@ -11,6 +11,9 @@ import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+
 
 // Declaration
 import { NgModule } from '@angular/core';
@@ -58,6 +61,7 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-go
     FormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    SocialLoginModule,
     NgxGoogleAnalyticsModule.forRoot('G-XL7Z0L7VM8'),
     NgxGoogleAnalyticsRouterModule
   ],
@@ -94,7 +98,28 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-go
     },
     { provide: OAuthStorage, useValue: localStorage },
     MessageService,
-    ConfirmationService
+    ConfirmationService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '254484469180-1imr4ds36p8rq4fe7udkja212tu0p7jl.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('2640880742734858')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent],
 })

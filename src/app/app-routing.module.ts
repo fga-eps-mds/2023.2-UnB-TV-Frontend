@@ -16,22 +16,16 @@ import { UpdateRoleComponent } from './pages/update-role/update-role.component';
 import { AdminGuard } from './services/admin.guard';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
 import { ParticipateComponent } from './pages/participate/participate.component';
-import { GridDaysComponent } from './pages/grid-days/grid-days.component'; 
-import { GridComponent } from './pages/grid/grid.component'; 
+import { GridDaysComponent } from './pages/grid-days/grid-days.component';
+import { GridComponent } from './pages/grid/grid.component';
 
 import { WithTokenGuard } from './guard/with-token.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'loginsocial', component: LoginSocialComponent },
   { path: 'stream', component: StreamViewComponent },
   { path: 'videos', component: VideoComponent },
   { path: 'video/:idVideo', component: VideoViewerComponent },
-  { path: 'activeAccount', component: ActiveAccountComponent },
-  { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
-  { path: 'changePassword', component: ResetPasswordComponent },
-  { path: '', component: VideoComponent, canActivate: [AuthGuard], }, // Default route - Showd be stream component
+  { path: '', component: VideoComponent, canActivate: [AuthGuard], },
   { path: 'login', component: LoginComponent, canActivate: [WithTokenGuard], },
   { path: 'register', component: RegisterComponent, canActivate: [WithTokenGuard], },
   { path: 'loginsocial', component: LoginSocialComponent, canActivate: [WithTokenGuard], },

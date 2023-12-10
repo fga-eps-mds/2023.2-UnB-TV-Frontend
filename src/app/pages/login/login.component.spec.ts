@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  tick,
+  fakeAsync,
+} from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -13,14 +18,14 @@ import { VideoComponent } from '../video/video.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActiveAccountComponent } from '../active-account/active-account.component';
 
-
 const mockUserReturn = {
-  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvMTV2aWN0b3IwOEBnbWFpbC5jb20iLCJleHAiOjE2OTkzMTI5MzV9.1B9qBJt8rErwBKyD5JCdsPozsw86oQ38tdfDuMM2HFI",
-  "token_type": "bearer"
+  access_token:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvMTV2aWN0b3IwOEBnbWFpbC5jb20iLCJleHAiOjE2OTkzMTI5MzV9.1B9qBJt8rErwBKyD5JCdsPozsw86oQ38tdfDuMM2HFI',
+  token_type: 'bearer',
 };
 
 class AuthServiceMock {
-  constructor() { }
+  constructor() {}
 
   loginUser() {
     return of({ success: true });
@@ -28,7 +33,7 @@ class AuthServiceMock {
 }
 
 class AlertServiceMock {
-  constructor() { }
+  constructor() {}
   showMessage() {
     return of({ success: true });
   }
@@ -45,21 +50,26 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ReactiveFormsModule, RouterTestingModule.withRoutes(
-        [
+      imports: [
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        RouterTestingModule.withRoutes([
           { path: 'profile', component: ProfileComponent },
-          { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent },
+          {
+            path: 'sendCodeResetPassword',
+            component: CheckCodeRestPasswordComponent,
+          },
           { path: 'register', component: RegisterComponent },
           { path: 'videos', component: VideoComponent },
-          { path: 'activeAccount', component: ActiveAccountComponent }
-        ]
-      )],
+          { path: 'activeAccount', component: ActiveAccountComponent },
+        ]),
+      ],
       providers: [
         FormBuilder,
         AuthService,
         AlertService,
         { provide: AlertService, useValue: new AlertServiceMock() }, // Provide the mock class
-        { provide: AuthService, useValue: new AuthServiceMock() }
+        { provide: AuthService, useValue: new AuthServiceMock() },
       ],
       declarations: [LoginComponent],
     }).compileComponents();
@@ -85,7 +95,9 @@ describe('LoginComponent', () => {
     const form = component.userForm;
     form.setValue({ email: 'test@example.com', password: 'password' });
 
-    const submitButton = fixture.nativeElement.querySelector('button[type="submit"]');
+    const submitButton = fixture.nativeElement.querySelector(
+      'button[type="submit"]'
+    );
     submitButton.click();
     tick();
 
@@ -97,16 +109,23 @@ describe('LoginComponent', () => {
     const alertSpy = spyOn(alertService, 'showMessage');
     fixture.detectChanges();
 
-    const submitButton = fixture.nativeElement.querySelector('button[type="submit"]');
+    const submitButton = fixture.nativeElement.querySelector(
+      'button[type="submit"]'
+    );
     submitButton.click();
     tick();
 
-    expect(alertSpy).toHaveBeenCalledWith('info', 'Alerta', 'Preencha todos os campos corretamente!');
+    expect(alertSpy).toHaveBeenCalledWith(
+      'info',
+      'Alerta',
+      'Preencha todos os campos corretamente!'
+    );
   }));
 
   it('should call navigator method when "Esqueceu a senha?" is clicked', () => {
     spyOn(component, 'navigator').and.callThrough();
-    const forgotPasswordLink = fixture.nativeElement.querySelector('.text-gray-400');
+    const forgotPasswordLink =
+      fixture.nativeElement.querySelector('.text-gray-400');
     forgotPasswordLink.click();
 
     expect(component.navigator).toHaveBeenCalledWith('/sendCodeResetPassword');
@@ -114,21 +133,36 @@ describe('LoginComponent', () => {
 
   it('should call navigator method when "Cadastre-se" is clicked', () => {
     spyOn(component, 'navigator').and.callThrough();
-    const registerLink = fixture.nativeElement.querySelector('.text-blue-brand');
+    const registerLink =
+      fixture.nativeElement.querySelector('.text-blue-brand');
     registerLink.click();
 
     expect(component.navigator).toHaveBeenCalledWith('/register');
+  });
+
+  it('should call navigator method when "Login com redes sociais" is clicked', () => {
+    const navigatorSpy = spyOn(component, 'navigator').and.callThrough();
+    const loginSocial = fixture.nativeElement.querySelector('#loginSocialButton');
+    loginSocial.click();
+
+    expect(navigatorSpy).toHaveBeenCalledWith('/loginsocial');
   });
 
   it('should call login and return an error', () => {
     fixture.detectChanges();
     const form = component.userForm;
     form.setValue({ email: 'test@example.com', password: 'password' });
-    const mySpy = spyOn(authService, 'loginUser').and.returnValue(throwError(() => new HttpErrorResponse({ error: { detail: 'A sua conta ainda não foi ativada.' } })));
+    const mySpy = spyOn(authService, 'loginUser').and.returnValue(
+      throwError(
+        () =>
+          new HttpErrorResponse({
+            error: { detail: 'A sua conta ainda não foi ativada.' },
+          })
+      )
+    );
     spyOn(component, 'navigator').and.callThrough();
     component.login();
     expect(mySpy).toHaveBeenCalled();
     expect(component.navigator).toHaveBeenCalledWith('/activeAccount');
   });
-
 });
