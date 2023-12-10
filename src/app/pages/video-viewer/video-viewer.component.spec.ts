@@ -69,8 +69,6 @@ describe('VideoViewerComponent', () => {
   });
 
   it('should share video with native share API on mobile', () => {
-    spyOnProperty(navigator, 'userAgent').and.returnValue('Android');
-
     const shareSpy = spyOn(navigator, 'share').and.callThrough();
     const clipboardSpy = spyOn(navigator.clipboard, 'writeText');
 
@@ -81,8 +79,6 @@ describe('VideoViewerComponent', () => {
   });
 
   it('should copy video URL to clipboard on desktop', () => {
-    spyOnProperty(navigator, 'userAgent').and.returnValue('Windows');
-
     const shareSpy = spyOn(navigator, 'share');
     const clipboardSpy = spyOn(navigator.clipboard, 'writeText').and.returnValue(Promise.resolve());
 
@@ -93,12 +89,8 @@ describe('VideoViewerComponent', () => {
   });
 
   it('should open WhatsApp with video URL on mobile', () => {
-    spyOnProperty(navigator, 'userAgent').and.returnValue('Android');
-
     const shareSpy = spyOn(navigator, 'share').and.throwError('Not supported');
-
     const clipboardSpy = spyOn(navigator.clipboard, 'writeText').and.callThrough();
-
     const windowOpenSpy = spyOn(window, 'open');
 
     component.shareVideo();
@@ -109,11 +101,8 @@ describe('VideoViewerComponent', () => {
   });
 
   it('should handle unsupported share options gracefully', () => {
-    spyOnProperty(navigator, 'userAgent').and.returnValue('Mozilla');
-
     const shareSpy = spyOn(navigator, 'share').and.throwError('Not supported');
     const clipboardSpy = spyOn(navigator.clipboard, 'writeText').and.throwError('Not supported');
-
     const consoleWarnSpy = spyOn(console, 'warn');
 
     component.shareVideo();
