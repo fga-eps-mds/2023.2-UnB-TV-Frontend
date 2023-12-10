@@ -108,6 +108,16 @@ describe('VideoViewerComponent', () => {
     expect(component.videoDescription).toEqual(expectedVideo.description);
   });
 
+  it('should return the correct video URL', () => {
+    component.eduplayVideoUrl = 'https://eduplay.rnp.br/portal/video/';
+    component.idVideo = 190329;
+  
+    const expectedUrl = 'https://eduplay.rnp.br/portal/video/190329';
+    const returnedUrl = component.getVideoUrl();
+  
+    expect(returnedUrl).toEqual(expectedUrl);
+  });
+
   it('should share video with native share API on mobile', fakeAsync(() => {
     spyOn(navigator, 'share').and.returnValue(Promise.resolve());
     component.shareVideo();
