@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { UNB_TV_CHANNEL_ID } from 'src/app/app.constant';
 import { VideoService } from 'src/app/services/video.service';
 import { Catalog } from 'src/shared/model/catalog.model';
@@ -15,7 +16,7 @@ export class CatalogComponent {
   unbTvVideos: IVideo[] = [];
   catalog: Catalog = new Catalog();
 
-  constructor(private videoService: VideoService) {}
+  constructor(private videoService: VideoService, private router: Router) {}
 
   ngOnInit(): void {
     this.findAll();
@@ -183,5 +184,10 @@ export class CatalogComponent {
     });
 
     console.log(this.catalog);
+  }
+
+  onProgramClick(videos: IVideo[]) {
+    this.videoService.setVideosCatalog(videos);
+    this.router.navigate(['/videos']);
   }
 }
