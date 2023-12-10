@@ -43,6 +43,7 @@ import { GridComponent } from './pages/grid/grid.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
+import { CatalogComponent } from './pages/catalog/catalog.component';
 
 @NgModule({
   imports: [
@@ -85,7 +86,8 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-go
     ParticipateComponent,
     GridComponent,
     GridDaysComponent,
-    VideoCommentComponent
+    VideoCommentComponent,
+    CatalogComponent
   ],
 
   providers: [
