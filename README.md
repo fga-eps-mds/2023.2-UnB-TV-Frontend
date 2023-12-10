@@ -1,16 +1,36 @@
-# UnBTVFrontend
+# UnB-TV Frontend
 
-![Alt text](public/Simbolo_UnBTV.svg)
+<div align="center">
+<img src="./docs/assets/unb-removebg-preview.png" alt="logo UNBTV"> </div>
 
 ## Sobre
 
-Este repositório contém o frontend da aplicação UnBTV, um projeto que visa a criação de uma plataforma de streaming para a UnBTV.
+O projeto visa o desenvolvimento de uma aplicação Web e Mobile para a UnB-TV, com o objetivo de centralizar e disponibilizar de forma unificada todo o conteúdo oferecido pela UnB-TV, incluindo vídeos e transmissões ao vivo, sendo desenvolvida no segundo semestre de 2023 pelas disciplinas de EPS e MDS da Universidade de Brasília.
 
 ## Ambientes
 
 [Documentação](https://github.com/fga-eps-mds/2023.2-UnB-TV-DOC)
-[Backend:Users](https://github.com/fga-eps-mds/2023.2-UnB-TV-Users)
+[Users](https://github.com/fga-eps-mds/2023.2-UnB-TV-Users)
+[Admin](https://github.com/fga-eps-mds/2023.2-UnB-TV-Admin)
+[Video](https://github.com/fga-eps-mds/2023.2-UnB-TV-VideoService)
+[Gateway](https://github.com/fga-eps-mds/2023.2-UnB-TV-API-Gateway)
 [Frontend](https://github.com/fga-eps-mds/2023.2-UnB-TV-Frontend)
+
+## Acessando o repositório localmente
+
+### Requisitos
+
+- docker e docker compose
+
+Primeiro passo é instalar o docker e docker compose, para isso siga os passos de instalação do [docker](https://docs.docker.com/engine/install/) e [docker compose](https://docs.docker.com/compose/install/).
+
+Execute o servidor local:
+
+```
+docker compose up
+```
+
+Acessar o localhost em: http://localhost:4200
 
 ## Equipe
 
@@ -30,15 +50,3 @@ Este repositório contém o frontend da aplicação UnBTV, um projeto que visa a
 |   <img width="100px" style="border-radius:10%" src="https://github.com/castroricardo1.png" alt="Ricardo de Castro Loureiro">    |    Ricardo de Castro Loureiro     |  @castroricardo1   |  ricardoloureiro75@gmail.com   | 200043111 |
 |      <img width="100px" style="border-radius:10%" src="https://github.com/savioc2.png" alt="Ana Carolina Rodrigues Leite">      |      Sávio Cunha de Carvalho      |      @savioc2      |     saviocunha61@gmail.com     | 180130889 |
 |       <img width="100px" style="border-radius:10%" src="https://github.com/vitoriaaquere.png" alt="Vitória Aquere Matos">       |       Vitória Aquere Matos        |   @vitoriaaquere   |    <190096616@aluno.unb.br>    | 190096616 |
-
-## Instruções para rodar a aplicação
-
-Instale o docker e docker compose.
-
-Para instalar o docker: https://docs.docker.com/engine/install/
-Para instalar o docker compose: https://docs.docker.com/compose/install/
-
-Para rodar o frontend execute o comando `docker compose up` e abra no navegador usando o link http://localhost:4200/.
-
-Para rodar os testes execute `docker exec -it unb-tv-web ng test` com o docker em execução e abra no navegador usando o link http://localhost:9876/#
-Para rodar o frontend execute o comando `docker compose up`
