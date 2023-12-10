@@ -43,4 +43,38 @@ export class VideoViewerComponent implements OnInit {
       },
     });
   };
+
+  getVideoUrl(): string {
+    return `${this.eduplayVideoUrl}${this.idVideo}`;
+  }
+
+  shareVideo() {
+    const shareData = {
+      title: this.video.title,
+      text: this.video.title,
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      // Compartilhamento nativo para dispositivos móveis
+      navigator.share(shareData)
+        .then(() => console.log('Compartilhado com sucesso'))
+        .catch((error) => console.error('Erro ao compartilhar:', error));
+    } else if (navigator.clipboard) {
+      // Compartilhamento para desktop (pode ser ajustado conforme necessário)
+      navigator.clipboard.writeText(shareData.url)
+        .then(() => console.log('URL copiada com sucesso'))
+        .catch((error) => console.error('Erro ao copiar URL:', error));
+
+      // Adicionar lógica para abrir o WhatsApp Web com a URL
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(shareData.title + ' ' + shareData.url)}`;
+        window.location.href = whatsappUrl;
+      }
+    } else {
+      // Lógica de fallback para navegadores que não suportam nenhuma das APIs
+      console.warn('A API de compartilhamento não é suportada neste navegador.');
+    }
+  }
 }
