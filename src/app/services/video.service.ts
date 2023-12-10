@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   EDUPLAY_API_URL,
   UNB_ID,
@@ -24,6 +24,7 @@ export class VideoService {
   public unbId = UNB_ID;
   public limit = VIDEOS_LIMIT;
   public order = VIDEOS_ORDER;
+  private selectedCatalogProgram = new BehaviorSubject<IVideo[]>([]);
 
   constructor(private http: HttpClient) {}
 
@@ -42,5 +43,13 @@ export class VideoService {
       headers: headers,
       observe: 'response',
     });
+  }
+
+  setVideosCatalog(videos: IVideo[]) {
+    this.selectedCatalogProgram.next(videos);
+  }
+
+  getVideosCatalog(): Observable<IVideo[]> {
+    return this.selectedCatalogProgram.asObservable();
   }
 }
