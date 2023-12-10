@@ -29,7 +29,7 @@ export class SuggestAgendaComponent implements OnInit {
       local: [''],
       responsavel: ['', [Validators.required]],
       telefoneResponsavel: ['', [Validators.required]],
-      emailContato: [''],
+      emailContato: ['', [Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{3,3}')]],
     },
     );
   }
