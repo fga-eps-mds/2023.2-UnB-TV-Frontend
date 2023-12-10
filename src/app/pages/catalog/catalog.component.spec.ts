@@ -258,7 +258,6 @@ describe('CatalogComponent', () => {
     fixture = TestBed.createComponent(CatalogComponent);
     component = fixture.componentInstance;
     videoService = TestBed.inject(VideoService);
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -267,7 +266,7 @@ describe('CatalogComponent', () => {
 
   it('shoud call findAll', () => {
     spyOn(component, 'findAll');
-
+    fixture.detectChanges();
     expect(component.findAll).toHaveBeenCalled();
   });
 
