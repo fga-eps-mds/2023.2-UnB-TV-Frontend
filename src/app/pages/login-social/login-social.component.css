@@ -22,7 +22,7 @@
   background-color: white;
   color: #969696;
   padding: 10px 20px;
-  border-color: black;
+  border-color: #3c3c3b;
   width: 260px;
   height: 30px;
   top: 210px;
@@ -42,9 +42,9 @@
 
 .facebook-button {
   text-align: center;
-  color: black;
+  color: #3c3c3b;
   padding: 10px 20px;
-  border-color: black;
+  border-color: #3c3c3b;
   width: 260px;
   height: 40px;
   top: 210px;
@@ -76,7 +76,7 @@
   background-color: white;
   color: #969696;
   padding: 10px 20px;
-  border-color: black;
+  border-color: #3c3c3b;
   width: 260px;
   height: 40px;
   top: 210px;
