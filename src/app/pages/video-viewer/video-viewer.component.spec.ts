@@ -15,7 +15,7 @@ import { of } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 
 class VideoServiceMock {
-  constructor() {}
+  constructor() { }
   findVideoById() {
     return of({});
   }
@@ -52,6 +52,15 @@ describe('VideoViewerComponent', () => {
     );
     fixture.detectChanges();
     videoService = TestBed.inject(VideoService);
+    navigator.share = () => {
+      {
+        return new Promise((resolve, reject) => {
+          resolve();
+        });
+      }
+    };
+
+
   });
 
   class VideoServiceMock {
@@ -111,32 +120,34 @@ describe('VideoViewerComponent', () => {
   it('should return the correct video URL', () => {
     component.eduplayVideoUrl = 'https://eduplay.rnp.br/portal/video/';
     component.idVideo = 190329;
-  
+
     const expectedUrl = 'https://eduplay.rnp.br/portal/video/190329';
     const returnedUrl = component.getVideoUrl();
-  
+
     expect(returnedUrl).toEqual(expectedUrl);
   });
 
   it('should share video with native share API on mobile', fakeAsync(() => {
-    spyOn(navigator, 'share').and.returnValue(Promise.resolve());
-    component.shareVideo();
-    tick();
-    expect(navigator.share).toHaveBeenCalledWith({
+    const shareData = {
       title: component.video.title,
       text: component.video.title,
       url: window.location.href,
-    });
-  }));
-
-  
-  it('should handle unsupported share options gracefully', fakeAsync(() => {
-    spyOn(navigator, 'share').and.returnValue(Promise.reject(new Error('Not supported')));
-    spyOn((window as any).navigator.clipboard, 'writeText').and.returnValue(Promise.resolve());
-    const consoleWarnSpy = spyOn(console, 'warn');
-    
+    };
+    spyOn(navigator, 'share').and.callThrough();
     component.shareVideo();
     tick();
-  }));  
-  
+    expect(navigator.share).toHaveBeenCalledWith(shareData);
+  }));
+
+
+  it('should handle unsupported share options gracefully', fakeAsync(() => {
+    spyOn(navigator, 'share').and.returnValue(Promise.reject(new Error('Not supported')));
+    spyOn(navigator.clipboard, 'writeText').and.returnValue(Promise.resolve());
+    const consoleWarnSpy = spyOn(console, 'error');
+
+    component.shareVideo();
+    tick();
+    expect(consoleWarnSpy).toHaveBeenCalledWith('Erro ao compartilhar:', new Error('Not supported'));
+  }));
+
 });
