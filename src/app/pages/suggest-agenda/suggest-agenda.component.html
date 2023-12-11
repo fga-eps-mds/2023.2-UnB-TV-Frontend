@@ -1,22 +1,77 @@
-<div class="containner" >
-    <div class="mb-4">
-        <h1>Sugestão de Pautas</h1>
-        <form [formGroup]="suggestAgendaForm" (submit)="sendSuggestAgenda()" class="flex flex-col gap-y-3">
-            <input pInputText type="text" class="input first button" name="tema" formControlName="tema" placeholder="Tema" >
-            <textarea pInputText class="input descricao button" name="descicao" formControlName="descricao" placeholder="Descrição *" required></textarea>
-            <input pInputText type="text" class="input first button" name="quando" formControlName="quando" placeholder="Quando (data e hora)" >
-            <input pInputText type="text" class="input first button" name="local" formControlName="local" placeholder="Local" >
-            <input pInputText type="text" class="input first button" name="responsavel" formControlName="responsavel" placeholder="Responsável *" required >
-            <input pInputText type="text" class="input first button" name="telefone-responsavel" formControlName="telefoneResponsavel" placeholder="Telefone do Responsável *" required>
-            <input pInputText type="text" class="input first button" name="email-contato" formControlName="emailContato" placeholder="E-mail para contato" >
-            <div>
-                <p style="color:#969696"><small>*Campo obrigatório</small></p>
+<div class="containner">
+  <div class="mb-4">
+    <h1>Sugestão de Pautas</h1>
+    <form
+      [formGroup]="suggestAgendaForm"
+      (submit)="sendSuggestAgenda()"
+      class="flex flex-col gap-y-3"
+    >
+      <input
+        pInputText
+        type="text"
+        class="input first button"
+        name="tema"
+        formControlName="tema"
+        placeholder="Tema"
+      />
+      <textarea
+        pInputText
+        class="input descricao button"
+        name="descicao"
+        formControlName="descricao"
+        placeholder="Descrição *"
+        required
+      ></textarea>
+      <input
+        pInputText
+        type="text"
+        class="input first button"
+        name="quando"
+        formControlName="quando"
+        placeholder="Quando (data e hora)"
+      />
+      <input
+        pInputText
+        type="text"
+        class="input first button"
+        name="local"
+        formControlName="local"
+        placeholder="Local"
+      />
+      <input
+        pInputText
+        type="text"
+        class="input first button"
+        name="responsavel"
+        formControlName="responsavel"
+        placeholder="Responsável *"
+        required
+      />
+      <input
+        pInputText
+        type="text"
+        class="input first button"
+        name="telefone-responsavel"
+        formControlName="telefoneResponsavel"
+        placeholder="(xx) xxxxx-xxxx *"
+        required
+      />
+      <input
+        inputmask
+        type="text"
+        class="input first button"
+        name="email-contato"
+        formControlName="emailContato"
+        placeholder="@example.xxx"
+      />
+      <p style="color: #969696; text-align: left; margin-left: 30px">
+        <small>*Campo obrigatório</small>
+      </p>
 
-                <button type="submit">
-                    <span *ngIf="isSendingEmail">Enviando...</span>
-                    <span *ngIf="!isSendingEmail">Enviar</span>
-                </button>
-            </div>
-        </form>
-    </div>
+      <button type="submit">
+        <span *ngIf="isSendingEmail">Enviando...</span>
+        <span *ngIf="!isSendingEmail">Enviar</span>
+      </button>
+    </form>
+  </div>
 </div>

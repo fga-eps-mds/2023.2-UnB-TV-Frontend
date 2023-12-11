@@ -75,7 +75,7 @@ describe('SuggestAgendaComponent', () => {
     fixture.detectChanges();
     const mySpy = spyOn(emailService, 'sendEmail').and.callThrough();
     const form = component.suggestAgendaForm;
-    form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '', local: '', emailContato: '' })
+    form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '(99) 99999-9999', tema: '', quando: '', local: '', emailContato: 'test@example.xxx' })
     component.sendSuggestAgenda();
     expect(mySpy).toHaveBeenCalled();
   });
@@ -84,7 +84,7 @@ describe('SuggestAgendaComponent', () => {
     fixture.detectChanges();
     const mySpy = spyOn(emailService, 'sendEmail').and.returnValue(throwError(() => new Error('Erro')));
     const form = component.suggestAgendaForm;
-    form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '999999999', tema: '', quando: '', local: '', emailContato: '' })
+    form.setValue({ descricao: 'Descrição', responsavel: 'Usuário Teste', telefoneResponsavel: '(99) 99999-9999', tema: '', quando: '', local: '', emailContato: '' })
     component.sendSuggestAgenda();
     expect(mySpy).toHaveBeenCalled();
   });
