@@ -43,4 +43,34 @@ export class VideoViewerComponent implements OnInit {
       },
     });
   };
+
+  getVideoUrl(): string {
+    return `${this.eduplayVideoUrl}${this.idVideo}`;
+  }
+
+  shareVideo() {
+    const shareData = {
+      title: this.video.title,
+      text: this.video.title,
+      url: window.location.href,
+    };
+
+    if (navigator.canShare()) {
+      navigator.share(shareData)
+        .then(() => console.log('Compartilhado com sucesso'))
+        .catch((error) => console.error('Erro ao compartilhar:', error));
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareData.url)
+        .then(() => console.log('URL copiada com sucesso'))
+        .catch((error) => console.error('Erro ao copiar URL:', error));
+
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        const whatsappUrl = `whatsapp://send?text=${encodeURIComponent(shareData.title + ' ' + shareData.url)}`;
+        window.location.href = whatsappUrl;
+      }
+    } else {
+      console.warn('A API de compartilhamento não é suportada neste navegador.');
+    }
+  }
 }
