@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 
 import { VideoComponent } from './video.component';
@@ -154,6 +155,7 @@ describe('VideoComponent', () => {
   let component: VideoComponent;
   let fixture: ComponentFixture<VideoComponent>;
   let videoService: VideoService;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -165,6 +167,7 @@ describe('VideoComponent', () => {
     fixture = TestBed.createComponent(VideoComponent);
     component = fixture.componentInstance;
     videoService = TestBed.inject(VideoService);
+    router = TestBed.inject(Router);
   });
 
   it('should create', () => {
@@ -191,5 +194,11 @@ describe('VideoComponent', () => {
     component.getVideos();
     expect(component.unbTvVideos).toEqual([]);
     expect(mySpy).toHaveBeenCalled();
+  });
+
+  it('should call returnToCatalog when the button is clicked', () => {
+    const navigateSpy = spyOn(router, 'navigate');
+    component.returnToCatalog();
+    expect(navigateSpy).toHaveBeenCalledWith(['/catalog']);
   });
 });
