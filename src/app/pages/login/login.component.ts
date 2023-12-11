@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         .loginUser(this.userForm.value).subscribe({
           next: (data) => {
             localStorage.setItem('token', data.access_token);
-            this.navigator('/videos');
+            this.navigator('/catalog');
           },
           error: (error: ErrorResponseType) => {
             this.alertService.errorMessage(error.error);
