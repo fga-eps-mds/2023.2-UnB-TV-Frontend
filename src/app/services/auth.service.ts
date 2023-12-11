@@ -21,6 +21,10 @@ export class AuthService {
     return this.http.post(`${this.usersAPIURL}/auth/login`, user);
   }
 
+  loginSocialUser(userSocialData: any): Observable<any> {
+    return this.http.post(`${this.usersAPIURL}/auth/login/social`, userSocialData);
+  }
+
   activeAccount(emailCode: any): Observable<any> {
     return this.http.patch(`${this.usersAPIURL}/auth/activate-account`, emailCode);
   }
@@ -45,9 +49,13 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return !!token;
   }
-
+  
+  refreshToken(): Observable<any> {
+    return this.http.post(`${this.usersAPIURL}/auth/refresh`, null);
+  }
+  
   logout(): void {
     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/loginsocial']);
   }
 }

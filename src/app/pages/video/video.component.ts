@@ -1,33 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { VideoService } from '../../services/video.service';
 import { IVideo } from 'src/shared/model/video.model';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { IEduplayVideosByInstitution } from 'src/shared/model/eduplay-by-institution.model';
 
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
   styleUrls: ['./video.component.css'],
 })
-
 export class VideoComponent implements OnInit {
-  videosEduplay: IVideo[] = [];
+  unbTvVideos: IVideo[] = [];
 
-  constructor(private videoService: VideoService) { }
+  constructor(private videoService: VideoService, private router: Router) {}
 
   ngOnInit(): void {
-    this.findAll();
+    this.getVideos();
   }
 
-  findAll(): void {
-    this.videoService.findAll().subscribe({
-      next: (data) => {
-        this.videosEduplay = data.body?.videoList || [];
+  getVideos(): void {
+    this.videoService.getVideosCatalog().subscribe({
+      next: (videos) => {
+        this.unbTvVideos = videos;
       },
       error: (error) => {
-        console.log(error);
+        console.error(error);
       },
-    }
-    );
+    });
+  }
+
+  returnToCatalog(): void {
+    this.router.navigate(['/catalog']);
   }
 }

@@ -98,7 +98,7 @@ export class EditUserComponent implements OnInit {
             'Sucesso',
             'Usuário atualizado com sucesso!'
           );
-          this.navigator('/profile');
+          this.navigator('/videos');
         },
         error: (error: ErrorResponseType) => {
           this.alertService.errorMessage(error.error);
