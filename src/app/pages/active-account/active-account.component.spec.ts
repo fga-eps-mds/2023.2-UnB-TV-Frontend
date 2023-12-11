@@ -157,4 +157,11 @@ describe('ActiveAccountComponent', () => {
     expect(myspy).toHaveBeenCalled();
   });
 
+  it('should resend code on clicking "Reenviar Código"', () => {
+    spyOn(component, 'resendCode');
+    component.resendCode();
+    expect(component.resendCode).toHaveBeenCalled();
+
+});
+
 });

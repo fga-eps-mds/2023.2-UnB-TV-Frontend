@@ -1,0 +1,333 @@
+<div
+  class="center flex flex-col justify-center content-start flex-wrap gap-y-8 w-full max-w-3xl"
+>
+  <div class="flex flex-col gap-2">
+    <h4 class="text-start font-bold text-[13px] text-blue-brand">Jornalismo</h4>
+    <div class="w-full flex flex-wrap justify-between gap-y-6 md:gap-x-2">
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.journalism.falaJovem)"
+      >
+        <img
+          alt="capa do programa 'Fala, jovem'"
+          src="../../../assets/imgs/catalog-thumbs/1.Fala-Jovem.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.journalism.informeUnB)"
+      >
+        <img
+          alt="capa do programa 'Informe UnB'"
+          src="../../../assets/imgs/catalog-thumbs/2.Informe-UnB.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.journalism.zapping)"
+      >
+        <img
+          alt="capa do programa 'Zapping'"
+          src="../../../assets/imgs/catalog-thumbs/3.Zapping.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <h4 class="text-start font-bold text-[13px] text-blue-brand">Entrevista</h4>
+    <div class="w-full flex flex-wrap justify-between gap-y-6 md:gap-x-2">
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.interviews.brasilEmQuestao)"
+      >
+        <img
+          alt="capa do programa 'Brasil em Questão'"
+          src="../../../assets/imgs/catalog-thumbs/4.Brasil-em-Questao.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.interviews.dialogos)"
+      >
+        <img
+          alt="capa do programa 'Diálogos'"
+          src="../../../assets/imgs/catalog-thumbs/5.Diálogos.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.interviews.tirandoDeLetra)"
+      >
+        <img
+          alt="capa do programa 'Tirando de letra'"
+          src="../../../assets/imgs/catalog-thumbs/6.Tirando-de-Letra.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.interviews.entrevistas)"
+      >
+        <img
+          alt="capa do programa 'UnBTV Entrevista'"
+          src="../../../assets/imgs/catalog-thumbs/7.UnBTV-Entrevista.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.interviews.vastoMundo)"
+      >
+        <img
+          alt="capa do programa 'Vasto Mundo'"
+          src="../../../assets/imgs/catalog-thumbs/8.Vasto-Mundo.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.interviews.vozesDiplomaticas)"
+      >
+        <img
+          alt="capa do programa 'Vozes Diplomáticas'"
+          src="../../../assets/imgs/catalog-thumbs/9.Vozes-Diplomaticas.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <h4 class="text-start font-bold text-[13px] text-blue-brand">
+      Pesquisa e Ciência
+    </h4>
+    <div class="w-full flex flex-wrap justify-between gap-y-6 md:gap-x-2">
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.researchAndScience.expliqueSuaTese)"
+      >
+        <img
+          alt="capa do programa 'Explique sua Tese'"
+          src="../../../assets/imgs/catalog-thumbs/10.Explique-sua-Tese.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.researchAndScience.fazendoCiencia)"
+      >
+        <img
+          alt="capa do programa 'Fazendo Ciência Formando Cientistas'"
+          src="../../../assets/imgs/catalog-thumbs/11.Fazendo-Ciencia-Formando-Cientistas.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.researchAndScience.radarDaExtencao)"
+      >
+        <img
+          alt="capa do programa 'Radar da Extensão'"
+          src="../../../assets/imgs/catalog-thumbs/12.Radar-da-Extensao.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.researchAndScience.seLigaNoPAS)"
+      >
+        <img
+          alt="capa do programa 'Se Liga no PAS'"
+          src="../../../assets/imgs/catalog-thumbs/13.Se-Liga-no-PAS.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.researchAndScience.unbTvCiencia)"
+      >
+        <img
+          alt="capa do programa 'UnBTV Ciência'"
+          src="../../../assets/imgs/catalog-thumbs/14.UnBTV-Ciencia.png"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.researchAndScience.universidadeParaQue)"
+      >
+        <img
+          alt="capa do programa 'Universidade Para Quê?'"
+          src="../../../assets/imgs/catalog-thumbs/15.Universidade-Para-Que.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <h4 class="text-start font-bold text-[13px] text-blue-brand">
+      Arte e Cultura
+    </h4>
+    <div class="w-full flex flex-wrap justify-between gap-y-6 md:gap-x-2">
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.artAndCulture.emCantos)"
+      >
+        <img
+          alt="capa do programa 'Em Cantos'"
+          src="../../../assets/imgs/catalog-thumbs/16.Emcantos.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.artAndCulture.casaDoSom)"
+      >
+        <img
+          alt="capa do programa 'Casa do Som'"
+          src="../../../assets/imgs/catalog-thumbs/17.Casa-do-Som.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.artAndCulture.esbocos)"
+      >
+        <img
+          alt="capa do programa 'Esboços'"
+          src="../../../assets/imgs/catalog-thumbs/18.Esbocos.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.artAndCulture.exclusiva)"
+      >
+        <img
+          alt="capa do programa 'Exclusiva'"
+          src="../../../assets/imgs/catalog-thumbs/19.Exclusiva.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <h4 class="text-start font-bold text-[13px] text-blue-brand">
+      Séries Especiais
+    </h4>
+    <div class="w-full flex flex-wrap justify-between gap-y-6 md:gap-x-2">
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.specialSeries.florestaDeGente)"
+      >
+        <img
+          alt="capa do programa 'Floresta de Gente'"
+          src="../../../assets/imgs/catalog-thumbs/20.Floresta-de-Gente.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.specialSeries.guiaDoCalouro)"
+      >
+        <img
+          alt="capa do programa 'Guia do Calouro'"
+          src="../../../assets/imgs/catalog-thumbs/21.Guia-do-Calouro.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.specialSeries.memoriasPauloFreire)"
+      >
+        <img
+          alt="capa do programa 'Memorias de Paulo Freire'"
+          src="../../../assets/imgs/catalog-thumbs/22.Memorias-de-Paulo-Freire.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.specialSeries.desafiosDasEleicoes)"
+      >
+        <img
+          alt="capa do programa 'Os desafios das eleicoes 2022'"
+          src="../../../assets/imgs/catalog-thumbs/23.Os-desafios-das-eleicoes2022.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.specialSeries.vidaDeEstudante)"
+      >
+        <img
+          alt="capa do programa 'Podcast Vida de Estudante'"
+          src="../../../assets/imgs/catalog-thumbs/24.Podcast-Vida-de-Estudante.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.specialSeries.arquiteturaICC)"
+      >
+        <img
+          alt="capa do programa 'Serie Arquitetura'"
+          src="../../../assets/imgs/catalog-thumbs/25.Serie-Arquitetura.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <h4 class="text-start font-bold text-[13px] text-blue-brand">
+      Documentais
+    </h4>
+    <div class="w-full flex flex-wrap justify-between gap-y-6 md:gap-x-2">
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.documentaries.miniDoc)"
+      >
+        <img
+          alt="capa do programa 'Mini Doc'"
+          src="../../../assets/imgs/catalog-thumbs/26.Mini-Doc.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.documentaries.documentaries)"
+      >
+        <img
+          alt="capa do programa 'Documentários'"
+          src="../../../assets/imgs/catalog-thumbs/27.Documentarios.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <h4 class="text-start font-bold text-[13px] text-blue-brand">Variedades</h4>
+    <div class="w-full flex flex-wrap justify-between gap-y-6 md:gap-x-2">
+      <div
+        class="w-full h-full max-w-[150px] max-h-[84px]"
+        (click)="onProgramClick(catalog.varieties.pitadasDoCerrado)"
+      >
+        <img
+          alt="capa do programa 'Pitadas do Cerrado'"
+          src="../../../assets/imgs/catalog-thumbs/28.Pitadas-do-Cerrado.jpg"
+          class="object-cover rounded-md cursor-pointer thumbnail"
+        />
+      </div>
+    </div>
+  </div>
+</div>
