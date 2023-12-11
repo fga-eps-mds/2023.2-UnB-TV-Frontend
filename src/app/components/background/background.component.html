@@ -3,63 +3,67 @@
     <div class="pt-10 flex justify-center items-center">
       <img alt="simbolo-unb" src="../../../assets/Simbolo_UnBTV-01 1.png" />
     </div>
-    <div *ngIf="getActualRoute() !== '/login' && getActualRoute() !== '/loginsocial'">
-    <nav class="flex flex-row items-center justify-center pl-3">
-      <ul class="flex flex-row gap-1 text-xs">
-        <div *ngIf="getActualRoute() === '/stream'">
-        <li class="font-bold text-[#00A550]">
-          <a [routerLink]="['/stream']">Agora na TV</a>
-        </li>
-        </div>
-        <div *ngIf="getActualRoute() !== '/stream'">
-        <li class="text-blue-brand">
-          <a [routerLink]="['/stream']">Agora na TV</a>
-        </li>
-        </div>
-        <div class="mx-2 text-blue-brand">|</div>
-        <div *ngIf="getActualRoute() === '/videos'">
-          <li class="font-bold text-[#00A550]">
-            <a [routerLink]="['/videos']">Catálogo</a>
-          </li>
-        </div>
-        <div *ngIf="getActualRoute() !== '/videos'">
-          <li class="text-blue-brand" >
-            <a [routerLink]="['/videos']">Catálogo</a>
-          </li>
-        </div>
-        <div class="mx-2 text-blue-brand">|</div>
-        <div *ngIf="getActualRoute() === '/grid-days'">
-        <li class="font-bold text-[#00A550]">
-          <a [routerLink]="['/grid-days']">Programação</a>
-        </li>
-        </div>
-        <div *ngIf="getActualRoute() !== '/grid-days'">
-        <li class="text-blue-brand">
-          <a [routerLink]="['/grid-days']">Programação</a>
-        </li>
-        </div>
-        <div class="mx-2 text-blue-brand">|</div>
-        <div *ngIf="getActualRoute() === '/participate'" >
-        <li class="font-bold text-[#00A550]">
-          <a [routerLink]="['/participate']">Participe</a>
-        </li>
-        </div>
-        <div *ngIf="getActualRoute() !== '/participate'" >
-          <li class="text-blue-brand">
-            <a [routerLink]="['/participate']">Participe</a>
-          </li>
+    <div
+      *ngIf="
+        getActualRoute() !== '/login' && getActualRoute() !== '/loginsocial'
+      "
+    >
+      <nav class="flex flex-row items-center justify-center pl-3">
+        <ul class="flex flex-row gap-1 text-xs">
+          <div *ngIf="getActualRoute() === '/stream'">
+            <li class="font-bold text-[#00A550]">
+              <a [routerLink]="['/stream']">Agora na TV</a>
+            </li>
           </div>
-      </ul>
-      <div class="card flex justify-content-center mx-2">
-        <p-menu #menu [model]="items" [popup]="true"></p-menu>
-        <button
-          pButton
-          type="button"
-          (click)="menu.toggle($event)"
-          label="&#9776;"
-        ></button>
-      </div>
-    </nav>
+          <div *ngIf="getActualRoute() !== '/stream'">
+            <li class="text-blue-brand">
+              <a [routerLink]="['/stream']">Agora na TV</a>
+            </li>
+          </div>
+          <div class="mx-2 text-blue-brand">|</div>
+          <div *ngIf="getActualRoute() === '/catalog'">
+            <li class="font-bold text-[#00A550]">
+              <a [routerLink]="['/catalog']">Catálogo</a>
+            </li>
+          </div>
+          <div *ngIf="getActualRoute() !== '/catalog'">
+            <li class="text-blue-brand">
+              <a [routerLink]="['/catalog']">Catálogo</a>
+            </li>
+          </div>
+          <div class="mx-2 text-blue-brand">|</div>
+          <div *ngIf="getActualRoute() === '/grid-days'">
+            <li class="font-bold text-[#00A550]">
+              <a [routerLink]="['/grid-days']">Programação</a>
+            </li>
+          </div>
+          <div *ngIf="getActualRoute() !== '/grid-days'">
+            <li class="text-blue-brand">
+              <a [routerLink]="['/grid-days']">Programação</a>
+            </li>
+          </div>
+          <div class="mx-2 text-blue-brand">|</div>
+          <div *ngIf="getActualRoute() === '/participate'">
+            <li class="font-bold text-[#00A550]">
+              <a [routerLink]="['/participate']">Participe</a>
+            </li>
+          </div>
+          <div *ngIf="getActualRoute() !== '/participate'">
+            <li class="text-blue-brand">
+              <a [routerLink]="['/participate']">Participe</a>
+            </li>
+          </div>
+        </ul>
+        <div class="card flex justify-content-center mx-2">
+          <p-menu #menu [model]="items" [popup]="true"></p-menu>
+          <button
+            pButton
+            type="button"
+            (click)="menu.toggle($event)"
+            label="&#9776;"
+          ></button>
+        </div>
+      </nav>
     </div>
   </div>
   <div class="flex-grow p-3">
@@ -70,7 +74,9 @@
   >
     <div>
       <a
-        [href]="mobileDevide ? 'tel:+556131072775' : 'https://unbtv.unb.br/contato'"
+        [href]="
+          mobileDevide ? 'tel:+556131072775' : 'https://unbtv.unb.br/contato'
+        "
         target="_blank"
         id="contact_link"
         rel="noopener"

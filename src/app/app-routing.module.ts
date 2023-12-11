@@ -18,33 +18,74 @@ import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.co
 import { ParticipateComponent } from './pages/participate/participate.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { GridComponent } from './pages/grid/grid.component';
+import { CatalogComponent } from './pages/catalog/catalog.component';
 
 import { WithTokenGuard } from './guard/with-token.guard';
 
 const routes: Routes = [
   { path: 'stream', component: StreamViewComponent },
+  { path: 'catalog', component: CatalogComponent },
   { path: 'videos', component: VideoComponent },
   { path: 'video/:idVideo', component: VideoViewerComponent },
-  { path: '', component: VideoComponent, canActivate: [AuthGuard], },
-  { path: 'login', component: LoginComponent, canActivate: [WithTokenGuard], },
-  { path: 'register', component: RegisterComponent, canActivate: [WithTokenGuard], },
-  { path: 'loginsocial', component: LoginSocialComponent, canActivate: [WithTokenGuard], },
-  { path: 'sendCodeResetPassword', component: CheckCodeRestPasswordComponent, canActivate: [WithTokenGuard], },
-  { path: 'changePassword', component: ResetPasswordComponent, canActivate: [WithTokenGuard], },
-  { path: 'videos', component: VideoComponent, canActivate: [AuthGuard], },
-  { path: 'video/:idVideo', component: VideoViewerComponent, canActivate: [AuthGuard], },
-  { path: 'activeAccount', component: ActiveAccountComponent, canActivate: [WithTokenGuard], },
-  { path: 'suggestAgenda', component: SuggestAgendaComponent, canActivate: [AuthGuard], },
-  { path: 'participate', component: ParticipateComponent, canActivate: [AuthGuard], },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], },
-  { path: 'editUser/:id', component: EditUserComponent, canActivate: [AuthGuard], },
+  { path: '', component: CatalogComponent },
+  { path: 'login', component: LoginComponent, canActivate: [WithTokenGuard] },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [WithTokenGuard],
+  },
+  {
+    path: 'loginsocial',
+    component: LoginSocialComponent,
+    canActivate: [WithTokenGuard],
+  },
+  {
+    path: 'sendCodeResetPassword',
+    component: CheckCodeRestPasswordComponent,
+    canActivate: [WithTokenGuard],
+  },
+  {
+    path: 'changePassword',
+    component: ResetPasswordComponent,
+    canActivate: [WithTokenGuard],
+  },
+  {
+    path: 'video/:idVideo',
+    component: VideoViewerComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'activeAccount',
+    component: ActiveAccountComponent,
+    canActivate: [WithTokenGuard],
+  },
+  {
+    path: 'suggestAgenda',
+    component: SuggestAgendaComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'participate',
+    component: ParticipateComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  {
+    path: 'editUser/:id',
+    component: EditUserComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'grid-days', component: GridDaysComponent },
   { path: 'grid-days/:day', component: GridComponent },
-  { path: 'update-role', component: UpdateRoleComponent, canActivate: [AdminGuard], }
+  {
+    path: 'update-role',
+    component: UpdateRoleComponent,
+    canActivate: [AdminGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
