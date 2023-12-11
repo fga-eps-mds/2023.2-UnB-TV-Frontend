@@ -60,6 +60,12 @@ describe('VideoViewerComponent', () => {
       }
     };
 
+    navigator.canShare = () => {
+      {
+        return true;
+      }
+    }
+
 
   });
 
@@ -133,7 +139,12 @@ describe('VideoViewerComponent', () => {
       text: component.video.title,
       url: window.location.href,
     };
-    spyOn(navigator, 'share').and.callThrough();
+    spyOn(window.navigator, 'canShare').and.returnValue(true);
+    spyOn(navigator, 'share').and.returnValue(
+      new Promise((resolve, reject) => {
+        resolve();
+      })
+    );
     component.shareVideo();
     tick();
     expect(navigator.share).toHaveBeenCalledWith(shareData);
@@ -141,13 +152,39 @@ describe('VideoViewerComponent', () => {
 
 
   it('should handle unsupported share options gracefully', fakeAsync(() => {
-    spyOn(navigator, 'share').and.returnValue(Promise.reject(new Error('Not supported')));
+    spyOn(navigator, 'canShare').and.returnValue(true);
+    spyOn(navigator, 'share').and.returnValue(Promise.reject());
+    spyOn((window as any).navigator.clipboard, 'writeText').and.returnValue(Promise.resolve());
+    const consoleWarnSpy = spyOn(console, 'error');
+
+    component.shareVideo();
+    tick();
+    expect(consoleWarnSpy).toHaveBeenCalledWith('Erro ao compartilhar:', undefined);
+  }));
+
+  it('should copy video URL to clipboard if native share is not supported', fakeAsync(() => {
+
+    spyOn(navigator, 'canShare').and.returnValue(false);
+    // spyOnProperty(navigator, 'clipboard').and.resolveTo();
     spyOn(navigator.clipboard, 'writeText').and.returnValue(Promise.resolve());
     const consoleWarnSpy = spyOn(console, 'error');
 
     component.shareVideo();
     tick();
-    expect(consoleWarnSpy).toHaveBeenCalledWith('Erro ao compartilhar:', new Error('Not supported'));
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(window.location.href);
+    expect(consoleWarnSpy).not.toHaveBeenCalled();
   }));
 
-});
+  it('should handle clipboard errors gracefully', fakeAsync(() => {
+    spyOn(navigator, 'canShare').and.returnValue(false);
+    spyOn(navigator.clipboard, 'writeText').and.returnValue(Promise.reject());
+    const consoleWarnSpy = spyOn(console, 'error');
+
+    component.shareVideo();
+    tick();
+    expect(consoleWarnSpy).toHaveBeenCalledWith('Erro ao copiar URL:', undefined);
+  }));
+
+
+
+}); 

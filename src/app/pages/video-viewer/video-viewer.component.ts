@@ -55,7 +55,7 @@ export class VideoViewerComponent implements OnInit {
       url: window.location.href,
     };
 
-    if (navigator.share) {
+    if (navigator.canShare()) {
       navigator.share(shareData)
         .then(() => console.log('Compartilhado com sucesso'))
         .catch((error) => console.error('Erro ao compartilhar:', error));
