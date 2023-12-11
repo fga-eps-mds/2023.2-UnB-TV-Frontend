@@ -182,8 +182,6 @@ export class CatalogComponent {
         }
       }
     });
-
-    console.log(this.catalog);
   }
 
   onProgramClick(videos: IVideo[]) {
