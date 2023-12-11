@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'catalog', component: CatalogComponent },
   { path: 'videos', component: VideoComponent },
   { path: 'video/:idVideo', component: VideoViewerComponent },
-  { path: '', component: VideoComponent, canActivate: [AuthGuard] },
+  { path: '', component: CatalogComponent },
   { path: 'login', component: LoginComponent, canActivate: [WithTokenGuard] },
   {
     path: 'register',
@@ -49,7 +49,6 @@ const routes: Routes = [
     component: ResetPasswordComponent,
     canActivate: [WithTokenGuard],
   },
-  { path: 'videos', component: VideoComponent, canActivate: [AuthGuard] },
   {
     path: 'video/:idVideo',
     component: VideoViewerComponent,
@@ -89,4 +88,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
