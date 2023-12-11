@@ -103,7 +103,7 @@ export class LoginSocialComponent implements OnInit {
           if (response.is_new_user) {
             this.router.navigate([`/editUser/${response.user_id}`]);
           } else {
-            this.router.navigate(['/videos']);
+            this.router.navigate(['/catalog']);
           }
         }
       },
