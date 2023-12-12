@@ -14,7 +14,8 @@ import { CheckCodeRestPasswordComponent } from '../check-code-rest-password/chec
 import { RegisterComponent } from '../register/register.component';
 import { of, throwError } from 'rxjs';
 import { AlertService } from '../../services/alert.service';
-import { VideoComponent } from '../video/video.component';
+import { CatalogComponent } from '../catalog/catalog.component';
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActiveAccountComponent } from '../active-account/active-account.component';
 
@@ -60,7 +61,7 @@ describe('LoginComponent', () => {
             component: CheckCodeRestPasswordComponent,
           },
           { path: 'register', component: RegisterComponent },
-          { path: 'videos', component: VideoComponent },
+          { path: 'catalog', component: CatalogComponent },
           { path: 'activeAccount', component: ActiveAccountComponent },
         ]),
       ],
@@ -142,7 +143,8 @@ describe('LoginComponent', () => {
 
   it('should call navigator method when "Login com redes sociais" is clicked', () => {
     const navigatorSpy = spyOn(component, 'navigator').and.callThrough();
-    const loginSocial = fixture.nativeElement.querySelector('#loginSocialButton');
+    const loginSocial =
+      fixture.nativeElement.querySelector('#loginSocialButton');
     loginSocial.click();
 
     expect(navigatorSpy).toHaveBeenCalledWith('/loginsocial');

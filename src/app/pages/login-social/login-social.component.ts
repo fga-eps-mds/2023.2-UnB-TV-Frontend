@@ -27,28 +27,25 @@ declare global {
   }
 }
 
-
 @Component({
   selector: 'app-login-social',
   templateUrl: './login-social.component.html',
-  styleUrls: ['./login-social.component.css']
+  styleUrls: ['./login-social.component.css'],
 })
 export class LoginSocialComponent implements OnInit {
   private user: SocialUser | null = null;
   private loggedIn: boolean = false;
-  
 
   constructor(
     private authService: SocialAuthService,
     private http: HttpClient,
     private router: Router,
     private Service: AuthService
-  ) { }
-
-  
+  ) {}
 
   ngOnInit(): void {
-    window['handleCredentialResponse'] = this.handleCredentialResponse.bind(this);
+    window['handleCredentialResponse'] =
+      this.handleCredentialResponse.bind(this);
     this.loadGoogleButton();
   }
 
@@ -65,18 +62,16 @@ export class LoginSocialComponent implements OnInit {
     const payload = jwt.split('.')[1];
     const decodedPayload = atob(payload);
     const userInformation = JSON.parse(decodedPayload);
-  
+
     const user: SocialUser = new SocialUser();
     user.name = userInformation.name;
     user.email = userInformation.email;
-  
+
     this.sendUserDataToServer(user);
   }
-  
 
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then((user) => {
-      
       if (user) {
         this.sendUserDataToServer(user);
       }
@@ -90,16 +85,16 @@ export class LoginSocialComponent implements OnInit {
   private sendUserDataToServer(user: SocialUser) {
     const userSocialData = {
       name: user.name,
-      email: user.email
+      email: user.email,
     };
-  
+
     this.Service.loginSocialUser(userSocialData).subscribe(
       (response) => {
         console.log('Resposta do servidor:', response);
-  
-        if (response && response.access_token) {    
+
+        if (response && response.access_token) {
           localStorage.setItem('token', response.access_token);
-          
+
           if (response.is_new_user) {
             this.router.navigate([`/editUser/${response.user_id}`]);
           } else {
