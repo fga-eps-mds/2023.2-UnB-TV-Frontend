@@ -11,9 +11,12 @@ import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
-import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
-
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from '@abacritt/angularx-social-login';
 
 // Declaration
 import { NgModule } from '@angular/core';
@@ -34,7 +37,7 @@ import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { StreamViewComponent } from './pages/stream-view/stream-view.component';
 import { UpdateRoleComponent } from './pages/update-role/update-role.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MenuModule } from 'primeng/menu';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
@@ -42,7 +45,10 @@ import { ParticipateComponent } from './pages/participate/participate.component'
 import { GridComponent } from './pages/grid/grid.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
+import {
+  NgxGoogleAnalyticsModule,
+  NgxGoogleAnalyticsRouterModule,
+} from 'ngx-google-analytics';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 
 @NgModule({
@@ -64,7 +70,7 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
     MatPaginatorModule,
     SocialLoginModule,
     NgxGoogleAnalyticsModule.forRoot('G-XL7Z0L7VM8'),
-    NgxGoogleAnalyticsRouterModule
+    NgxGoogleAnalyticsRouterModule,
   ],
 
   declarations: [
@@ -87,7 +93,7 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
     GridComponent,
     GridDaysComponent,
     VideoCommentComponent,
-    CatalogComponent
+    CatalogComponent,
   ],
 
   providers: [
@@ -110,18 +116,18 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
               '254484469180-1imr4ds36p8rq4fe7udkja212tu0p7jl.apps.googleusercontent.com'
-            )
+            ),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('2640880742734858')
-          }
+            provider: new FacebookLoginProvider('2640880742734858'),
+          },
         ],
         onError: (err) => {
           console.error(err);
-        }
+        },
       } as SocialAuthServiceConfig,
-    }
+    },
   ],
   bootstrap: [AppComponent],
 })

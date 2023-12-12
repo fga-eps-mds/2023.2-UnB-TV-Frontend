@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
-import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-background',
@@ -11,8 +10,6 @@ import { AppComponent } from 'src/app/app.component';
 export class BackgroundComponent implements OnInit {
   items: MenuItem[] = [];
   mobileDevide: boolean = true;
-
-  constructor() {}
 
   ngOnInit(): void {
     this.items = [
@@ -38,6 +35,7 @@ export class BackgroundComponent implements OnInit {
       this.mobileDevide = false;
     }
   }
+
   getActualRoute(): string {
     return window.location.pathname;
   }
