@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { Component } from '@angular/core';
 
 @Component({ template: '' })
-class DummyComponent {}
+class DummyComponent { }
 
 describe('LoginSocialComponent', () => {
   let component: LoginSocialComponent;
@@ -26,11 +26,11 @@ describe('LoginSocialComponent', () => {
     }));
 
     await TestBed.configureTestingModule({
-      declarations: [ LoginSocialComponent, DummyComponent ],
+      declarations: [LoginSocialComponent, DummyComponent],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule.withRoutes([
-          { path: 'videos', component: DummyComponent },
+          { path: 'catalog', component: DummyComponent },
           { path: 'editUser/:id', component: DummyComponent }
         ])
       ],
@@ -60,7 +60,7 @@ describe('LoginSocialComponent', () => {
 
     mockSocialAuthService.signIn.and.returnValue(Promise.resolve(user));
     await component.signInWithFB();
-    
+
     expect(mockSocialAuthService.signIn).toHaveBeenCalledWith(FacebookLoginProvider.PROVIDER_ID);
   });
 
