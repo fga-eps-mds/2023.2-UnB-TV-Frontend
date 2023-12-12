@@ -39,7 +39,7 @@ describe('LoginSocialComponent', () => {
       imports: [
         HttpClientTestingModule,
         RouterTestingModule.withRoutes([
-          { path: 'catalog', component: DummyComponent },
+          { path: 'videos', component: DummyComponent },
           { path: 'editUser/:id', component: DummyComponent },
         ]),
       ],
