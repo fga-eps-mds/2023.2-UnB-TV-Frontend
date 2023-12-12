@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginSocialComponent } from './login-social.component';
-import { SocialAuthService, SocialUser, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import {
+  SocialAuthService,
+  SocialUser,
+  FacebookLoginProvider,
+} from '@abacritt/angularx-social-login';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService } from '../../services/auth.service';
@@ -17,27 +21,32 @@ describe('LoginSocialComponent', () => {
   let mockAuthService: jasmine.SpyObj<AuthService>;
 
   beforeEach(async () => {
-    mockSocialAuthService = jasmine.createSpyObj('SocialAuthService', ['signIn', 'signOut']);
+    mockSocialAuthService = jasmine.createSpyObj('SocialAuthService', [
+      'signIn',
+      'signOut',
+    ]);
     mockAuthService = jasmine.createSpyObj('AuthService', ['loginSocialUser']);
-    mockAuthService.loginSocialUser.and.returnValue(of({
-      access_token: 'mock-token',
-      is_new_user: false,
-      user_id: 'mock-user-id'
-    }));
+    mockAuthService.loginSocialUser.and.returnValue(
+      of({
+        access_token: 'mock-token',
+        is_new_user: false,
+        user_id: 'mock-user-id',
+      })
+    );
 
     await TestBed.configureTestingModule({
-      declarations: [ LoginSocialComponent, DummyComponent ],
+      declarations: [LoginSocialComponent, DummyComponent],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule.withRoutes([
-          { path: 'videos', component: DummyComponent },
-          { path: 'editUser/:id', component: DummyComponent }
-        ])
+          { path: 'catalog', component: DummyComponent },
+          { path: 'editUser/:id', component: DummyComponent },
+        ]),
       ],
       providers: [
         { provide: SocialAuthService, useValue: mockSocialAuthService },
         { provide: AuthService, useValue: mockAuthService },
-      ]
+      ],
     }).compileComponents();
   });
 
@@ -60,15 +69,17 @@ describe('LoginSocialComponent', () => {
 
     mockSocialAuthService.signIn.and.returnValue(Promise.resolve(user));
     await component.signInWithFB();
-    
-    expect(mockSocialAuthService.signIn).toHaveBeenCalledWith(FacebookLoginProvider.PROVIDER_ID);
+
+    expect(mockSocialAuthService.signIn).toHaveBeenCalledWith(
+      FacebookLoginProvider.PROVIDER_ID
+    );
   });
 
   it('should process JWT response correctly', () => {
     const payload = { name: 'Test User', email: 'test@example.com' };
     const encodedPayload = btoa(JSON.stringify(payload));
     const testResponse = {
-      credential: `header.${encodedPayload}.signature`
+      credential: `header.${encodedPayload}.signature`,
     };
 
     component.handleCredentialResponse(testResponse);
@@ -84,7 +95,12 @@ describe('LoginSocialComponent', () => {
     mockSocialAuthService.signIn.and.returnValue(Promise.resolve(user));
     await component.signInWithFB();
 
-    expect(mockSocialAuthService.signIn).toHaveBeenCalledWith(FacebookLoginProvider.PROVIDER_ID);
-    expect(mockAuthService.loginSocialUser).toHaveBeenCalledWith({ name: user.name, email: user.email });
+    expect(mockSocialAuthService.signIn).toHaveBeenCalledWith(
+      FacebookLoginProvider.PROVIDER_ID
+    );
+    expect(mockAuthService.loginSocialUser).toHaveBeenCalledWith({
+      name: user.name,
+      email: user.email,
+    });
   });
 });
