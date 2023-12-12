@@ -1,12 +1,12 @@
 .padded-cell {
-    padding-left: 40px; 
-  }
+  padding-left: 40px;
+}
 .padded-cell-day {
-    padding-left: 10px; 
-  }
+  padding-left: 10px;
+}
 .padded-right {
-    padding-right: 20px; 
-  }
+  padding-right: 20px;
+}
 
 table {
   width: 100%;
@@ -16,8 +16,8 @@ table {
 
 td {
   padding: 5px;
+  text-transform: lowercase;
 }
-
 
 tr:not(:last-child) {
   border-bottom-width: 0.01em;
@@ -26,12 +26,7 @@ tr:not(:last-child) {
 td::first-letter {
   text-transform: capitalize;
 }
-td {
-  text-transform: lowercase;
-
-}
 
 p {
   font-size: 15px;
-
 }

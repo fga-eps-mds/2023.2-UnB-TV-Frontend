@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavigationExtras, Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import jwt_decode from 'jwt-decode';
 import { AlertService } from 'src/app/services/alert.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { take, timer } from 'rxjs';
@@ -34,10 +34,10 @@ export class ProfileComponent {
     this.setUserIdFromToken(localStorage.getItem('token') as string);
     this.getUser();
     timer(15 * 60 * 1000)
-    .pipe(take(1))
-    .subscribe(() => {
-      this.showRenewTokenDialog();
-    });
+      .pipe(take(1))
+      .subscribe(() => {
+        this.showRenewTokenDialog();
+      });
   }
 
   setUserIdFromToken(token: string) {
@@ -122,10 +122,10 @@ export class ProfileComponent {
       error: (error: ErrorResponseType) => {
         console.error('Failed to refresh token:', error);
         this.authService.logout();
-      }
+      },
     });
   }
-  
+
   navigatorEdit(): void {
     this.router.navigate([`/editUser/${this.user.id}`]);
   }

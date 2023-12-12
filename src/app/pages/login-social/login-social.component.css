@@ -1,7 +1,6 @@
-
 @font-face {
-  font-family: 'Helvetic';
-  src: url('../../../assets/fonts/Helvetica.ttf') format('truetype');
+  font-family: "Helvetic";
+  src: url("../../../assets/fonts/Helvetica.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -13,8 +12,8 @@
   align-items: center;
   width: 100%;
   max-width: 360px;
-  margin-right: auto; 
-  margin-left: auto; 
+  margin-right: auto;
+  margin-left: auto;
   height: 100%;
 }
 
@@ -29,25 +28,21 @@
   top: 210px;
   left: 50px;
   margin: 5px;
-  border: 0.15px solid #3C3C3B; 
+  border: 0.15px solid #3c3c3b;
   border-radius: 9px;
   line-height: 10px;
   font-weight: 400;
   font-size: 13px;
-  background-image: url('../../../assets/google.png');
-  background-position: center;
+  background-image: url("../../../assets/google.png");
   background-size: 7% auto;
   background-repeat: no-repeat;
   background-position: 220px 6px;
   margin-bottom: 10.5px;
-
 }
-
 
 .facebook-button {
   text-align: center;
-  background-color: white;
-  color:  black;
+  color: black;
   padding: 10px 20px;
   border-color: black;
   width: 260px;
@@ -56,33 +51,27 @@
   left: 25px;
   cursor: pointer;
   margin: 5px;
-  border: 1px solid #DADCE0;
+  border: 1px solid #dadce0;
   border-radius: 5px;
   line-height: 10px;
-  background-image: url('../../../assets/facebook-icon-white-png.png');
-  background-position: center;
+  background-image: url("../../../assets/facebook-icon-white-png.png");
   background-size: 8% auto;
   background-repeat: no-repeat;
   background-position: 12px 9px;
   margin-bottom: 10.5px;
   margin-top: 19.5px;
-  background-color: #1877F2;
-  
+  background-color: #1877f2;
 }
 
-
-
-.facebook-button span{
+.facebook-button span {
   position: relative;
   margin-left: 30px;
-  font-family: Helvetic ,sans-serif;
+  font-family: Helvetic, sans-serif;
   font-size: 14px;
   color: white;
-  
-  
 }
 
-.email-button{
+.email-button {
   text-align: center;
   background-color: white;
   color: #969696;
@@ -93,21 +82,19 @@
   top: 210px;
   left: 50px;
   margin: 5px;
-  border: 1px solid #DADCE0;
+  border: 1px solid #dadce0;
   border-radius: 5px;
   line-height: 10px;
   font-weight: 400;
   margin-top: 10px;
   margin-bottom: 18.5px;
-  background-image: url('../../../assets/email-svgrepo-com.svg');
-  background-position: center;
+  background-image: url("../../../assets/email-svgrepo-com.svg");
   background-size: 8% auto;
   background-repeat: no-repeat;
   background-position: 12px 9px;
-
 }
 
-.email-button span{
+.email-button span {
   position: relative;
   margin-left: -5px;
   font-size: 14px;
@@ -115,7 +102,7 @@
 
 .cadastro {
   font-size: 13px;
-  color: #0087C8;
+  color: #0087c8;
   margin-left: -72px;
-  margin-top: 18.5px
+  margin-top: 18.5px;
 }

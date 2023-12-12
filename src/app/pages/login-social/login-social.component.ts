@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import {
+  SocialAuthService,
+  SocialUser,
+  FacebookLoginProvider,
+} from '@abacritt/angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-declare var gapi: any;
+declare let gapi: any;
 
 interface ServerResponse {
   access_token: string;
