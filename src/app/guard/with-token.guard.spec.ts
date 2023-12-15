@@ -10,9 +10,14 @@ describe('WithTokenGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes(
-        [{ path: 'videos', component: VideoComponent }]
-      )], providers: [WithTokenGuard], declarations: [VideoComponent]
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: 'catalog', component: VideoComponent },
+        ]),
+      ],
+      providers: [WithTokenGuard],
+      declarations: [VideoComponent],
     });
     guard = TestBed.inject(WithTokenGuard);
   });
@@ -24,12 +29,10 @@ describe('WithTokenGuard', () => {
   it('should return false for a logged in user', () => {
     localStorage.setItem('token', 'testtoken');
     expect(guard.canActivate()).toBe(false);
-  }
-  );
+  });
 
   it('should return true for a logged out user', () => {
     localStorage.removeItem('token');
     expect(guard.canActivate()).toBe(true);
-  }
-  );
+  });
 });

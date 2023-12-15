@@ -7,12 +7,13 @@ module.exports = {
         custom: ["unb-pro", "sans-serif"],
       },
       backgroundColor: {
-        'blue-brand': '#0087C8',
+        "blue-brand": "#0087C8",
       },
       textColor: {
-        'blue-brand': '#0087C8',
+        "grey-brand": "#3c3c3b",
+        "blue-brand": "#0087C8",
       },
     },
     plugins: [],
-  }
-}
+  },
+};

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WithTokenGuard  {
   constructor(private authService: AuthService, private router: Router) {}
@@ -12,7 +12,7 @@ export class WithTokenGuard  {
     if (!this.authService.isAuthenticated()) {
       return true;
     } else {
-      this.router.navigate(['/videos']);
+      this.router.navigate(['/catalog']);
       return false;
     }
   }

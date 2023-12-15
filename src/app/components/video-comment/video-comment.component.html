@@ -3,7 +3,7 @@
     <p class="text-center">Faça login para comentar</p>
   </div>
 
-  <div *ngIf="userId" class="flex flex-col gap-2">
+  <div *ngIf="userId" class="flex flex-col gap-2 comment-style">
     <div *ngIf="showComments" class="flex flex-wrap flex-col gap-2">
       <div
         (click)="toggleComments()"
@@ -22,10 +22,10 @@
             />
           </div>
           <div class="w-10/12 min-w-min">
-            <div class="font-bold font-custom text-xl max-w-prose">
+            <div class="font-custom font-bold text-sm">
               {{ comment.user_name }}:
             </div>
-            <div class="font-custom text-xl max-w-prose">
+            <div class="font-custom font-normal text-sm whitespace-nowrap" >
               <p>{{ comment.content }}</p>
             </div>
           </div>

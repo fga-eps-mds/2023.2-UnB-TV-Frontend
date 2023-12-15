@@ -1,32 +1,35 @@
 <div class="flex justify-center">
-  <div class="w-2/6 text-center flex flex-col gap-14">
-    <p class="text-blue-brand padded-cell-day text-left font-bold text-2xl">
-      {{ day }}
-    </p>
+  <div class="w-64 md:w-96 text-center">
+    <div class="flex flex-col gap-6">
+      <p class="text-blue-brand padded-cell-day text-left font-bold text-2xl">
+        {{ day }}
+      </p>
 
-    <p-progressSpinner
-      *ngIf="loadingSchedule; else scheduleTable"
-    ></p-progressSpinner>
+      <p-progressSpinner *ngIf="loadingSchedule; else scheduleTable"></p-progressSpinner>
 
-    <ng-template #scheduleTable>
-      <table class="center-table my-6">
-        <caption>Programação diária</caption>
-        <tr>
-          <th class="padded-cell">Horário</th>
-          <th class="text-left">Atividade</th>
-        </tr>
-        <tbody>
-          <tr *ngFor="let item of schedule">
-            <td class="padded-cell">{{ item.time }}</td>
-            <td class="text-left">{{ item.activity }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </ng-template>
+      <ng-template #scheduleTable>
+        <div class="overflow-x-auto">
+          <table class="center-table my-6">
+            <caption></caption>
+            <thead>
+              <tr>
+                <th class="padded-cell" style="color: #3c3c3b;">Horário</th>
+                <th class="text-left" style="color: #3c3c3b;">Atividade</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of schedule">
+                <td class="padded-cell" style="color: #3c3c3b;">{{ item.time }}</td>
+                <td class="text-left" style="color: #3c3c3b;">{{ item.activity }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
 
-    <div>
-      <div class="center-button">
-        <button id="redirectBack" class="text-blue-brand" (click)="redirectBack()">Voltar</button>
+      <div class="flex justify-center">
+        <button id="redirectBack" class="text-blue-brand px-4 py-2 rounded-md" (click)="redirectBack()">Voltar</button>
       </div>
     </div>
   </div>

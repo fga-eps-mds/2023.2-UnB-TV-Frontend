@@ -7,9 +7,9 @@ import { AlertService } from 'src/app/services/alert.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { take, timer } from 'rxjs';
 
 type ErrorResponseType = HttpErrorResponse;
-
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +19,7 @@ type ErrorResponseType = HttpErrorResponse;
 export class ProfileComponent {
   user: any;
   userId: any;
+  connection: string = '';
 
   constructor(
     private router: Router,
@@ -27,11 +28,16 @@ export class ProfileComponent {
     private alertService: AlertService,
     private confirmationService: ConfirmationService,
     private authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.setUserIdFromToken(localStorage.getItem('token') as string);
     this.getUser();
+    timer(15 * 60 * 1000)
+    .pipe(take(1))
+    .subscribe(() => {
+      this.showRenewTokenDialog();
+    });
   }
 
   setUserIdFromToken(token: string) {
@@ -43,6 +49,7 @@ export class ProfileComponent {
     this.userService.getUser(this.userId).subscribe({
       next: (data) => {
         this.user = data;
+        this.connection = this.formatingConnection(this.user.connection);
       },
       error: (error: ErrorResponseType) => {
         console.log(error);
@@ -60,8 +67,7 @@ export class ProfileComponent {
       accept: () => {
         this.authService.logout();
       },
-      reject: () => {
-      },
+      reject: () => {},
     });
   }
 
@@ -87,13 +93,45 @@ export class ProfileComponent {
           },
         });
       },
-      reject: () => {
-      },
+      reject: () => {},
     });
-
   }
 
+  showRenewTokenDialog() {
+    this.confirmationService.confirm({
+      message: 'Deseja se manter logado?',
+      header: 'Confirmação',
+      key: 'myDialog',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.renewToken();
+      },
+      reject: () => {
+        this.authService.logout();
+      },
+    });
+  }
+
+  renewToken() {
+    this.authService.refreshToken().subscribe({
+      next: (response) => {
+        if (response?.access_token) {
+          localStorage.setItem('token', response.access_token);
+        }
+      },
+      error: (error: ErrorResponseType) => {
+        console.error('Failed to refresh token:', error);
+        this.authService.logout();
+      }
+    });
+  }
+  
   navigatorEdit(): void {
     this.router.navigate([`/editUser/${this.user.id}`]);
+  }
+
+  formatingConnection(value: string): string {
+    let str = value.toLowerCase();
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 }

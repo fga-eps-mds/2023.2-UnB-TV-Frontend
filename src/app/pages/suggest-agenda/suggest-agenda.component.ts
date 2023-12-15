@@ -29,7 +29,7 @@ export class SuggestAgendaComponent implements OnInit {
       local: [''],
       responsavel: ['', [Validators.required]],
       telefoneResponsavel: ['', [Validators.required]],
-      emailContato: [''],
+      emailContato: ['', [Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
     },
     );
   }
@@ -60,5 +60,4 @@ export class SuggestAgendaComponent implements OnInit {
       this.alertService.showMessage("info", "Alerta", "Preencha todos os campos corretamente!");
     }
   }
-
 }
