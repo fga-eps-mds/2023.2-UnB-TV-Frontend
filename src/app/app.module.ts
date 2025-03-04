@@ -16,7 +16,7 @@ import { GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-s
 
 
 // Declaration
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -34,7 +34,7 @@ import { AuthService } from './services/auth.service';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { StreamViewComponent } from './pages/stream-view/stream-view.component';
 import { UpdateRoleComponent } from './pages/update-role/update-role.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MenuModule } from 'primeng/menu';
 import { VideoCommentComponent } from './components/video-comment/video-comment.component';
 import { SuggestAgendaComponent } from './pages/suggest-agenda/suggest-agenda.component';
@@ -42,6 +42,7 @@ import { ParticipateComponent } from './pages/participate/participate.component'
 import { GridComponent } from './pages/grid/grid.component';
 import { GridDaysComponent } from './pages/grid-days/grid-days.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 
@@ -62,6 +63,12 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
     FormsModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     SocialLoginModule,
     NgxGoogleAnalyticsModule.forRoot('G-XL7Z0L7VM8'),
     NgxGoogleAnalyticsRouterModule
@@ -125,4 +132,4 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
